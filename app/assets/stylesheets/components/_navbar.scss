@@ -12,18 +12,28 @@
 }
 
 .navbar{
+  font-weight: 600px;
   height: 90px;
   background-color: $card-bg;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-.navbar-links h2{
+.join-btn{
   font-size: 18px;
+  margin-right:70px;
+  background-color: black;
+  padding: 15px 42px;
+  border-radius: 57px;
+  color: white;
+}
+.logo{
+  margin-left: 70px;
+}
+.navbar-links h2{
+  padding-left: 22px;
+  font-size: 16px;
   font-family: "Open Sans", sans-serif;
   color: black;
   display: inline;
-}
-.navbar-links {
-
 }

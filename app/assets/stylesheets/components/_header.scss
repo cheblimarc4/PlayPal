@@ -1,0 +1,13 @@
+.banner {
+  width: 1220px;
+  height: 457px;
+  border-radius: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(to bottom left, rgba(0, 134, 122, 0) 50%, rgba(0, 0, 0, 0.6) 100%),
+    url("Brightness-change.png");
+  background-color: rgba(0, 134, 122, 0.6);
+  margin: 0px auto;
+  margin-top: 50px;
+}
