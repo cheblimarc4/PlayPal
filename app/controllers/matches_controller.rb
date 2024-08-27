@@ -1,6 +1,7 @@
 class MatchesController < ApplicationController
   def index
-    # @matches = policy_scope(Match) # Add this line
+    @matches = Match.all
+    @sports = Sport.all
   end
   def show
     # authorize @match

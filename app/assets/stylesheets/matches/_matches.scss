@@ -1,0 +1,18 @@
+.matches-div {
+  background-color: $webapp-bg;
+}
+.matches-section {
+  background-color: $section-bg;
+}
+
+.matches-top-div {
+  color: $headers;
+  font-family: $headers-font;
+
+  width: 75%;
+}
+
+
+.custom-select:after {
+  content: "▼";
+}
