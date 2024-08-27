@@ -1,0 +1,53 @@
+.categories{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 98px;
+  margin-bottom: 98px;
+}
+.cat-title{
+  display: inline-block;
+  width: 454px;
+  height: 192px;
+  margin-right: 35px;
+}
+.cat-title h1{
+  font-size: 48px;
+  font-family: $headers-font;
+  margin-bottom: 32px;
+}
+.cat-title p{
+  font-size: 16px;
+  font-family: $body-font;
+  color: #878787;
+}
+
+.cat-items{
+  width: 454px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-items h2{
+  font-size: 24px;
+  font-family: $headers-font;
+}
+
+.sport-av{
+  padding: 23px 0px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #878787;
+}
+.first-cat{
+  border-top: 1px solid $text;
+}
+.cl1{
+  color: $highlight-text;
+}
+.cl2{
+  color:$icons;
+}
+.cl3{
+  color:$icons2;
+}

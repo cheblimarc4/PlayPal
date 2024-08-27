@@ -12,5 +12,202 @@
 </div>
 
 <div class="banner">
-  
+  <div class="search-ttl">
+    <h1>PlayPal</h1>
+    <p>Connecting players, one game at a time!</p>
+    <div class="search-container">
+      <form class="search-form">
+        <div class="dropdown-row">
+          <div class="dropdown">
+            <select name="sport" id="sport">
+              <option value="" disabled selected>Sport</option>
+              <!-- Add your sports options here -->
+              <%@sports.each do |sport| %>
+                <option value="<%=sport.name%>"><%= sport.name.capitalize%></option>
+              <% end %>
+
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <div class="dropdown">
+            <select name="level" id="level">
+              <option value="" disabled selected>Level</option>
+              <!-- Add your match options here -->
+              <option value="level1">Beginner</option>
+              <option value="level2">Intermediate</option>
+              <option value="level3">Advanced</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+        </div>
+        <div class="dropdown-row">
+          <div class="dropdown">
+            <select name="date" type= "datetime-local" id="date">
+              <option  value="" disabled selected>Date</option>
+              <!-- Add your date options here -->
+              <option value="today">Today</option>
+              <option value="tomorrow">Tomorrow</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <div class="dropdown">
+            <select name="time" id="time">
+              <option value="" disabled selected>Time</option>
+              <!-- Add your time options here -->
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+        </div>
+        <button type="submit" class="join-match-btn">Join match</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="categories">
+  <div class="cat-title">
+    <h1>Categories</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
+        Phasellus in metus id tellus accumsan ultricies at vitae purus.</p>
+  </div>
+  <div class="cat-items">
+    <div class="sport-av first-cat">
+      <h2 id="first-cat">Padel</h2>
+      <i class="fa-solid fa-arrow-right fa-rotate-by fa-2xl " style="--fa-rotate-angle: -30deg; color:#00867A;""></i>
+    </div >
+    <div class="sport-av">
+      <h2>Football</h2>
+      <i class="fa-solid fa-arrow-right fa-rotate-by fa-2xl " style="--fa-rotate-angle: -30deg; color:#5CBC30;""></i>
+    </div>
+    <div class="sport-av">
+      <h2>Basketball</h2>
+      <i class="fa-solid fa-arrow-right fa-rotate-by fa-2xl" style="--fa-rotate-angle: -30deg; color:#9ADD00;""></i>
+    </div>
+  </div>
+</div>
+
+<div class="section-3 border p-5" style="height:790px">
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <h2 class="whats-happening text-center" style="width:31.25rem">What's happening this week</h2>
+    <p class="whats-happening-para text-center text-style" style="width:32rem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra consectetur sapien, a vulputate massa mollis eu.</p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div style="width:28.375rem;height:28.875rem" class="mx-4 mt-2 mb-4 justify-content-center d-flex flex-column align-items-center bg-white rounded-5">
+      <%= image_tag "landing-pic.png", class:"landing-pic-size"%>
+      <div class="text-center section-3-card-size">
+        <h3 style="font-size:24px;" >Sport Event Name</h3>
+        <p class="text-style">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel.</p>
+      </div>
+    </div>
+    <div style="width:28.375rem;height:28.875rem" class="justify-content-center mt-2 mb-4 d-flex flex-column align-items-center bg-white rounded-5">
+      <%= image_tag "landing-pic2.png", class:"landing-pic-size"%>
+      <div class="text-center section-3-card-size">
+        <h3 style="font-size:24px;" >Sport Event Name</h3>
+        <p class="text-style">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, vel.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="section-3 border p-5" style="height:790px">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <h2 class="whats-happening text-center" style="width:31.25rem ;margin-bottom:24px">Why playpal will work for you</h2>
+      <p class="whats-happening-para text-center text-style" style="width:32rem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.Vivamus viverra consectetur sapien, a vulputate massa mollis eu.</p>
+    </div>
+
+  <div class="why-steps" style="width:940px">
+    <div class="step " style="width:292px; height:346px">
+      <%= image_tag "Playicon3.png" %>
+      <h2 class="text-center">Practice Team sports anywhere</h2>
+      <p class="text-center text-style">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra consectetur sapien, a vulputate massa mollis eu.</p>
+    </div>
+    <div class="step" style="width:292px; height:346px">
+      <%= image_tag "Playicon1.png" %>
+      <h2 class="text-center">Connect and meet with new people</h2>
+      <p class="text-center text-style">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra consectetur sapien, a vulputate massa mollis eu.</p>
+    </div>
+    <div class="step" style="width:292px; height:346px">
+      <%= image_tag "Playicon2.png" %>
+      <h2 class="text-center">Easy to know new places in new cities</h2>
+      <p class="text-center text-style">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra consectetur sapien, a vulputate massa mollis eu.</p>
+    </div>
+  </div>
+   </div>
+
+<div style="height:30.25rem" class="d-flex justify-content-center align-items-center border bg-white">
+
+  <div class="mx-3" style="display:inline-block">
+    <h2 style="font-size:3rem">FAQs</h2>
+    <p class="text-style" style="width:28.375rem;margin:2rem 0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
+      Phasellus in metus id tellus accumsan ultricies at vitae purus.
+    </p>
+    <button class="border border-dark rounded-5 bg-white" style="height:3.3rem;width:11rem;font-size:1.125rem;">Know more</button>
+  </div>
+
+  <div class="mx-3" style="display:inline-block;">
+
+    <div style="width:28.375rem" class="border-top border-bottom d-flex justify-content-between align-items-center p-3">
+      <p class="my-2">Frequently asked question</p>
+      <i class="fa-solid fa-plus highlight-text fs-5"></i>
+    </div>
+     <div style="width:28.375rem" class="border-top border-bottom d-flex justify-content-between align-items-center p-3">
+      <p class="my-2">Frequently asked question</p>
+      <i class="fa-solid fa-plus highlight-text fs-5"></i>
+    </div>
+     <div style="width:28.375rem" class="border-top border-bottom d-flex justify-content-between align-items-center p-3">
+      <p class="my-2">Frequently asked question</p>
+      <i class="fa-solid fa-plus highlight-text fs-5"></i>
+    </div>
+     <div style="width:28.375rem" class="border-top border-bottom d-flex justify-content-between align-items-center p-3">
+      <p class="my-2">Frequently asked question</p>
+      <i class="fa-solid fa-plus highlight-text fs-5"></i>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="d-flex justify-content-center align-items-center" style="background-image:url(<%=image_path "Section-5.png"%>);background-size:cover;height:35.6875rem">
+  <div class="mx-3" style="width:30rem">
+    <h2 class="text-white" style="font-size:3rem; text-shadow: 0.5px 0px 10px black">Join the team!</h2>
+  </div>
+  <div class="mx-3 d-flex justify-items-end flex-column" style="margin-top:120px">
+    <p style="width:30rem" class="text-white">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
+      Phasellus in metus id tellus accumsan ultricies at vitae purus.
+    </p>
+    <button class="join-btn" style="border:none;width:190px">Join match</button>
+  </div>
+</div>
+
+
+<div class="container px-5 d-flex justify-content-between align-items-center" style="height:26.3125rem">
+  <div class="" style="width:28.375rem">
+    <%=image_tag "play-logo.png"%>
+    <p class="text-style">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
+Phasellus in metus id tellus accumsan ultricies at vitae purus.
+</p>
+  </div>
+  <div style="width:6.9375rem"class="">
+    <ul style="list-style-type: none;padding-left:0;font-size:18px">
+      <li>Platform</li>
+      <li>About us</li>
+      <li>Testimonials</li>
+      <li>Contacts</li>
+    </ul>
+  </div>
+  <div class="d-flex flex-column">
+        <button class="join-btn my-2" style="border:none;width:11rem;height:3.3125rem">Signup!</button>
+        <button class="border border-dark rounded-5 bg-white" style="height:3.3125rem;width:11rem;font-size:1.125rem;">Join match!</button>
+  </div>
 </div>
