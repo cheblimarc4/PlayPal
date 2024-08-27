@@ -1,25 +1,31 @@
-<h2>Sign up</h2>
+<div class="signup-container">
+  <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <div class="signup-form">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email", style: "color: #1D1D1D; border-color: #878787;" },
+                    label_html: { style: "color: #1D1D1D;" } %>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password", style: "color: #1D1D1D; border-color: #878787;" },
+                    label_html: { style: "color: #1D1D1D;" } %>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password", style: "color: #1D1D1D; border-color: #878787;" },
+                    label_html: { style: "color: #1D1D1D;" } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class: "bt-sign-up"  %>
+        <%= link_to "Log in", new_session_path(resource_name), class: "bt-login" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
