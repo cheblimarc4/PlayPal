@@ -1,5 +1,6 @@
 .matches-div {
   background-color: $webapp-bg;
+  position: relative;
 }
 .matches-section {
   background-color: $section-bg;
@@ -8,11 +9,66 @@
 .matches-top-div {
   color: $headers;
   font-family: $headers-font;
-
+  background-color: $section-bg;
   width: 75%;
+  border-radius: 20px;
+  margin:3rem;
 }
 
 
-.custom-select:after {
-  content: "▼";
+.submit-button {
+  height: 3rem;
+  width: 6rem;
+  background-color: black;
+  color: white;
+  border-radius: 20%;
+  letter-spacing: 2px;
+  font-weight: bold;
+  border: none;
+}
+
+.join-button {
+  background-color: $highlight-text;
+  padding: 0px 20px;
+  height: 3rem;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bolder;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 20px;
+}
+
+.join-button:hover {
+  opacity: 90%;
+  box-shadow: 0;
+}
+
+.highlight-text {
+  color:  $highlight-text;
+}
+
+.shadow-gray {
+  box-shadow: 1px 1px 5px gray;
+}
+
+.hover-effect {
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+.hover-effect:hover {
+  transform: scale(1.02);
+  box-shadow: 0;
+}
+
+
+.matches-popup {
+  position: fixed;
+  top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 20rem;
+  z-index: 10;
+  background-color: black;
 }

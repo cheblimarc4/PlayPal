@@ -1,10 +1,10 @@
+require "date"
 class MatchesController < ApplicationController
   def index
     @matches = Match.all
     @sports = Sport.all
   end
   def show
-    # authorize @match
   end
 
   private

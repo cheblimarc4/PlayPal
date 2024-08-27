@@ -26,14 +26,29 @@
           <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
         <% end%>
       </select>
-      <input type="submit" value="Search" class="mx-2 btn btn-primary">
+      <input type="submit" value="Search" class="mx-2 submit-button">
     </div>
   </div>
-  <div class="border p-5">
+  <div class=" p-5 d-flex flex-wrap">
       <% @matches.each do |match|%>
-        <div class="border rounded-5 my-4" style="height:10rem">
-        <%= match %>
-        </div>
+        <div class="mb-4 rounded-5 my-4 justify-content-center mx-auto bg-white shadow-gray hover-effect"  style="min-height:10rem;width:30%">
+
+          <div class="py-3" style="display:grid;grid-template-columns: 1fr 1fr 1fr 1fr">
+            <p class="py-1 px-3" style="font-size:18px;grid-column:1 / 2; position:absolute"><strong><i><%=match.match_date.strftime("%A, %d")%></i></strong></p>
+            <h3 class="text-center highlight-text" style="grid-column: 1 / 5;"><%= match.sport.name.capitalize %></h3>
+          </div>
+          <div class="d-flex justify-content-between p-3">
+            <div class="" style="">
+              <p><strong>Organizer: </strong><%=match.user.first_name%></p>
+              <p><strong>Level: </strong><%=match.level%></p>
+            </div>
+            <div class="d-flex flex-column justify-content-end align-items-center">
+              <i>Spots Remaining</i>
+              <strong class="mb-3">x / <%=match.sport.number_of_players%></strong>
+            </div>
+          </div>
+          </div>
       <% end %>
   </div>
+
 </div>
