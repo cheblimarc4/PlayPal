@@ -1,0 +1,39 @@
+<div class="matches-div">
+  <div class="text-center matches-top-div border mx-auto p-5">
+    <h1>Search your matches</h1>
+    <div class="mt-5 rounded-5">
+      <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
+        <option value="Sports">Sports</option>
+        <% @sports.each do |sport| %>
+          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
+        <% end%>
+      </select>
+       <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
+        <option value="Sports">Level</option>
+        <% @sports.each do |sport| %>
+          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
+        <% end%>
+      </select>
+       <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
+        <option value="Sports">Date</option>
+        <% @sports.each do |sport| %>
+          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
+        <% end%>
+      </select>
+       <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
+        <option value="Sports">Time</option>
+        <% @sports.each do |sport| %>
+          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
+        <% end%>
+      </select>
+      <input type="submit" value="Search" class="mx-2 btn btn-primary">
+    </div>
+  </div>
+  <div class="border p-5">
+      <% @matches.each do |match|%>
+        <div class="border rounded-5 my-4" style="height:10rem">
+        <%= match %>
+        </div>
+      <% end %>
+  </div>
+</div>
