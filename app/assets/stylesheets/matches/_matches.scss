@@ -1,5 +1,6 @@
 .matches-div {
   background-color: $webapp-bg;
+  position: relative;
 }
 .matches-section {
   background-color: $section-bg;
@@ -53,8 +54,21 @@
 
 .hover-effect {
   transition: all 0.2s linear;
+  cursor: pointer;
 }
 .hover-effect:hover {
   transform: scale(1.02);
   box-shadow: 0;
+}
+
+
+.matches-popup {
+  position: fixed;
+  top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 20rem;
+  z-index: 10;
+  background-color: black;
 }
