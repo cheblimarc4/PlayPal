@@ -27,7 +27,9 @@ end
 
 
 10.times do
-  User.create(first_name: Faker::Name.name, last_name: Faker::Name.name, email: "#{Faker::Name.name}@gmail.com", password:"123456")
+  name = Faker::Name.name.delete(" ")
+  puts name
+  User.create!(first_name: name, last_name: name, email: "#{name}@gmail.com", password:"123456")
 end
 
 10.times do

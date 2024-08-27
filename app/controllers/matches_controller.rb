@@ -1,9 +1,9 @@
 class MatchesController < ApplicationController
   def index
-    @matches = policy_scope(Match) # Add this line
+    # @matches = policy_scope(Match) # Add this line
   end
   def show
-    authorize @match
+    # authorize @match
   end
 
   private

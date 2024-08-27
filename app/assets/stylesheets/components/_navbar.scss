@@ -10,3 +10,20 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar{
+  height: 90px;
+  background-color: $card-bg;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.navbar-links h2{
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
+  color: black;
+  display: inline;
+}
+.navbar-links {
+
+}
