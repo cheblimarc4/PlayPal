@@ -82,14 +82,15 @@
   width: 177px;
   height: 27.5px;
   text-decoration: none; /* Remove underline */
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   font-size: 12px;
+  padding: 16px;
 
   &:hover {
     color: #000000; /* Change color on hover (example color) */
     background-color: #EFF7F9;
     border-radius: 57px;
-    border: 2px solid #878787;
+    border: 1px solid #878787;
   }
 }
 
