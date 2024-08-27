@@ -1,0 +1,104 @@
+.signup-container {
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Stacks child elements vertically */
+  justify-content: center; /* Centers the container content vertically */
+  align-items: center; /* Centers the container content horizontally */
+  height: 100vh; /* 100% of the viewport height */
+  padding: 0 15px; /* Adds padding to prevent overflow on small screens */
+  background-color: #EFF7F9; /* Background color */
+}
+
+.signup-form {
+  width: 33.33%; /* Makes the form take up 1/3 of the viewport width */
+  min-width: 300px; /* Optional: minimum width for smaller screens */
+  background-color: #ECF7EB; /* Background color */
+  padding: 20px; /* Adds padding inside the form */
+  border-radius: 8px; /* Rounds the corners of the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for a subtle effect */
+}
+
+.signup-container h2 {
+  margin-bottom: 20px; /* Adds space between the header and form */
+  color:#00867A; /* Optional: text color */
+  text-align: center; /* Centers the text */
+}
+
+.signup-form .form-control:focus {
+  border-color: #878787; /* Change the border color on focus */
+  box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3); /* Change the shadow color and size */
+  outline: none; /* Removes the default blue outline */
+}
+
+.form-actions {
+  display: flex; /* Enable Flexbox */
+  justify-content: space-between; /* Space items as far apart as possible */
+  align-items: center; /* Align items vertically centered */
+  width: 100%; /* Optional: Ensure the actions take full width */
+  padding-top: 30px; /* Optional: Add spacing above the actions */
+}
+
+.bt-sign-up {
+  background-color: #000000;
+  border-radius: 57px;
+  color: white;
+  width: 177px;
+  height: 53px;
+
+  &:hover {
+    color: #000000; /* Change color on hover (example color) */
+    background-color: #EFF7F9;
+    border-radius: 57px;
+    border: 2px solid #878787;
+  }
+}
+
+.bt-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 57px;
+  color: #000000; /* Set the text color */
+  width: 177px;
+  height: 53px;
+  text-decoration: none; /* Remove underline */
+  border: 2px solid #000000;
+
+  &:hover {
+    color: #000000; /* Change color on hover (example color) */
+    background-color: #EFF7F9;
+    border-radius: 57px;
+    border: 2px solid #878787;
+  }
+}
+
+.bt-forgot-pass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 57px;
+  color: #000000; /* Set the text color */
+  width: 177px;
+  height: 27.5px;
+  text-decoration: none; /* Remove underline */
+  border: 2px solid #000000;
+  font-size: 12px;
+
+  &:hover {
+    color: #000000; /* Change color on hover (example color) */
+    background-color: #EFF7F9;
+    border-radius: 57px;
+    border: 2px solid #878787;
+  }
+}
+
+.form-actions2 {
+  display: flex; /* Enable Flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  gap: 10px; /* Space between button and link */
+  width: 100%; /* Full width of the container */
+  padding-top: 20px; /* Optional: add spacing above if needed */
+}
