@@ -4,7 +4,6 @@ class MatchesController < ApplicationController
     @sports = Sport.all
   end
   def show
-    # authorize @match
   end
 
   private

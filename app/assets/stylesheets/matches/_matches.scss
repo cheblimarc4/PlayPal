@@ -8,11 +8,53 @@
 .matches-top-div {
   color: $headers;
   font-family: $headers-font;
-
+  background-color: $section-bg;
   width: 75%;
+  border-radius: 20px;
+  margin:3rem;
 }
 
 
-.custom-select:after {
-  content: "▼";
+.submit-button {
+  height: 3rem;
+  width: 6rem;
+  background-color: black;
+  color: white;
+  border-radius: 20%;
+  letter-spacing: 2px;
+  font-weight: bold;
+  border: none;
+}
+
+.join-button {
+  background-color: $highlight-text;
+  padding: 0px 20px;
+  height: 3rem;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bolder;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 20px;
+}
+
+.join-button:hover {
+  opacity: 90%;
+  box-shadow: 0;
+}
+
+.highlight-text {
+  color:  $highlight-text;
+}
+
+.shadow-gray {
+  box-shadow: 1px 1px 5px gray;
+}
+
+.hover-effect {
+  transition: all 0.2s linear;
+}
+.hover-effect:hover {
+  transform: scale(1.02);
+  box-shadow: 0;
 }

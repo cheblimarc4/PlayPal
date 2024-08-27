@@ -26,14 +26,25 @@
           <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
         <% end%>
       </select>
-      <input type="submit" value="Search" class="mx-2 btn btn-primary">
+      <input type="submit" value="Search" class="mx-2 submit-button">
     </div>
   </div>
   <div class="border p-5">
       <% @matches.each do |match|%>
-        <div class="border rounded-5 my-4" style="height:10rem">
-        <%= match %>
-        </div>
+        <div class="mb-4 rounded-5 my-4 justify-content-center mx-auto bg-white shadow-gray hover-effect" style="min-height:10rem;width:60%">
+          <h3 class="text-center py-3"><%= match.sport.name.capitalize %></h3>
+          <div class="d-flex justify-content-between">
+            <div class="px-5" style="width:30rem">
+              <p><strong>Organizer: </strong><%=match.user.first_name%></p>
+              <p><strong>Level: </strong><%=match.level%></p>
+              <p><strong>Match Date: </strong><%=match.match_date%></p>
+            </div>
+            <div class="px-5 d-flex flex-column justify-content-end my-3 align-items-center" style="max-width:30rem">
+              <p>Players Remaining: <strong>x / <%=match.sport.number_of_players%></strong></p>
+               <input type="submit" value="Request to join" class="mx-2 join-button">
+            </div>
+          </div>
+          </div>
       <% end %>
   </div>
 </div>
