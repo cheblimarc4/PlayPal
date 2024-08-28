@@ -1,5 +1,6 @@
 require "date"
 class MatchesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   def index
     @matches = Match.all
     @sports = Sport.all
@@ -11,8 +12,5 @@ class MatchesController < ApplicationController
 
   def set_match
     @match = Match.find(params[:id])
-  end
-  def match_params
-    params.require(:match).permit()
   end
 end
