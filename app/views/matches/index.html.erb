@@ -1,31 +1,47 @@
 <div class="matches-div">
   <div class="text-center matches-top-div border mx-auto p-5">
     <h1>Search your matches</h1>
-    <div class="mt-5 rounded-5">
-      <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
-        <option value="Sports">Sports</option>
-        <% @sports.each do |sport| %>
-          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
-        <% end%>
-      </select>
-       <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
-        <option value="Sports">Level</option>
-        <% @sports.each do |sport| %>
-          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
-        <% end%>
-      </select>
-       <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
-        <option value="Sports">Date</option>
-        <% @sports.each do |sport| %>
-          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
-        <% end%>
-      </select>
-       <select value="Sport" name="cars" id="cars" class="custom-select px-3 bg-white rounded-5 border border-dark" style="width:195px;height:48px">
-        <option value="Sports">Time</option>
-        <% @sports.each do |sport| %>
-          <option value="<%=sport.name%>"><%=sport.name.capitalize%></option>
-        <% end%>
-      </select>
+    <div class="d-flex justify-content-center mt-5 rounded-5">
+      <div class="dropdown">
+            <select name="sport" id="sport">
+              <option value="" disabled selected>Sport</option>
+              <!-- Add your sports options here -->
+              <%@sports.each do |sport| %>
+                <option value="<%=sport.name%>"><%= sport.name.capitalize%></option>
+              <% end %>
+
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+      </div>
+      <div class="dropdown">
+            <select name="level" id="level">
+              <option value="" disabled selected>Level</option>
+              <!-- Add your match options here -->
+              <option value="level1">Beginner</option>
+              <option value="level2">Intermediate</option>
+              <option value="level3">Advanced</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="dropdown">
+            <select name="date" type= "datetime-local" id="date">
+              <option  value="" disabled selected>Date</option>
+              <!-- Add your date options here -->
+              <option value="today">Today</option>
+              <option value="tomorrow">Tomorrow</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <div class="dropdown">
+            <select name="time" id="time">
+              <option value="" disabled selected>Time</option>
+              <!-- Add your time options here -->
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
       <input type="submit" value="Search" class="mx-2 submit-button">
     </div>
   </div>
