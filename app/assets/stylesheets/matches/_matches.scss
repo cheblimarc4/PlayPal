@@ -1,4 +1,8 @@
-matches-div {
+body {
+  background-color: $webapp-bg;
+}
+
+.matches-div {
   background-color: $webapp-bg;
   position: relative;
 }
@@ -65,6 +69,7 @@ matches-div {
 .dropdown {
   position: relative;
   display: inline-block;
+  margin: 2px;
 }
 .dropdown select {
   height: 3rem;
@@ -87,6 +92,7 @@ matches-div {
   justify-content: center !important;
 }
 .match-card {
+  background-color: #F9FDFE;
   min-height: 10rem;
   width: calc(100% / 3 - 2rem); // Fit three cards per row by default
   max-width: 30%;
@@ -108,9 +114,8 @@ matches-div {
   position: relative;
 }
 .date-grid {
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-
 }
 
 .sport-name {
@@ -138,5 +143,33 @@ matches-div {
     position: relative;
     grid-row: 1 / 2;
     text-align: center;
+  }
+}
+
+/* Container styles to position icon */
+.icon-container {
+  position: absolute; /* Position the container absolutely within its relative parent */
+  bottom: 35px; /* Align at the bottom */
+  right: 35px; /* Align at the right */
+  transform: translate(50%, 50%); /* Optional: Slight adjustment for perfect alignment */
+}
+
+/* Icon styles */
+.icon-container i {
+  font-size: 2rem; /* Make the icon twice its default size */
+  color: #00867a; /* Keep the color as specified */
+  animation: rotateIcon 10s infinite; /* Apply rotation animation */
+}
+
+/* Rotation animation */
+@keyframes rotateIcon {
+  0% {
+    transform: rotateY(0deg); /* Start from original position */
+  }
+  50% {
+    transform: rotateY(180deg); /* Rotate to 180 degrees halfway through the animation */
+  }
+  100% {
+    transform: rotateY(360deg); /* Complete the full rotation by the end of the animation */
   }
 }
