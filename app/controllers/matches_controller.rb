@@ -1,5 +1,6 @@
 require "date"
 class MatchesController < ApplicationController
+  before_action :set_match, only: [:show]
   def index
     @matches = Match.all
     @sports = Sport.all
