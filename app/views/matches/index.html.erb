@@ -47,8 +47,7 @@
   </div>
   <div class=" p-5 d-flex flex-wrap">
       <% @matches.each do |match|%>
-        <div class="mb-4 rounded-5 my-4 justify-content-center mx-auto bg-white shadow-gray hover-effect"  style="min-height:10rem;width:30%">
-
+      <%= link_to match_path(match), class:"mb-4 rounded-5 my-4 justify-content-center mx-auto bg-white shadow-gray hover-effect",style:"text-decoration:none;color:black;width:30%" do %>
           <div class="py-3" style="display:grid;grid-template-columns: 1fr 1fr 1fr 1fr">
             <p class="py-1 px-3" style="font-size:18px;grid-column:1 / 2; position:absolute"><strong><i><%=match.match_date.strftime("%A, %d")%></i></strong></p>
             <h3 class="text-center highlight-text" style="grid-column: 1 / 5;"><%= match.sport.name.capitalize %></h3>
@@ -63,7 +62,7 @@
               <strong class="mb-3">x / <%=match.sport.number_of_players%></strong>
             </div>
           </div>
-          </div>
+        <%end%>
       <% end %>
   </div>
 
