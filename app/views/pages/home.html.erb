@@ -1,5 +1,7 @@
 <div class="navbar">
+  <%= link_to root_path do%>
   <%= image_tag "play-logo.png", class:"logo"%>
+  <% end %>
   <div class="navbar-links">
     <h2>Platform</h2>
     <h2>About Us</h2>
@@ -7,7 +9,8 @@
     <h2>Contacts</h2>
   </div>
   <div>
-    <button class="join-btn">Join match</button>
+    <%= link_to "Search match", matches_path, class:"join-btn", style:"text-decoration:none"%>
+
   </div>
 </div>
 
@@ -61,7 +64,7 @@
             <i class="fa-solid fa-caret-down"></i>
           </div>
         </div>
-        <button type="submit" class="join-match-btn">Join match</button>
+        <button type="submit" class="join-match-btn">Search match</button>
       </form>
     </div>
   </div>
@@ -175,16 +178,18 @@
 
 
 <div class="d-flex justify-content-center align-items-center" style="background-image:url(<%=image_path "Section-5.png"%>);background-size:cover;height:35.6875rem">
-  <div class="mx-3" style="width:30rem">
-    <h2 class="text-white" style="font-size:3rem; text-shadow: 0.5px 0px 10px black">Join the team!</h2>
-  </div>
-  <div class="mx-3 d-flex justify-items-end flex-column" style="margin-top:120px">
-    <p style="width:30rem" class="text-white">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
-      Phasellus in metus id tellus accumsan ultricies at vitae purus.
-    </p>
-    <button class="join-btn" style="border:none;width:190px">Join match</button>
+  <div class="d-flex justify-content-evenly align-items-start">
+    <div class="mx-3 container" style="width:30rem">
+      <h2 class="text-white" style="font-size:3rem; text-shadow:  0px 1px 0.5px black">Join the team!</h2>
+    </div>
+    <div class="mx-3 d-flex justify-items-end flex-column" style="">
+      <p style="width:30rem" class="text-white">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
+        Phasellus in metus id tellus accumsan ultricies at vitae purus.
+      </p>
+       <%= link_to "Search match", matches_path, class:"join-btn", style:"text-decoration:none;border:none;width:200px"%>
+    </div>
   </div>
 </div>
 
@@ -199,7 +204,7 @@ Phasellus in metus id tellus accumsan ultricies at vitae purus.
 </p>
   </div>
   <div style="width:6.9375rem"class="">
-    <ul style="list-style-type: none;padding-left:0;font-size:18px">
+    <ul style="list-style-type: none;padding-left:0;font-size:18px;font-weight:bold">
       <li>Platform</li>
       <li>About us</li>
       <li>Testimonials</li>
@@ -207,7 +212,8 @@ Phasellus in metus id tellus accumsan ultricies at vitae purus.
     </ul>
   </div>
   <div class="d-flex flex-column">
-        <button class="join-btn my-2" style="border:none;width:11rem;height:3.3125rem">Signup!</button>
-        <button class="border border-dark rounded-5 bg-white" style="height:3.3125rem;width:11rem;font-size:1.125rem;">Join match!</button>
+        <button onclick="location.href='/users/sign_up'" class="join-btn mb-4" style="border:none;width:11rem;height:3.3125rem">Signup!</button>
+        <button onclick="location.href='matches';" class="border border-dark rounded-5 bg-white" style="height:3.3125rem;width:11rem;font-size:1.125rem;">Search match!</button>
+
   </div>
 </div>
