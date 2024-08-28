@@ -9,7 +9,8 @@
     <h2>Contacts</h2>
   </div>
   <div>
-    <button class="join-btn">Search match</button>
+    <%= link_to "Search match", matches_path, class:"join-btn", style:"text-decoration:none"%>
+
   </div>
 </div>
 
@@ -187,7 +188,7 @@
         Vivamus viverra consectetur sapien, a vulputate massa mollis eu.
         Phasellus in metus id tellus accumsan ultricies at vitae purus.
       </p>
-      <button class="join-btn" style="border:none;width:190px">Join match</button>
+       <%= link_to "Search match", matches_path, class:"join-btn", style:"text-decoration:none;border:none;width:200px"%>
     </div>
   </div>
 </div>
@@ -211,7 +212,8 @@ Phasellus in metus id tellus accumsan ultricies at vitae purus.
     </ul>
   </div>
   <div class="d-flex flex-column">
-        <button class="join-btn mb-4" style="border:none;width:11rem;height:3.3125rem">Signup!</button>
-        <button class="border border-dark rounded-5 bg-white" style="height:3.3125rem;width:11rem;font-size:1.125rem;">Join match!</button>
+        <button onclick="location.href='/users/sign_up'" class="join-btn mb-4" style="border:none;width:11rem;height:3.3125rem">Signup!</button>
+        <button onclick="location.href='matches';" class="border border-dark rounded-5 bg-white" style="height:3.3125rem;width:11rem;font-size:1.125rem;">Search match!</button>
+
   </div>
 </div>
