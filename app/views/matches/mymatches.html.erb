@@ -1,0 +1,19 @@
+<%= "You didnt create any match" if @matches.length == 0 %>
+<div class="container">
+  <% @matches.each do |match| %>
+    <div class="border m-5" style="width:75%">
+      <h3 class=""><%= match.sport.name.capitalize %></h3>
+      <div class="border mx-3">
+        <% match.UserMatches.each do |user_match| %>
+          <div class="" style="height:5rem">
+              <%= "#{user_match.user.first_name} #{user_match.user.last_name}" %>
+              <span>
+                <%= user_match.status%>
+              </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
