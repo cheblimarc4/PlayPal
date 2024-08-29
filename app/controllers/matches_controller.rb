@@ -1,6 +1,6 @@
 require "date"
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :create]
+  before_action :set_match, only: [:show]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -23,9 +23,15 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match.user = current_user
     @match = Match.new(match_params)
-    @match.sport = Sport.where(name: params("name"))[0]
+    sport =  sport_param
+    @match.sport = Sport.where(name:sport[:sport].downcase)[0]
+    @match.user = current_user
+    if @match.save
+      redirect_to matches_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
@@ -34,7 +40,11 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
   end
   def match_params
-    params.require(:match).permit(:sport_id, :user_id, :game_type, :level, :match_date, :location, :match_time, :need)
+    params.require(:match).permit(:game_type, :level, :match_date, :location, :match_time, :need)
+  end
+  def sport_param
+    params.require(:match).permit(:sport)
+
   end
 
   def already_requested?(match)
