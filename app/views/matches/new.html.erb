@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 style="font-size:48px ; font-family:$headers-font; text-align:center">Create Your Match</h1>
+  <div class="create-form">
+    <%= simple_form_for @match, :defaults => { :input_html => { :class => "form-control" } } do |f| %>
+    <div>
+      <%= f.input :sport, label: " Select Sport" as: :select, collection: ["Padel", "Football", "Basketball", "Squash", "Volleyball"] %>
+    </div>
+    <div>
+       <%= f.input :match_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+      <%= f.input :match_time, as: :select, collection: [
+        "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
+        "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
+        "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+        "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
+        "20:00", "20:30", "21:00", "21:30", "22:00"
+      ]%>
+    </div>
+    <div>
+      <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"] %>
+      <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"] %>
+    </div>
+    <div>
+      <%= f.input :location %>
+    </div>
+    <div>
+      <%= f.input :need, label:"How many players do you need ?" %>
+    </div>
+    <div>
+      <%= f.button :submit %>
+    </div>
+    <% end %>
+  </div>
+</div>
