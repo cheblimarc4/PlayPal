@@ -29,6 +29,7 @@
           </div>
           <div class="dropdown">
             <select name="time" id="time">
+
               <option value="" disabled selected hidden>Time</option>
               <!-- Add your time options here -->
               <option value="morning">Morning</option>
@@ -44,23 +45,22 @@
 
   <div class=" p-5 d-flex flex-wrap">
       <% @matches.each do |match|%>
-      <%= link_to match_path(match), class:"mb-4 rounded-5 my-4 justify-content-center mx-auto bg-white shadow-gray hover-effect",style:"text-decoration:none;color:black;width:30%" do %>
+      <%= link_to match_path(match), class:"mb-4 rounded-5 my-4 justify-content-center mx-auto bg-white shadow-gray hover-effect",style:"text-decoration: none; color: black; width: 30%" do %>
           <div class="py-3 date-grid">
-            <p class="date" style=""><strong><i><%=match.match_date.strftime("%A, %d")%></i></strong></p>
+            <p class="date" style=""><strong><%=match.match_date.strftime("%A, %d")%></strong></p>
             <h3 class="text-center highlight-text sport-name" style=""><%= match.sport.name.capitalize %></h3>
           </div>
-          <div class="d-flex justify-content-between p-3">
-            <div class="" style="">
+          <div class="d-flex justify-content-between p-3 position-relative">
+            <div>
               <p><strong>Organizer: </strong><%=match.user.first_name%></p>
               <p><strong>Level: </strong><%=match.level%></p>
+              <p><strong>Available spots: </strong> X / <%=match.sport.number_of_players%></p>
             </div>
-            <div class="d-flex flex-column justify-content-end align-items-center">
-              <i>Spots Remaining</i>
-              <strong class="mb-3">x / <%=match.sport.number_of_players%></strong>
-            </div>
+              <div class="icon-container">
+                <i class="<%= match.sport_icon %>"></i>
+              </div>
           </div>
-        <%end%>
+        <% end %>
       <% end %>
   </div>
-
 </div>
