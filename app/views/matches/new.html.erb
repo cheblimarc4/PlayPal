@@ -3,7 +3,7 @@
   <div class="create-form">
     <%= simple_form_for @match, :defaults => { :input_html => { :class => "form-control" } } do |f| %>
     <div>
-      <%= f.input :sport, label: " Select Sport" as: :select, collection: ["Padel", "Football", "Basketball", "Squash", "Volleyball"] %>
+      <%= f.input :sport, label: " Select Sport", as: :select, collection: ["Padel", "Football", "Basketball", "Squash", "Volleyball"] %>
     </div>
     <div>
        <%= f.input :match_date,

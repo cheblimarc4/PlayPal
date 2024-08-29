@@ -5,16 +5,17 @@
     <form action="matches" method="get">
       <div class="dropdown">
             <select name="sport" id="sport">
-              <option value="" disabled selected>Sport</option>
-              <% @sports.each do |sport| %>
-                <option value="<%= sport.name %>"><%= sport.name.capitalize %></option>
+              <option value="" disabled selected hidden>Sport</option>
+              <!-- Add your sports options here -->
+              <%@sports.each do |sport| %>
+                <option value="<%=sport.name%>"><%= sport.name.capitalize%></option>
               <% end %>
             </select>
             <i class="fa-solid fa-caret-down"></i>
       </div>
       <div class="dropdown">
             <select name="level" id="level">
-              <option disabled selected>Level</option>
+              <option disabled selected hidden>Level</option>
               <!-- Add your match options here -->
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
@@ -22,17 +23,15 @@
             </select>
             <i class="fa-solid fa-caret-down"></i>
         </div>
-        <div class="dropdown">
-            <select name="date" type= "datetime-local" id="date">
-              <option  value="" disabled selected>Date</option>
-              <option value="today">Today</option>
-              <option value="tomorrow">Tomorrow</option>
-            </select>
+        <div class="dropdown" data-controller="datepicker">
+            <input value="Date" class="w-100" style="appearance: none;border-radius:20px;padding: 10px 40px 10px 20px;border: 1px solid #ccc;background-color: #fff;font-size: 16px;" name="date" id="date" data-controller="datepicker">
             <i class="fa-solid fa-caret-down"></i>
           </div>
           <div class="dropdown">
             <select name="time" id="time">
-              <option value="" disabled selected>Time</option>
+
+              <option value="" disabled selected hidden>Time</option>
+              <!-- Add your time options here -->
               <option value="morning">Morning</option>
               <option value="afternoon">Afternoon</option>
               <option value="evening">Evening</option>
