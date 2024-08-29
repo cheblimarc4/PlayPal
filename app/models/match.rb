@@ -14,4 +14,16 @@ class Match < ApplicationRecord
     tsearch: { prefix: true }
   }
 
+  ICONS = {
+    "volleyball" => "fa-solid fa-volleyball",
+    "football" => "fa-regular fa-futbol",
+    "basketball" => "fa-solid fa-basketball",
+    "padel" => "fa-solid fa-table-tennis-paddle-ball",
+    "squash" => "fa-solid fa-table-tennis-paddle-ball"
+  }.freeze
+
+  def sport_icon
+    ICONS.fetch(sport.name, "fa-solid fa-question")
+  end
+
 end
