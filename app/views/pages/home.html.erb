@@ -19,11 +19,11 @@
     <h1>PlayPal</h1>
     <p>Connecting players, one game at a time!</p>
     <div class="search-container">
-      <form class="search-form">
+      <form class="search-form" action="/matches">
         <div class="dropdown-row">
           <div class="dropdown">
             <select name="sport" id="sport">
-              <option value="" disabled selected>Sport</option>
+              <option value="" disabled selected hidden>Sport</option>
               <!-- Add your sports options here -->
               <%@sports.each do |sport| %>
                 <option value="<%=sport.name%>"><%= sport.name.capitalize%></option>
@@ -34,11 +34,11 @@
           </div>
           <div class="dropdown">
             <select name="level" id="level">
-              <option value="" disabled selected>Level</option>
+              <option value="" disabled selected hidden>Level</option>
               <!-- Add your match options here -->
-              <option value="level1">Beginner</option>
-              <option value="level2">Intermediate</option>
-              <option value="level3">Advanced</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
             </select>
             <i class="fa-solid fa-caret-down"></i>
           </div>
@@ -46,7 +46,7 @@
         <div class="dropdown-row">
           <div class="dropdown">
             <select name="date" type= "datetime-local" id="date">
-              <option  value="" disabled selected>Date</option>
+              <option  value="" disabled selected hidden>Date</option>
               <!-- Add your date options here -->
               <option value="today">Today</option>
               <option value="tomorrow">Tomorrow</option>
@@ -55,7 +55,7 @@
           </div>
           <div class="dropdown">
             <select name="time" id="time">
-              <option value="" disabled selected>Time</option>
+              <option value="" disabled selected hidden>Time</option>
               <!-- Add your time options here -->
               <option value="morning">Morning</option>
               <option value="afternoon">Afternoon</option>

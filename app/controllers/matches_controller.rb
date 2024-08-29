@@ -4,8 +4,15 @@ class MatchesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @matches = Match.all
+
     @sports = Sport.all
+    if params.keys.length == 2
+      @matches = Match.all
+    else
+      query = [params[:sport] || "", params[:level] || "", params[:time] || ""].join(' ').strip
+      @matches = Match.search(query)
+      @matches = @matches.where(match_date: :date) if params[:date]
+    end
   end
 
   def show
