@@ -11,10 +11,9 @@
 .signup-form {
   width: 33.33%; /* Makes the form take up 1/3 of the viewport width */
   min-width: 300px; /* Optional: minimum width for smaller screens */
-  background-color: #ECF7EB; /* Background color */
-  // background-color: white;
+  background-color: #F9FDFE; /* Background color */
   padding: 20px; /* Adds padding inside the form */
-  border-radius: 8px; /* Rounds the corners of the form */
+  border-radius: 20px; /* Rounds the corners of the form */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for a subtle effect */
 }
 
@@ -77,8 +76,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ECF7EB;
-  // background-color: white;
+  background-color: #F9FDFE;
   border-radius: 57px;
   color: #000000; /* Set the text color */
   width: 177px;

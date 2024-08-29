@@ -5,12 +5,12 @@
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
         <%= f.input :email,
-                    required: false,
+                    required: true,
                     autofocus: true,
                     input_html: { autocomplete: "email", style: "color: #1D1D1D; border-color: #878787;" },
                     label_html: { style: "color: #1D1D1D;" } %>
         <%= f.input :password,
-                    required: false,
+                    required: true,
                     input_html: { autocomplete: "current-password", style: "color: #1D1D1D; border-color: #878787;" },
                     label_html: { style: "color: #1D1D1D;" } %>
         <%= f.input :remember_me, as: :boolean, input_html: { class: 'remember-checkbox' }, label_html: { class: 'remember-label' } if devise_mapping.rememberable? %>
