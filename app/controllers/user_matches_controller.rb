@@ -1,6 +1,7 @@
 class UserMatchesController < ApplicationController
   before_action :set_match, only: [:create]
   before_action :set_usermatch, only: [:acceptuser, :rejectuser]
+
   def create
     if @match.UserMatches.accepted.length < @match.need
       if already_requested(@match)
