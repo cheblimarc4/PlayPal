@@ -21,6 +21,7 @@ class UserMatchesController < ApplicationController
 
 
   def cancel_match
+
     if current_user == @usermatch.user
        @usermatch.destroy
 
