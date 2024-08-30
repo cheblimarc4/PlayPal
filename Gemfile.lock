@@ -133,6 +133,10 @@ GEM
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux)
+
+    ffi (1.17.0)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-darwin)
     flatpickr (4.6.13.1)
     font-awesome-sass (6.5.2)
       sassc (~> 2.0)
