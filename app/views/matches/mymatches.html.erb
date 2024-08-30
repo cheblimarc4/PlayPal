@@ -1,19 +1,55 @@
-<%= "You didnt create any match" if @matches.length == 0 %>
-<div class="container">
+<div>
+  <h1 class="text-center my-5">User Requests </h1>
   <% @matches.each do |match| %>
-    <div class="border m-5" style="width:75%">
-      <h3 class=""><%= match.sport.name.capitalize %></h3>
-      <div class="border mx-3">
-        <% match.UserMatches.each do |user_match| %>
-          <div class="" style="height:5rem">
-              <%= "#{user_match.user.first_name} #{user_match.user.last_name}" %>
-              <span>
-                <%= user_match.status%>
-              </span>
+    <div class="matches-section container border mymatches-grid px-5 py-3" style="height:20rem">
+      <div class="mymatches-child-1 overflow-scroll" style="height:16rem">
+          <div class="mb-3 d-flex align-items-center justify-content-between" style="width:90%">
+            <h2> <%= match.sport.name %> </h2>
+            <div class="d-flex flex-column align-items-end">
+              <span class="fst-italic"><%= match.match_date.strftime("%A, %d %B %Y") %></span>
+              <span class="fst-italic"><%= match.match_time %></span>
+            </div>
           </div>
-        <% end %>
+          <% match.UserMatches.each do |request| %>
+            <div data-controller="acceptreject" data-acceptreject-usermatch-value="<%= request.to_json%>" class="bg-white px-3 mymatches-innerchild d-flex justify-content-between my-4">
+              <div class="d-flex">
+                <span class="d-flex justify-content-center align-items-center avatar">Avatar</span>
+                <div class="px-3 d-flex flex-column"><span><%= request.user.first_name %></span><span>rating</span></div>
+                <span class="<%=request.status == "accepted" ? "text-success" : "text-warning" %>" data-acceptreject-target="status"><%= request.status %></span>
+              </div>
+              <div>
+                <button data-action="click->acceptreject#accept" class="accept-button">Accept</button>
+                <button data-action="click->acceptreject#reject" class="reject-button">X</button>
+              </div>
+            </div>
+          <% end %>
       </div>
     </div>
   <% end %>
-
 </div>
+
+
+<%#
+ <div class="mymatches-child-2 border">
+       <div class="border h-50">
+          <h4 class="text-center my-2">Team A</h4>
+          <div class="d-flex justify-content-evenly overflow-scroll" style="width:90%">
+            <span class="d-flex mx-3 justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+          </div>
+        </div>
+       <div class="border h-50" >
+        <h4 class="text-center">Team B</h4>
+          <div class="d-flex justify-content-evenly">
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+            <span class="d-flex justify-content-center align-items-center my-avatar">Avatar</span>
+          </div>
+       </div>
+    </div> %>

@@ -1,5 +1,6 @@
 class UserMatchesController < ApplicationController
   before_action :set_match, only: [:create]
+  before_action :set_usermatch, only: [:acceptuser, :rejectuser]
   def create
     if @match.UserMatches.accepted.length < @match.need
       if already_requested(@match)
@@ -17,7 +18,35 @@ class UserMatchesController < ApplicationController
     end
   end
 
+  def acceptuser
+    if current_user == @usermatch.match.user
+      if @usermatch.accepted!
+          render json: { message: "#{@usermatch.to_json}" }
+      else
+        render json: { error: "Something went wrong!" }
+      end
+    else
+      render json: { notice: "You are not authorized to do that,"}
+    end
+  end
+
+  def rejectuser
+    if current_user == @usermatch.match.user
+      if @usermatch.denied!
+          render json: { message: "#{@usermatch.to_json}" }
+      else
+        render json: { error: "Something went wrong!" }
+      end
+    else
+      render json: { notice: "You are not authorized to do that,"}
+    end
+  end
+
   private
+
+  def set_usermatch
+    @usermatch = UserMatch.find(params[:id]);
+  end
 
   def already_requested(match)
     exists = false
