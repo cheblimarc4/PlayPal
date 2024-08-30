@@ -19,6 +19,15 @@ class UserMatchesController < ApplicationController
     end
   end
 
+
+  def cancel_match
+    @user_match = UserMatch.find(params[:id])
+      if current_user == @user_match.match.user
+        @user_match.destroy
+        format.json {render json: { message: "You Successfully deleted your request"}}
+      end
+    end
+
   def acceptuser
     if current_user == @usermatch.match.user
       if @usermatch.accepted!
@@ -42,6 +51,7 @@ class UserMatchesController < ApplicationController
       render json: { notice: "You are not authorized to do that,"}
     end
   end
+
 
   private
 

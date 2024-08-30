@@ -1,0 +1,34 @@
+<h1 class="text-center mb-4" style="font-size:48px; font-family:$headers-font">Your Requests</h1>
+
+<div class="request-container">
+
+  <% if @user_requests.length == 0  %>
+    <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
+  <%else %>
+    <% @user_requests.each do |request| %>
+    <div class="request d-flex align-items-center justify-content-between" data-controller="cancel-request" data-cancel-request-usermatch-value="<%=request.to_json%>">
+      <div class="request-info-container">
+        <div class="d-flex align-items-start">
+          <i class="<%=request.match.sport_icon%> m-3"></i>
+          <h2 style="font-size:24px; font-family:$headers-font; margin: 0;"><%= request.match.sport.name.capitalize %></h2>
+        </div>
+        <div class="request-info">
+          <div class="info-label">
+            <strong>Match Time</strong>
+            <p><%= request.match.match_time %></p>
+          </div>
+          <div class="info-label">
+            <strong>Match Location</strong>
+            <p><%= request.match.location %></p>
+          </div>
+        </div>
+      </div>
+      <div class="request-action">
+        <strong>Request Date</strong> <%= request.match.match_date %>
+        <strong>Status</strong> <%= request.status.capitalize %></p>
+      </div>
+      <button class="cancel-button" data-action="click->cancel-request#remove">Cancel Request</button>
+    </div>
+  <% end %>
+</div>
+  <% end %>
