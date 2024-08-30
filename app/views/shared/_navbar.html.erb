@@ -1,33 +1,31 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "play-logo.png" %>
+<div class="navbar" style="padding: 0px 70px;">
+  <%= link_to root_path do%>
+  <%= image_tag "play-logo.png", class:"logo"%>
+  <% end %>
+
+  <div class="navbar-links">
+    <h2>About Us</h2>
+    <h2>Testimonials</h2>
+    <h2>Contacts</h2>
+  </div>
+  <div class="d-flex align-items-center">
+    <%= link_to "Create match", new_match_path, class:"join-btn mx-2", style:"text-decoration:none"%>
+    <% if user_signed_in? %>
+      <div class="dropdown" style="width:auto">
+        <%= image_tag "profile-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
+        <ul class="dropdown-menu dropdown-menu-start" style="left: 10px; transform: translateX(-80%) translateY(10%);" aria-labelledby="navbarDropdown">
+          <li><%= link_to "Profile", "", class: "dropdown-item" %></li>
+          <li><%= link_to "Settings", "", class: "dropdown-item" %></li>
+          <li><%= link_to "My Matches", my_matches_path, class: "dropdown-item" %></li>
+          <li><%= link_to "My Requests", your_requests_path, class: "dropdown-item" %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
+        </ul>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to "Login", new_user_session_path, class: "nav-link login-hover"%>
+      </div>
     <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "My Matches", my_matches_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
   </div>
 </div>

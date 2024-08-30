@@ -27,13 +27,24 @@
   border-radius: 57px;
   color: white;
 }
-.logo{
-  margin-left: 70px;
+
+.navbar-links {
+  display: flex;
+  justify-content: center; /* Center all h2 elements horizontally within the container */
+  align-items: center; /* Center h2 elements vertically */
+  flex: 1; /* Allow this div to take up available space */
+  margin-left: 160px;
+  margin-right: 0px;
 }
-.navbar-links h2{
-  padding-left: 22px;
+
+.navbar-links h2 {
+  margin: 0 15px; /* Add space between h2 elements */
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
   color: black;
-  display: inline;
+  text-align: center; /* Center text within each h2 element */
+}
+
+.nav-link:hover {
+  color: #00867a;
 }
