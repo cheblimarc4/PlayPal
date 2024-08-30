@@ -26,7 +26,7 @@ class UserMatchesController < ApplicationController
         @user_match.destroy
         format.json {render json: { message: "You Successfully deleted your request"}}
       end
-    end
+  end
 
   def acceptuser
     if current_user == @usermatch.match.user
