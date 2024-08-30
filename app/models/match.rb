@@ -22,6 +22,18 @@ class Match < ApplicationRecord
     "squash" => "fa-solid fa-table-tennis-paddle-ball"
   }.freeze
 
+  PHOTOS = {
+    "volleyball" => "https://plus.unsplash.com/premium_photo-1686836995218-555706df014c?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "football" => "https://images.unsplash.com/photo-1624880357913-a8539238245b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "basketball" => "https://plus.unsplash.com/premium_photo-1668032525950-59d3abdce51f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "padel" => "https://plus.unsplash.com/premium_photo-1709075562029-b64d3ddeb79a?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "squash" => "https://plus.unsplash.com/premium_photo-1707152794942-03740f9f46b9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+}.freeze
+
+  def show_banner
+    PHOTOS.fetch(sport.name)
+  end
+
   def sport_icon
     ICONS.fetch(sport.name, "fa-solid fa-question")
   end

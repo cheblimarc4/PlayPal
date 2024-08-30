@@ -1,6 +1,6 @@
 class UserMatchesController < ApplicationController
   before_action :set_match, only: [:create]
-  before_action :set_usermatch, only: [:acceptuser, :rejectuser]
+  before_action :set_usermatch, only: [:acceptuser, :rejectuser, :cancel_match]
 
   def create
     if @match.UserMatches.accepted.length < @match.need
@@ -21,12 +21,13 @@ class UserMatchesController < ApplicationController
 
 
   def cancel_match
-    @user_match = UserMatch.find(params[:id])
-      if current_user == @user_match.match.user
-        @user_match.destroy
-        format.json {render json: { message: "You Successfully deleted your request"}}
-      end
+
+    if current_user == @usermatch.user
+       @usermatch.destroy
+
+      render json: {message: "Done"}
     end
+  end
 
   def acceptuser
     if current_user == @usermatch.match.user

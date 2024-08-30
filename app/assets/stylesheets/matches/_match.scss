@@ -1,28 +1,93 @@
-
-#match-background-image {
-  width: 100%;
-  height: 100%;
-  background-size: fill;
-  background-position: center;
-  filter: grayscale(100%); /* Step 1: Grayscale the image */
-  background-color: rgb(0, 255, 0); /* A green overlay */
-  background-blend-mode: multiply;
+.show-div{
+  background-color: $webapp-bg;
+}
+.sport-info{
+  background-color:white;
+  border-radius: 20px;
 }
 
-
-
-#match-background-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 255, 0, 0.5); /* Green overlay */
-  mix-blend-mode: multiply; /* Blends the green with the grayscale */
-  pointer-events: none; /* Allows clicking through the overlay */
+.s-info-gray{
+  font-family: $body-font;
+  color: $text;
+  font-weight: bold;
 }
 
+.s-info-black{
+  font-family: $body-font;
+  color: black;
+  font-weight: bold;
+}
+.game-type-i{
+  width: 1005px;
+  height: 85px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 0px auto;
+  margin-top: 60px;
+}
+.game-type-i p{
+  font-family: $body-font;
+  font-size: 16px;
+  margin: 20px 25px;
+}
+.game-teams{
+  width: 1005px;
+  height: 235px;
+  background-color: white;
+  margin:0px auto;
+  border-radius: 20px;
+  margin-top: 15px;
+}
+.avatar {
+  vertical-align: middle;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.teama{
+  display: flex;
+  width: 45%;
+  margin-top: 45px;
+}
+.teama img {
+  margin: 0px 20px;
+}
+.teamb{
+  display: flex;
+  width: 45%;
+  margin-top: 45px;
+}
+.teamb img {
+  margin: 0px 20px;
+}
+
+.vl {
+  border-left: 1px solid black;
+  left: 50%;
+  margin-left: -3px;
+}
+.chat-btn{
+  width: 120px;
+  height: 60px;
+  background-color: $highlight-text;
+  border-radius: 20px;
+  padding: 12px 17px;
+  border:none;
+  color: white;
+}
+.request-btn{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 20px;
+  margin-top: 45px;
+  text-decoration: none;
+  text-align: center;
+  font-family: $body-font;
+}
 
 .green-icon-color {
   color: $icons;
