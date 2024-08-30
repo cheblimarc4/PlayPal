@@ -1,49 +1,65 @@
-<div class="matches-div">
-  <div class="container" style="">
-    <div id="banner">
-      <div id="match-background-image" class="mt-3" style="display:block;height:300px;margin:0 auto; background-image:url('https://th.bing.com/th/id/OIP.yhK-6bpXiqM-55UB-mHy4AAAAA?rs=1&pid=ImgDetMain')"></div>
+<div class="show-div" style="width:1465px; height:840px border-radius:20px; margin:0px auto; margin-top:30px; margin-bottom:20px">
+  <div style="background-image: url('<%=@match.show_banner%>');
+  background-size: cover; background-position:center; height:250px; width:100%; padding-top:80px; border-radius:20px">
+  </div>
+  <div class="sport-info" style="width: 1005px; height:230px; margin:0px auto; margin-top:20px">
+    <div class="d-flex" style="border-bottom: 1px solid black">
+      <i class="<%= @match.sport_icon %>" style="font-size:30px; margin: 10px 25px"></i>
+      <div>
+        <h1 style="font-size:30px"><%= @match.sport.name.upcase %></h1>
+        <p><%= @match.match_date.strftime('%A') %> <%= @match.match_time %></p>
+      </div>
     </div>
-    <div style="height:10rem" class="d-flex  mt-3 flex-column align-items-center">
-      <div class="border d-flex align-items-center justify-content-between p-5 rounded-5" style="width:50%">
-        <div class="d-flex">
-          <% if @match.sport.name === "football" %>
-              <i class="fa-solid fa-futbol fs-2"></i>
-            <% elsif @match.sport.name === "volleyball" %>
-              <i class="fa-solid fa-volleyball fs-2"></i></span>
-            <% elsif @match.sport.name === "baseball" %>
-              <i class="fa-solid fa-baseball-bat-ball fs-2"></i>
-            <% elsif @match.sport.name === "padel" %>
-              <i class="fa-solid fa-table-tennis-paddle-ball fs-2"></i>
-            <% elsif @match.sport.name === "squash" %>
-                <i class="fa-solid fa-table-tennis-paddle-ball fs-2"></i>
-            <% elsif @match.sport.name === "basketball" %>
-                <i class="fa-solid fa-basketball"></i>
-            <%end%>
-            <h2 class="highlight-text mx-3"><%= @match.sport.name.capitalize %></h2>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-          <span class="fs-5 fst-italic"><%= @match.match_date %></span>
-          <span class="fs-5 fst-italic">Match time goes here</span>
-        </div>
+    <div class="d-flex justify-content-around mt-5">
+      <div class="d-flex flex-column">
+        <p class="s-info-gray">Gender</p>
+        <p class="s-info-black">All Players</p>
       </div>
-      <div class="border p-5 rounded-5 mt-4 text-center" style="width:50%">
-            <h3 class="text-center">Level: <span class="highlight-text"><%= @match.level %></span></h3>
-            <h3 class="text-center">Type: <span class="highlight-text"><%= @match.game_type %></span></h3>
+      <div class="d-flex flex-column">
+        <p class="s-info-gray">Level</p>
+        <p class="s-info-black">2.7-3.7</p>
       </div>
-      <div class="border d-flex mt-3 justify-content-between p-3" style="height:100px;width:50%;">
-        <% accepted_players = []%>
-        <% @match.UserMatches.each { |user| accepted_players.push(user.user) if user.status === "accepted" && @match.need > accepted_players.length } %>
-        <%accepted_players.each do |player|%>
-          <span><%=player.first_name %></span>
-        <%end%>
-        <% (@match.need-accepted_players.length).times do%>
-          <span>Empty spot </span>
-        <% end %>
-      </div>
-      <div class="border d-flex justify-content-center align-items-center" style="margin-top:20px;width:50%">
-        <%= link_to @already_requested ? "You already requested to join" : "Join match", match_user_matches_path(@match), class:"join-btn text-center mx-5", style:"text-decoration:none;width:100%", data:{turbo_method:"post"}%>
+      <div class="d-flex flex-column">
+        <p class="s-info-gray">Price</p>
+        <p class="s-info-black">10$</p>
       </div>
     </div>
   </div>
-
+  <div class="game-type-i">
+    <p><%= @match.game_type %></p>
+    <% if @match.game_type == "Competitive" %>
+      <p style="color:grey">The result of this match will count towards your rating</p>
+    <%else %>
+      <p style="color:grey">The result of this match will not count towards your rating</p>
+    <% end %>
+  </div>
+  <div class="game-teams">
+    <div>
+      <h1 style="font-size:20px; padding: 10px 10px">Players</h1>
+    </div>
+    <div class="d-flex justify-content-evenly">
+      <div class="teama overflow-scroll">
+      <% ((@match.sport.number_of_players) / 2 ).times do  %>
+        <img src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="avatar">
+      <% end %>
+    </div>
+    <div class="vl"></div>
+    <div class="teamb overflow-scroll"">
+      <% ((@match.sport.number_of_players) / 2 ).times do  %>
+        <img src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="avatar">
+      <% end %>
+    </div>
+    </div>
+    <div class="d-flex justify-content-between mt-4 align-items-end">
+      <h1 style="margin-left:10px; font-size:30px ">A</h1>
+      <h1 style="margin-right:10px; font-size:30px">B</h1>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-3" style="margin:0px auto">
+    <button class="chat-btn"><i class="fa-regular fa-comment"></i> Chat </button>
+  </div>
+  <div>
+    <%= link_to @already_requested ? "You already requested to join" : "Request to Join", match_user_matches_path(@match), class:"request-btn", data:{turbo_method:"post"}%>
+    <%# <button class="request-btn">Request Place</button> %>
+  </div>
 </div>
