@@ -14,6 +14,11 @@ class MatchesController < ApplicationController
     @already_requested = already_requested?(@match)
   end
 
+  def acceptuser
+  end
+  def rejectuser
+  end
+
   def mymatches
     @matches = Match.where(user: current_user)
   end

@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
 
   get "my_matches", to: "matches#mymatches"
+  get "acceptusermatch/:id", to: "user_matches#acceptuser"
+  get "rejectusermatch/:id", to: "user_matches#rejectuser"
 end
