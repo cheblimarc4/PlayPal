@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  get "/your_requests", to: "matches#yourequest"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
   end
 
   get "my_matches", to: "matches#mymatches"
+  get "cancelmymatch/:id", to: "user_matches#cancel_match"
 end

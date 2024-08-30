@@ -17,6 +17,14 @@ class UserMatchesController < ApplicationController
     end
   end
 
+  def cancel_match
+    @user_match = UserMatch.find(params[:id])
+      if current_user == @user_match.match.user
+        @user_match.destroy
+        format.json {render json: { message: "You Successfully deleted your request"}}
+      end
+    end
+
   private
 
   def already_requested(match)
