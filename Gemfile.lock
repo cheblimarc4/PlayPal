@@ -129,6 +129,7 @@ GEM
     execjs (2.9.1)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
+    ffi (1.17.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
     flatpickr (4.6.13.1)
@@ -177,6 +178,8 @@ GEM
     nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.7)
@@ -294,6 +297,7 @@ GEM
 PLATFORMS
   arm64-darwin-23
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails
