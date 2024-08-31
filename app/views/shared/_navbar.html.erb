@@ -3,13 +3,13 @@
   <%= image_tag "play-logo.png", class:"logo"%>
   <% end %>
 
-  <div class="navbar-links">
+  <div class="navbar-links" style="margin:0px auto">
     <h2>About Us</h2>
     <h2>Testimonials</h2>
     <h2>Contacts</h2>
   </div>
   <div class="d-flex align-items-center">
-    <%= link_to "Create match", new_match_path, class:"join-btn mx-2", style:"text-decoration:none"%>
+    <%= link_to "Make your own match!", new_match_path, class:"join-btn mx-2", style:"text-decoration:none"%>
     <% if user_signed_in? %>
       <div class="dropdown" style="width:auto">
         <%= image_tag "profile-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
