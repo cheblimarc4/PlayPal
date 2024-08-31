@@ -18,12 +18,15 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0; /* Position the navbar at the top of the page */
 }
 .join-btn{
   font-size: 18px;
   margin-right:70px;
   background-color: black;
-  padding: 15px 42px;
+  padding: 15px 30px;
   border-radius: 57px;
   color: white;
 }
