@@ -7,16 +7,11 @@ class MatchesController < ApplicationController
     @sports = Sport.all
     query = [params[:sport] || "", params[:level] || "", params[:time] || ""].join(' ').strip
     @matches = query.empty? ? Match.all : Match.search(query)
-    @matches = @matches.where(match_date: Date.parse(params[:date])) unless params[:date] == "Date" || params[:date].nil?
+    @matches = @matches.where(match_date: Date.parse(params[:date])) if check_date_validity(params[:date])
   end
 
   def show
     @already_requested = already_requested?(@match)
-  end
-
-  def acceptuser
-  end
-  def rejectuser
   end
 
   def mymatches
@@ -45,15 +40,25 @@ class MatchesController < ApplicationController
 
   private
 
+  def check_date_validity(test_date)
+    return false if test_date.nil?
+
+    Date.parse(test_date)
+    true
+    rescue ArgumentError
+      false
+  end
+
   def set_match
     @match = Match.find(params[:id])
   end
+
   def match_params
     params.require(:match).permit(:game_type, :level, :match_date, :location, :match_time, :need)
   end
+
   def sport_param
     params.require(:match).permit(:sport)
-
   end
 
   def already_requested?(match)

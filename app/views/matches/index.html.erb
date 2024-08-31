@@ -1,78 +1,84 @@
-<div class="matches-div">
-    <div class="banner text-center matches-top-div border mx-auto p-5 my-5 d-flex align-items-center justify-content-center flex-column border">
-      <div class="">
-        <h1 class="text-white">Search your matches</h1>
-        <div class="d-flex justify-content-center mt-5 rounded-5">
-          <form action="matches" method="get">
-          <div class="dropdown">
-                <select name="sport" id="sport">
-                  <option value="" disabled selected hidden>Sport</option>
-                  <!-- Add your sports options here -->
-                  <%@sports.each do |sport| %>
-                    <option value="<%=sport.name%>"><%= sport.name.capitalize%></option>
-                  <% end %>
-                </select>
-                <i class="fa-solid fa-caret-down"></i>
-          </div>
-          <div class="dropdown">
-                <select name="level" id="level">
-                  <option disabled selected hidden>Level</option>
-                  <!-- Add your match options here -->
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
-                <i class="fa-solid fa-caret-down"></i>
-            </div>
-            <div class="dropdown" data-controller="datepicker">
-                <input value="Date" class="w-100" style="appearance: none;border-radius:20px;padding: 10px 40px 10px 20px;border: 1px solid #ccc;background-color: #fff;font-size: 16px;" name="date" id="date" data-controller="datepicker">
-                <i class="fa-solid fa-caret-down"></i>
-              </div>
-              <div class="dropdown">
-                <select name="time" id="time">
+<div class="matches-div h-100" >
+  <div class="banner">
+    <div class="search-ttl">
+      <h1>PlayPal</h1>
+      <p>Connecting players, one game at a time!</p>
+      <div class="search-container">
+        <form class="search-form" action="/matches">
+          <div class="dropdown-row">
+            <div class="dropdown">
+              <select name="sport" id="sport">
+                <option value="" disabled selected hidden>Sport</option>
+                <!-- Add your sports options here -->
+                <%@sports.each do |sport| %>
+                  <option value="<%=sport.name%>"><%= sport.name.capitalize%></option>
+                <% end %>
 
-                  <option value="" disabled selected hidden>Time</option>
-                  <!-- Add your time options here -->
-                  <option value="08:00">08:00</option>
-                  <option value="08:30">08:30</option>
-                  <option value="09:00">09:00</option>
-                  <option value="09:30">09:30</option>
-                  <option value="10:00">10:00</option>
-                  <option value="10:30">10:30</option>
-                  <option value="11:00">11:00</option>
-                  <option value="11:30">11:30</option>
-                  <option value="12:00">12:00</option>
-                  <option value="12:30">12:30</option>
-                  <option value="13:00">13:00</option>
-                  <option value="13:30">13:30</option>
-                  <option value="14:00">14:00</option>
-                  <option value="14:30">14:30</option>
-                  <option value="15:00">15:00</option>
-                  <option value="15:30">15:30</option>
-                  <option value="16:00">16:00</option>
-                  <option value="16:30">16:30</option>
-                  <option value="17:00">17:00</option>
-                  <option value="17:30">17:30</option>
-                  <option value="18:00">18:00</option>
-                  <option value="18:30">18:30</option>
-                  <option value="19:00">19:00</option>
-                  <option value="19:30">19:30</option>
-                  <option value="20:00">20:00</option>
-                  <option value="20:30">20:30</option>
-                  <option value="21:00">21:00</option>
-                  <option value="21:30">21:30</option>
-                  <option value="22:00">22:00</option>
-                  </select>
-                <i class="fa-solid fa-caret-down"></i>
-              </div>
-          <input type="submit" class="mx-2 submit-button">
-          </form>
-        </div>
+              </select>
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
+            <div class="dropdown">
+              <select name="level" id="level">
+                <option value="" disabled selected hidden>Level</option>
+                <!-- Add your match options here -->
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
+          </div>
+          <div class="dropdown-row">
+            <div class="dropdown">
+              <input placeholder="Date" class="w-100" style="appearance: none;border-radius:20px;padding: 10px 40px 10px 20px;border: 1px solid #ccc;background-color: #fff;font-size: 16px;" name="date" id="date" data-controller="datepicker">
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
+            <div class="dropdown">
+              <select name="time" id="time">
+                <option value="" disabled selected hidden>Time</option>
+            <!-- Add your time options here -->
+                <option value="08:00">08:00</option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="22:00">22:00</option>
+              </select>
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
+          </div>
+          <button type="submit" class="join-match-btn">Search match</button>
+        </form>
       </div>
     </div>
-  <div class="mx-auto" style="width:75%">
+  </div>
 
-    <div class="d-flex flex-wrap justify-content-between">
+  <div class="my-5 mx-auto" style="width:75%">
+
+    <div style="height:15rem" class=" d-flex flex-wrap align-items-center justify-content-between">
         <% if @matches.length == 0%>
           <div class="w-100 d-flex justify-content-center">
             <div class="d-flex">

@@ -19,32 +19,27 @@ class UserMatchesController < ApplicationController
     end
   end
 
-
   def cancel_match
-
     if current_user == @usermatch.user
-       @usermatch.destroy
-
-      render json: {message: "Done"}
+      @usermatch.destroy
+      render json: { message: "Done" }
     end
   end
 
   def acceptuser
-    if current_user == @usermatch.match.user
-      if @usermatch.accepted!
-          render json: { message: "#{@usermatch.to_json}" }
-      else
-        render json: { error: "Something went wrong!" }
-      end
-    else
-      render json: { notice: "You are not authorized to do that,"}
-    end
+    update_user_request_status(@usermatch, "accept")
   end
 
   def rejectuser
-    if current_user == @usermatch.match.user
-      if @usermatch.denied!
-          render json: { message: "#{@usermatch.to_json}" }
+    update_user_request_status(@usermatch, "reject")
+  end
+
+  private
+
+  def update_user_request_status(usermatch, status)
+    if current_user == usermatch.match.user
+      if status == "accept" ? usermatch.accepted! : usermatch.denied!
+        render json: { message: usermatch }
       else
         render json: { error: "Something went wrong!" }
       end
@@ -52,9 +47,6 @@ class UserMatchesController < ApplicationController
       render json: { notice: "You are not authorized to do that,"}
     end
   end
-
-
-  private
 
   def set_usermatch
     @usermatch = UserMatch.find(params[:id]);
