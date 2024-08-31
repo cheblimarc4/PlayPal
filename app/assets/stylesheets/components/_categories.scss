@@ -39,6 +39,14 @@
   justify-content: space-between;
   border-bottom: 1px solid #878787;
 }
+.sport-av-i{
+  padding: 23px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.sport-av-i i{
+  font-size: 35px;
+}
 .first-cat{
   border-top: 1px solid $text;
 }
