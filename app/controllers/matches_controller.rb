@@ -53,8 +53,8 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
-    sport =  sport_param
-    @match.sport = Sport.where(name:sport[:sport].downcase)[0]
+    sport =  Sport.where(name: sport_param[:sport].downcase)[0]
+    @match.sport = sport
     @match.user = current_user
     if @match.save
       redirect_to matches_path
