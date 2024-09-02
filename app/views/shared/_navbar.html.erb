@@ -1,19 +1,15 @@
 <div class="navbar" style="padding: 0px 70px;">
   <%= link_to root_path do%>
-  <%= image_tag "play-logo.png", class:"logo"%>
+    <%= image_tag "play-logo.png", class:"logo"%>
   <% end %>
 
-  <div class="navbar-links" style="margin:0px auto;position:absolute;right:50%;transform: translateX(+50%)">
-    <h2>About Us</h2>
-    <h2>Testimonials</h2>
-    <h2>Contacts</h2>
-  </div>
   <div class="d-flex align-items-center">
-    <%= link_to "Make your own match!", new_match_path, class:"join-btn mx-2", style:"text-decoration:none"%>
+    <%= link_to "Make your own match!", new_match_path, class:"join-btn mx-2", style:"text-decoration:none" %>
+
     <% if user_signed_in? %>
       <div class="dropdown" style="width:auto">
         <%= image_tag "profile-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
-        <ul class="dropdown-menu dropdown-menu-start" style="left: 10px; transform: translateX(-80%) translateY(10%);" aria-labelledby="navbarDropdown">
+        <ul class="dropdown-menu dropdown-menu-start" style="top: 100%; left: 0; transform: translate(-125px, 0);" aria-labelledby="navbarDropdown">
           <li><%= link_to "Profile", "", class: "dropdown-item" %></li>
           <li><%= link_to "Settings", "", class: "dropdown-item" %></li>
           <li><%= link_to "My Matches", my_matches_path, class: "dropdown-item" %></li>
@@ -22,9 +18,7 @@
         </ul>
       </div>
     <% else %>
-      <div>
-        <%= link_to "Login", new_user_session_path, class: "nav-link login-hover"%>
-      </div>
+      <%= link_to "Login", new_user_session_path, class: "nav-link login-hover"%>
     <% end %>
   </div>
 </div>
