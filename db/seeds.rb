@@ -36,16 +36,16 @@ end
 10.times do
   name = Faker::Name.name.delete(" ")
   puts name
-  User.create!(first_name: name, last_name: name, email: "#{name}@gmail.com", password:"123456",rating: (1..5).sample)
+  User.create!(first_name: name, last_name: name, email: "#{name}@gmail.com", password:"123456",rating: (rand(10..50) / 10.0))
 end
 
 10.times do
-  Match.create(user:User.all.sample, match_time: time.sample, need: Random.rand(5), sport:Sport.all.sample,location:Faker::Address.full_address, level:levels.sample, match_date:Faker::Date.between(from: '2014-09-23', to: '2014-09-25') , game_type:types.sample)
+  Match.create(user:User.all.sample, match_time: time.sample, need: Random.rand(5), sport:Sport.all.sample,location:Faker::Address.city, level:levels.sample, match_date:Faker::Date.between(from: '2014-09-23', to: '2014-09-25') , game_type:types.sample)
 end
 
 
 10.times do
-  UserMatch.create(user:User.all.sample, match:Match.all.sample,team:(1..2).sample)
+  UserMatch.create(user:User.all.sample, match:Match.all.sample)
 end
 
 puts "Done Seeding"

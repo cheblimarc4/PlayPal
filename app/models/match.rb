@@ -38,8 +38,9 @@ class Match < ApplicationRecord
     self.team_b_score = team_b_score
     self.winning_team = team_a_score > team_b_score ? 1 : 2
     self.save
-
-    update_user_ratings
+    if self.game_type == "Competitive"
+      update_user_ratings
+    end
   end
 
   def update_user_ratings
