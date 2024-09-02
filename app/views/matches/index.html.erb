@@ -106,7 +106,7 @@
                   <div>
                     <p class="header-font"><strong>Organizer: </strong><%= match.user&.first_name || 'Unknown' %></p>
                     <p class="header-font"><strong>Level: </strong><%= match.level || 'Not Specified' %></p>
-                    <p class="header-font"><strong>Available spots: </strong> <%=  (match.sport.number_of_players - match.need) + match.UserMatches.where(status: "accepted").count  %> / <%= match.sport.number_of_players || 'N/A' %></p>
+                    <p class="header-font"><strong>Available spots: </strong> <%=  match.sport.number_of_players - (match.need + match.UserMatches.where(status: "accepted").count)  %> / <%= match.sport.number_of_players || 'N/A' %></p>
                   </div>
                   <div class="icon-container">
                     <i class="<%= match.sport_icon || 'default-icon' %>"></i>
