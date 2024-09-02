@@ -70,7 +70,12 @@
     <button class="chat-btn"><i class="fa-regular fa-comment"></i> Chat </button>
   </div>
   <div>
-    <%= link_to @already_requested ? "You already requested to join" : "Request to Join", match_user_matches_path(@match), class:"request-btn", data:{turbo_method:"post"}%>
-    <%# <button class="request-btn">Request Place</button> %>
+    <% if @already_requested %>
+      <div class="request-btn" style="opacity:.8">
+        You already requested to join
+      </div>
+    <% elsif !(current_user == @match.user) %>
+      <%= link_to "Request to Join", match_user_matches_path(@match), class:"request-btn", data:{turbo_method:"post"}%>
+    <% end %>
   </div>
 </div>

@@ -8,6 +8,9 @@ class MatchesController < ApplicationController
     query = [params[:sport] || "", params[:level] || "", params[:time] || ""].join(' ').strip
     @matches = query.empty? ? Match.all : Match.search(query)
     @matches = @matches.where(match_date: Date.parse(params[:date])) if check_date_validity(params[:date])
+
+    @mymatches = @matches.where(user: current_user)
+    @othermatches = @matches.where.not(user: current_user)
   end
 
   def show
