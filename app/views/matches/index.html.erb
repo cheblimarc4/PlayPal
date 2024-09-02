@@ -1,4 +1,4 @@
-<div class="matches-div h-100" >
+<div class="matches-div border" style="min-height:100vh;overflow: visible;">
   <div class="banner">
     <div class="search-ttl">
       <h1>PlayPal</h1>
@@ -75,37 +75,41 @@
       </div>
     </div>
   </div>
-
-  <div class="my-5 mx-auto" style="width:75%">
-
-    <div style="height:15rem" class=" d-flex flex-wrap align-items-center justify-content-between">
-        <% if @matches.length == 0%>
-          <div class="w-100 d-flex justify-content-center">
-            <div class="d-flex">
-              <h2 class="text-center">No available matches..</h2>
-              <i class="fa-solid fa-futbol bounce2 fs-1"></i>
+  <div class="my-5 mx-auto" style="height:100%;width:75%">
+  <div style="" class="d-flex flex-wrap align-items-center justify-content-between">
+    <% if @matches.length == 0 %>
+      <div class="w-100 d-flex justify-content-center align-items-center" style="height:15rem">
+        <div class="d-flex align-items-center">
+          <h2 class="text-center">No available matches..</h2>
+          <i class="fa-solid fa-futbol bounce2 fs-1"></i>
+        </div>
+      </div>
+    <% else %>
+      <% @matches.each do |match| %>
+        <div class="mb-4 rounded-5 my-4 bg-white shadow-gray hover-effect" style="width: 45%; min-height: 15rem;">
+          <a href="<%= match_path(match) %>" class="d-block" style="text-decoration: none; color: black;">
+            <div class="py-3 date-grid">
+              <p class="date header-font fst-italic text-gray">
+                <%= match.match_date.strftime("%A, %d") if match.match_date %>
+              </p>
+              <h3 class="text-center highlight-text sport-name" style="">
+                <%= match.sport&.name&.capitalize || 'Sport Not Available' %>
+              </h3>
             </div>
-          </div>
-        <% else %>
-          <% @matches.each do |match|%>
-            <%= link_to match_path(match), class:"mb-4 rounded-5 my-4 bg-white shadow-gray hover-effect",style:"text-decoration: none; color: black; width: 45%;min-height:15rem" do %>
-                <div class="py-3 date-grid">
-                  <p class="date header-font fst-italic text-gray" style=""><%=match.match_date.strftime("%A, %d")%></p>
-                  <h3 class="text-center highlight-text sport-name" style=""><%= match.sport.name.capitalize %></h3>
-                </div>
-                <div class="d-flex justify-content-between p-3 position-relative">
-                  <div>
-                    <p class="header-font"><strong>Organizer: </strong><%=match.user.first_name%></p>
-                    <p class="header-font"><strong>Level: </strong><%=match.level%></p>
-                    <p class="header-font"><strong>Available spots: </strong> X / <%=match.sport.number_of_players%></p>
-                  </div>
-                    <div class="icon-container">
-                      <i class="<%= match.sport_icon %>"></i>
-                    </div>
-                </div>
-              <% end %>
-          <%end%>
-        <%end%>
-    </div>
+            <div class="d-flex justify-content-between p-3 position-relative">
+              <div>
+                <p class="header-font"><strong>Organizer: </strong><%= match.user&.first_name || 'Unknown' %></p>
+                <p class="header-font"><strong>Level: </strong><%= match.level || 'Not Specified' %></p>
+                <p class="header-font"><strong>Available spots: </strong> X / <%= match.sport&.number_of_players || 'N/A' %></p>
+              </div>
+              <div class="icon-container">
+                <i class="<%= match.sport_icon || 'default-icon' %>"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    <% end %>
   </div>
+</div>
 </div>

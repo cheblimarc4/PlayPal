@@ -1,29 +1,129 @@
-<div>
-  <h1 class="text-center my-5">User Requests </h1>
-  <% @matches.each do |match| %>
-    <div class="matches-section container border mymatches-grid px-5 py-3" style="height:20rem">
-      <div class="mymatches-child-1 overflow-scroll" style="height:16rem">
-          <div class="mb-3 d-flex align-items-center justify-content-between" style="width:90%">
-            <h2> <%= match.sport.name %> </h2>
-            <div class="d-flex flex-column align-items-end">
-              <span class="fst-italic"><%= match.match_date.strftime("%A, %d %B %Y") %></span>
-              <span class="fst-italic"><%= match.match_time %></span>
+<div data-controller="mainrequest" class=" d-flex flex-column justify-content-center align-items-center bg-light" style="width:100%">
+  <div class="d-flex justify-content-center my-5">
+    <button data-action="click->mainrequest#both" class="btn btn-secondary ">Show Both</button>
+    <button data-action="click->mainrequest#your" class="btn btn-secondary">Show my mach</button>
+    <button data-action="click->mainrequest#users" class="btn btn-secondary">Show my requests</button>
+  </div>
+  <div class="d-flex justify-content-center mb-5">
+
+
+
+
+    <div data-mainrequest-target="your" id="your_requests" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
+      <h1 class="text-center my-2" style="font-size:48px; font-family:$headers-font">Your Requests</h1>
+      <div class="request-container slight-boxshadow rounded-5">
+        <% if @user_requests.length == 0  %>
+          <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
+        <%else %>
+          <% @user_requests.each do |request| %>
+          <div class="request d-flex align-items-center justify-content-between" data-controller="cancel-request" data-cancel-request-usermatch-value="<%=request.to_json%>">
+            <div class="request-info-container">
+              <div class="d-flex align-items-start">
+                <i class="<%=request.match.sport_icon%> m-3"></i>
+                <h2 style="font-size:24px; font-family:$headers-font; margin: 0;"><%= request.match.sport.name.capitalize %></h2>
+              </div>
+              <div class="request-info">
+                <div class="info-label">
+                  <strong>Match Time</strong>
+                  <p><%= request.match.match_time %></p>
+                </div>
+                <div class="info-label">
+                  <strong>Match Location</strong>
+                  <p><%= request.match.location %></p>
+                </div>
+              </div>
             </div>
+            <div class="request-action">
+              <strong>Request Date</strong> <%= request.match.match_date %>
+              <strong>Status</strong> <%= request.status.capitalize %></p>
+            </div>
+            <button class="cancel-button" data-action="click->cancel-request#remove">Cancel Request</button>
           </div>
-          <% match.UserMatches.each do |request| %>
-            <div data-controller="acceptreject" data-acceptreject-usermatch-value="<%= request.to_json%>" class="bg-white px-3 mymatches-innerchild d-flex justify-content-between my-4">
-              <div class="d-flex">
-                <span class="d-flex justify-content-center align-items-center avatar">Avatar</span>
-                <div class="px-3 d-flex flex-column"><span><%= request.user.first_name %></span><span>rating</span></div>
-                <span class="<%=request.status == "accepted" ? "text-success" : "text-warning" %>" data-acceptreject-target="status"><%= request.status %></span>
-              </div>
-              <div>
-                <button data-action="click->acceptreject#accept" class="accept-button">Accept</button>
-                <button data-action="click->acceptreject#reject" class="reject-button">X</button>
-              </div>
-            </div>
-          <% end %>
+        <% end %>
+        <% end %>
+        <div class="alert d-none" style="position:absolute;bottom:5px;right:10px;" id="showmessage">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </button>
+        </div>
       </div>
     </div>
-  <% end %>
+
+
+
+
+    <div data-mainrequest-target="users" id="my_matches" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
+      <h1 class="text-center my-2" style="font-size:48px;">User Requests </h1>
+      <% @matches.each do |match| %>
+        <div class="matches-section container rounded-5 slight-boxshadow mymatches-grid px-5 my-1" style="padding-top:2rem;height:20rem">
+          <div class="mymatches-child-1" style="">
+              <div class="d-flex align-items-center justify-content-between bg-white px-3" style="margin-bottom:0.5rem;width:90%">
+                <div class="d-flex align-items-center fs-3">
+                  <h2 style="font-size:30px; font-family:$headers-font; margin: 0;"><%= match.sport.name.capitalize %></h2>
+                  <i class="<%=match.sport_icon%> m-3"></i>
+                  <% @accepted =  match.UserMatches.where(status: "accepted") %>
+                  <% @pending_requests = match.UserMatches.where(status: "pending") %>
+                  <div class="d-flex flex-column">
+                    <span style="font-size:15px;">You accepted: <span id="<%=match.id%>_acceptedtotal" class="text-success"><%=@accepted.length%></span> (<span class="text-warning" id="<%=match.id%>_needtotal"><%= match.need - @accepted.length %></span> more players to complete) </span>
+                    <div style="font-size:15px;">Pending: <span id="<%=match.id%>_pendingtotal" class="fw-bolder"><%= @pending_requests.length %></span></div>
+                  </div>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                  <span class="fst-italic"><%= match.match_date.strftime("%A, %d %B %Y") %></span>
+                  <span class="fst-italic"><%= match.match_time %></span>
+                </div>
+              </div>
+              <div id="<%=match.id%>_contentdiv" class="overflow-scroll align-content-center" style="height:11rem">
+                <% if @pending_requests.length == 0  %>
+                  <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
+                <%else %>
+                  <% @pending_requests.each do |usermatch| %>
+                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="request d-flex align-items-center justify-content-between">
+                                  <div class="request-info-container">
+                                          <div class="d-flex align-items-start">
+                                                  <img src="" alt="">
+                                                  <h2 style="font-size:24px; font-family:$headers-font; margin: 0;"><%= "#{usermatch.user.first_name.capitalize} #{usermatch.user.last_name.capitalize unless usermatch.user.last_name.nil?}"%>  </h2>
+                                          </div>
+                                          <div class="request-info ">
+                                                  <div class="info-label">
+                                                    <strong>Age</strong>
+                                                    <p><%= usermatch.user.age || "Not Specified" %></p>
+                                                  </div>
+                                                  <div class="info-label">
+                                                    <strong>Rating</strong>
+                                                    <p><%= usermatch.user.rating || "Newbie" %></p>
+                                                  </div>
+                                          </div>
+                                  </div>
+                                  <div class=" d-flex flex-column justify-content-between align-items-end" style="">
+                                            <div class="text-style">
+                                                    <strong>Requested on: </strong><%= usermatch.created_at %>
+                                            </div>
+                                            <div class="my-3">
+                                                    <button data-action="click->acceptreject#accept" class="px-4 py-2 rounded-5 accept-button">Accept</button>
+                                                    <button data-action="click->acceptreject#confirmReject" class="px-4 py-2 rounded-5 reject-button">Reject</button>
+                                            </div>
+                                  </div>
+                                  <div data-acceptreject-target="confirm" id="confirmDialog" class="d-none">
+                                            <div id="confirmationDialog">
+                                                <p>Are you sure you want to reject <%=usermatch.user.first_name%>?</p>
+                                                <p style="font-size:15px" class="fst-italic">You will not be able to change your decision</p>
+                                                <button data-action="click->acceptreject#reject" id="okBtn">OK</button>
+                                                <button data-action="click->acceptreject#cancelReject" id="cancelBtn">Cancel</button>
+                                            </div>
+                                  </div>
+                        </div>
+                  <% end %>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+
+
+
+
+  </div>
 </div>

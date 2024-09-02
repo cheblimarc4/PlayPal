@@ -48,22 +48,79 @@
   padding:15px;
   font-weight: bolder;
   color: white;
-  background-color: black;
+  background-color: gray;
   text-decoration: none;
   border:1px solid $text;
   border-radius: 20px;
+  box-shadow: 1px 1px 2px gray;
 }
 
 .accept-button {
   padding:15px;
   font-weight: bolder;
   color: white;
-  background-color: black;
+  background-color: $highlight-text;
   text-decoration: none;
   border:1px solid $text;
+  box-shadow: 1px 1px 2px gray;
   border-radius: 20px;
 }
 .accept-button:hover,
 .reject-button:hover{
   opacity: 60%;
+}
+.slight-boxshadow{
+  box-shadow: 1px 1px 5px lightgray;
+}
+
+
+
+
+
+
+
+// Confirmation button
+
+
+
+
+#confirmDialog {
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#confirmationDialog {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#confirmationDialog button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#okBtn {
+  background-color: $icons;
+  color: white;
+}
+
+#okBtn:hover {
+  opacity: 0.5;
+}
+
+#cancelBtn:hover {
+  opacity: 0.5;
 }

@@ -23,6 +23,7 @@ class MatchesController < ApplicationController
 
   def mymatches
     @matches = Match.where(user: current_user)
+    @user_requests = UserMatch.where(user: current_user)
   end
 
   def yourequest
