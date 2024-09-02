@@ -85,30 +85,72 @@
         </div>
       </div>
     <% else %>
-      <% @matches.each do |match| %>
-        <div class="mb-4 rounded-5 my-4 bg-white shadow-gray hover-effect" style="width: 45%; min-height: 15rem;">
-          <a href="<%= match_path(match) %>" class="d-block" style="text-decoration: none; color: black;">
-            <div class="py-3 date-grid">
-              <p class="date header-font fst-italic text-gray">
-                <%= match.match_date.strftime("%A, %d") if match.match_date %>
-              </p>
-              <h3 class="text-center highlight-text sport-name" style="">
-                <%= match.sport&.name&.capitalize || 'Sport Not Available' %>
-              </h3>
-            </div>
-            <div class="d-flex justify-content-between p-3 position-relative">
-              <div>
-                <p class="header-font"><strong>Organizer: </strong><%= match.user&.first_name || 'Unknown' %></p>
-                <p class="header-font"><strong>Level: </strong><%= match.level || 'Not Specified' %></p>
-                <p class="header-font"><strong>Available spots: </strong> X / <%= match.sport&.number_of_players || 'N/A' %></p>
-              </div>
-              <div class="icon-container">
-                <i class="<%= match.sport_icon || 'default-icon' %>"></i>
-              </div>
-            </div>
-          </a>
+      <div class="d-flex w-100 flex-wrap justify-content-between">
+        <div class="d-flex justify-content-center w-100">
+          <h2 style="display:block" class="text-center">My Matches</h2>
         </div>
-      <% end %>
+        <div class="d-flex w-100 flex-wrap justify-content-between">
+        <% unless @mymatches.length == 0 %>
+          <% @mymatches.each do |match| %>
+            <div class="mb-4 rounded-5 my-4 bg-white shadow-gray hover-effect" style="width: 45%; min-height: 15rem;">
+              <a href="<%= match_path(match) %>" class="d-block" style="text-decoration: none; color: black;">
+                <div class="py-3 date-grid">
+                  <p class="date header-font fst-italic text-gray">
+                    <%= match.match_date.strftime("%A, %d") if match.match_date %>
+                  </p>
+                  <h3 class="text-center highlight-text sport-name" style="">
+                    <%= match.sport&.name&.capitalize || 'Sport Not Available' %>
+                  </h3>
+                </div>
+                <div class="d-flex justify-content-between p-3 position-relative">
+                  <div>
+                    <p class="header-font"><strong>Organizer: </strong><%= match.user&.first_name || 'Unknown' %></p>
+                    <p class="header-font"><strong>Level: </strong><%= match.level || 'Not Specified' %></p>
+                    <p class="header-font"><strong>Available spots: </strong> <%=  (match.sport.number_of_players - match.need) + match.UserMatches.where(status: "accepted").count  %> / <%= match.sport.number_of_players || 'N/A' %></p>
+                  </div>
+                  <div class="icon-container">
+                    <i class="<%= match.sport_icon || 'default-icon' %>"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+      <div class="d-flex w-100 flex-wrap justify-content-between my-5">
+        <div class="d-flex justify-content-center w-100">
+          <h2 style="display:block" class="text-center">More Matches</h2>
+        </div>
+        <div class="d-flex w-100 flex-wrap justify-content-between">
+        <% unless @othermatches.length == 0 %>
+          <% @othermatches.each do |match| %>
+            <div class="mb-4 rounded-5 my-4 bg-white shadow-gray hover-effect" style="width: 45%; min-height: 15rem;">
+              <a href="<%= match_path(match) %>" class="d-block" style="text-decoration: none; color: black;">
+                <div class="py-3 date-grid">
+                  <p class="date header-font fst-italic text-gray">
+                    <%= match.match_date.strftime("%A, %d") if match.match_date %>
+                  </p>
+                  <h3 class="text-center highlight-text sport-name" style="">
+                    <%= match.sport&.name&.capitalize || 'Sport Not Available' %>
+                  </h3>
+                </div>
+                <div class="d-flex justify-content-between p-3 position-relative">
+                  <div>
+                    <p class="header-font"><strong>Organizer: </strong><%= match.user&.first_name || 'Unknown' %></p>
+                    <p class="header-font"><strong>Level: </strong><%= match.level || 'Not Specified' %></p>
+                    <p class="header-font"><strong>Available spots: </strong> <%=  (match.sport.number_of_players - match.need) + match.UserMatches.where(status: "accepted").count  %> / <%= match.sport.number_of_players || 'N/A' %></p>
+                  </div>
+                  <div class="icon-container">
+                    <i class="<%= match.sport_icon || 'default-icon' %>"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

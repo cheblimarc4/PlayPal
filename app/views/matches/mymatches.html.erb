@@ -10,7 +10,7 @@
 
 
     <div data-mainrequest-target="your" id="your_requests" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
-      <h1 class="text-center my-2" style="font-size:48px; font-family:$headers-font">Your Requests</h1>
+      <h1 class="text-center my-2" style="font-size:48px; font-family:$headers-font">My Requests</h1>
       <div class="request-container slight-boxshadow rounded-5">
         <% if @user_requests.length == 0  %>
           <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
@@ -52,7 +52,7 @@
 
 
     <div data-mainrequest-target="users" id="my_matches" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
-      <h1 class="text-center my-2" style="font-size:48px;">User Requests </h1>
+      <h1 class="text-center my-2" style="font-size:48px;">My Matches</h1>
       <% @matches.each do |match| %>
         <div class="matches-section container rounded-5 slight-boxshadow mymatches-grid px-5 my-1" style="padding-top:2rem;height:20rem">
           <div class="mymatches-child-1" style="">
@@ -73,11 +73,13 @@
                 </div>
               </div>
               <div id="<%=match.id%>_contentdiv" class="overflow-scroll align-content-center" style="height:11rem">
-                <% if @pending_requests.length == 0  %>
+                <% if @accepted.length >= match.need %>
+                  <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>
+                <% elsif @pending_requests.length == 0  %>
                   <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
                 <%else %>
                   <% @pending_requests.each do |usermatch| %>
-                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="request d-flex align-items-center justify-content-between">
+                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="border matches-section request d-flex align-items-center justify-content-between">
                                   <div class="request-info-container">
                                           <div class="d-flex align-items-start">
                                                   <img src="" alt="">
