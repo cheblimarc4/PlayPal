@@ -1,6 +1,6 @@
 require "date"
-class MatchesController < ApplicationController 
-  before_action :set_match, only: [:show]
+class MatchesController < ApplicationController
+  before_action :set_match, only: [:show, :update_results]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -21,6 +21,20 @@ class MatchesController < ApplicationController
         lat: match.latitude,
         lng: match.longitude
       }
+    end
+  end
+
+  def update_results
+    if @match.user_id == current_user.id
+      team_a_score = params[:team_a_score].to_i
+      team_b_score = params[:team_b_score].to_i
+      if @match.add_results(team_a_score, team_b_score)
+        redirect_to @match, notice: "Match results added successfully."
+      else
+        redirect_to @match, alert: "Failed to add match results."
+      end
+    else
+      redirect_to @match, alert: "You are not authorized to add results for this match."
     end
   end
 
