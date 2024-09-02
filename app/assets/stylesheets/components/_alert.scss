@@ -3,4 +3,33 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-color: #00867a;
+  font-family: "Open Sans", sans-serif;
+  color: #878787;
+  width: 300px;
+
+  &.alert-info {
+    background-color: #F9FDFE; /* Change this color to match your dropdown */
+  }
+
+  &.alert-success {
+    background-color: #F9FDFE; /* Change this color to match your dropdown */
+  }
+
+  &.alert-warning {
+    background-color: #e67e22; /* Change this color to match your dropdown */
+  }
+
+  .btn-close {
+    color: white;
+    opacity: 0.8;
+
+    &:hover {
+      color: white;
+      opacity: 1;
+    }
+  }
 }
