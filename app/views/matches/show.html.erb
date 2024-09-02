@@ -43,6 +43,21 @@
     </div>
   </div>
 
+  <%= form_with(url: update_results_match_path(@match), method: :patch) do |form| %>
+  <div>
+    <%= form.label :team_a_score, "Team A Score" %>
+    <%= form.number_field :team_a_score, value: @match.team_a_score %>
+  </div>
+
+  <div>
+    <%= form.label :team_b_score, "Team B Score" %>
+    <%= form.number_field :team_b_score, value: @match.team_b_score %>
+  </div>
+
+  <%= form.submit "Submit Results" %>
+<% end %>
+
+
 
   <div class="game-teams" style="z-index:1000">
     <div>
