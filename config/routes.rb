@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :matches, only: [:index, :show, :new, :create] do
     member do
       patch :update_results
+      get "ready", to: "matches#match_ready"
     end
     resources :user_matches, only: [:create]
   end

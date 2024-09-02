@@ -46,6 +46,11 @@ export default class extends Controller {
   teamFull(){
       const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
       contentdiv.innerHTML = `<h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>`;
+      this.contantMatchReady();
+  }
+
+  contantMatchReady(){
+    fetch(`matches/${this.matchidValue}/ready`);
   }
 
   subtractPending(){
