@@ -54,6 +54,9 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     sport =  Sport.where(name: sport_param[:sport].downcase)[0]
+    if sport.nil?
+      @match.errors.add(:sport_id, "must be less than the number of players allowed in the sport")
+    end
     @match.sport = sport
     @match.user = current_user
     if @match.save
