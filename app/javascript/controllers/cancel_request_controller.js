@@ -16,7 +16,7 @@ export default class extends Controller {
       let dom = document.querySelector("#showmessage")
       dom.classList.remove("d-none")
       dom.classList.add("alert-success")
-      dom.innerHTML += "Request cancelled"
+      dom.innerHTML = "Request cancelled"
     })
   }
 }

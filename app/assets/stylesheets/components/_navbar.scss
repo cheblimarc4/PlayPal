@@ -19,8 +19,9 @@
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
-  position: fixed;
+  position: sticky;
   top: 0; /* Position the navbar at the top of the page */
+  z-index: 50;
 }
 .join-btn{
   font-size: 18px;
