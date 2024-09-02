@@ -37,7 +37,11 @@
               <strong>Request Date</strong> <%= request.match.match_date %>
               <strong>Status</strong> <%= request.status.capitalize %></p>
             </div>
-            <button class="cancel-button" data-action="click->cancel-request#remove">Cancel Request</button>
+            <% if request.status == "accepted" %>
+              <a class="cancel-button" href="<%= match_path(request.match)%>">Match Details</a>
+            <% else %>
+              <button class="cancel-button" data-action="click->cancel-request#remove">Cancel Request</button>
+            <% end %>
           </div>
         <% end %>
         <% end %>
@@ -63,7 +67,7 @@
                   <% @accepted =  match.UserMatches.where(status: "accepted") %>
                   <% @pending_requests = match.UserMatches.where(status: "pending") %>
                   <div class="d-flex flex-column">
-                    <span style="font-size:15px;">You accepted: <span id="<%=match.id%>_acceptedtotal" class="text-success"><%=@accepted.length%></span> (<span class="text-warning" id="<%=match.id%>_needtotal"><%= match.need - @accepted.length %></span> more players to complete) </span>
+                    <span style="font-size:15px;">You accepted: <span id="<%=match.id%>_acceptedtotal" class="text-success"><%=@accepted.length%></span> (<span class="text-warning" id="<%=match.id%>_needtotal"><%= match.sport.number_of_players - (match.need + @accepted.length) %></span> more players to complete) </span>
                     <div style="font-size:15px;">Pending: <span id="<%=match.id%>_pendingtotal" class="fw-bolder"><%= @pending_requests.length %></span></div>
                   </div>
                 </div>
@@ -73,7 +77,7 @@
                 </div>
               </div>
               <div id="<%=match.id%>_contentdiv" class="overflow-scroll align-content-center" style="height:11rem">
-                <% if @accepted.length >= match.need %>
+                <% if @accepted.length >= match.sport.number_of_players - match.need %>
                   <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>
                 <% elsif @pending_requests.length == 0  %>
                   <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>

@@ -1,7 +1,7 @@
 class Match < ApplicationRecord
   belongs_to :user
   belongs_to :sport
-  has_many :UserMatches
+  has_many :UserMatches, dependent: :destroy
   has_many :users, through: :UserMatches
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
