@@ -1,37 +1,54 @@
-.create-form{
+.container {
+  background-color: #ECF7EB;
+}
+
+.create-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-.create-form div {
-  margin: 7px 8px;
-}
-.simple_form{
-  text-align: center;
-}
-.create-form select{
-  width: 205px;
-}
-#sport-input{
-  width: 100%;
-}
-.copy-form{
-  width: 100%;
-  padding: 10px 40px 10px 20px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  // background-color: #fff;
-  font-size: 16px;
-  appearance: none;
+  align-items: center; /* Center the form elements horizontally */
 }
 
-.btn-form{
-  padding: 10px 30px;
-  border-radius: 20px;
+.create-form .form-group {
+  width: calc(100% - 24px); /* Increase width and account for larger margins */
+  max-width: 480px; /* Increased max-width for more width */
+  margin: 7px 12px; /* Adjust margins to make more space */
+}
+
+.create-form .form-inline {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Increased gap for better spacing */
+  width: calc(100% - 24px); /* Increase width and account for larger margins */
+  max-width: 480px; /* Increased max-width for more width */
+  margin: 7px 12px; /* Consistent margin for form-inline elements */
+}
+
+.create-form .form-control,
+.create-form .btn-form {
+  width: 100%; /* Full width within the form group */
+  padding: 20px 60px; /* Maintain padding */
+  border-radius: 57px; /* Rounded corners as requested */
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  appearance: none;
+  height: 60px; /* Ensure consistent height for all inputs and buttons */
+  box-sizing: border-box; /* Ensure padding doesn't affect the total width/height */
+}
+
+.create-form .btn-form {
   background-color: #000;
   color: #fff;
   border: none;
-  font-size: 16px;
-  width: 100%;
   margin-top: 20px;
+}
+
+#sport-input {
+  width: 100%;
+}
+
+/* Additional Specific Styling for Select */
+.create-form select.form-control {
+  width: 100%; /* Ensure select inputs take full width */
 }
