@@ -1,54 +1,67 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-.navbar{
-  font-weight: 600px;
+.navbar {
+  font-weight: 600;
   height: 90px;
   background-color: $card-bg;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  overflow: hidden;
   position: sticky;
-  top: 0; /* Position the navbar at the top of the page */
+  top: 0;
   z-index: 50;
-}
-.join-btn{
-  font-size: 18px;
-  margin-right:70px;
-  background-color: black;
-  padding: 15px 30px;
-  border-radius: 57px;
-  color: white;
+  padding: 0px 70px;
 }
 
-.navbar-links {
-  display: flex;
-  justify-content: center; /* Center all h2 elements horizontally within the container */
-  align-items: center; /* Center h2 elements vertically */
-  flex: 1; /* Allow this div to take up available space */
-  margin-left: 160px;
-  margin-right: 0px;
-}
+  .join-btn {
+    font-size: 18px;
+    margin-right: 70px;
+    background-color: black;
+    padding: 15px 30px;
+    border-radius: 57px;
+    color: white;
+    text-decoration: none;
 
-.navbar-links h2 {
-  margin: 0 15px; /* Add space between h2 elements */
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
-  color: black;
-  text-align: center; /* Center text within each h2 element */
-}
+    &:hover {
+      background-color: #333;
+    }
+  }
 
-.nav-link:hover {
-  color: #00867a;
-}
+  .dropdown {
+    position: relative;
+
+    .avatar {
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      top: 100%;
+      left: 0;
+      transform: translate(-125px, 0);
+      z-index: 1050;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+      .dropdown-item {
+        padding: 10px 20px;
+        color: #333;
+        text-decoration: none;
+
+        &:hover {
+          background-color: #f8f9fa;
+          color: #00867a;
+        }
+      }
+
+      .dropdown-divider {
+        margin: 0;
+      }
+    }
+  }
+
+  .nav-link {
+    color: black;
+
+    &:hover {
+      color: #00867a;
+    }
+  }

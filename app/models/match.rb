@@ -32,6 +32,31 @@ class Match < ApplicationRecord
     "squash" => "https://plus.unsplash.com/premium_photo-1707152794942-03740f9f46b9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }.freeze
 
+  def add_results(team_a_score, team_b_score)
+    # return false unless self.user == current_user
+    self.team_a_score = team_a_score
+    self.team_b_score = team_b_score
+    self.winning_team = team_a_score > team_b_score ? 1 : 2
+    self.save
+
+    update_user_ratings
+  end
+
+  def update_user_ratings
+    winning_users = self.UserMatches.where(team: self.winning_team)
+    losing_users = self.UserMatches.where.not(team: self.winning_team)
+
+    winning_users.each do |winner|
+      user = User.find(winner.user_id)
+      user.increment!(:rating, 0.8)
+    end
+    losing_users.each do |loser|
+      user = User.find(loser.user_id)
+      user.decrement!(:rating, 0.8)
+    end
+  end
+
+
   def show_banner
     PHOTOS.fetch(sport.name)
   end
