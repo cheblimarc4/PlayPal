@@ -1,5 +1,5 @@
 require "date"
-class MatchesController < ApplicationController
+class MatchesController < ApplicationController 
   before_action :set_match, only: [:show]
   skip_before_action :authenticate_user!, only: [:index]
 
@@ -11,7 +11,14 @@ class MatchesController < ApplicationController
   end
 
   def show
+    @matches = Match.all
     @already_requested = already_requested?(@match)
+    @markers = @matches.geocoded.map do |match|
+      {
+        lat: match.latitude,
+        lng: match.longitude
+      }
+    end
   end
 
   def mymatches
