@@ -3,6 +3,8 @@ class Match < ApplicationRecord
   belongs_to :sport
   has_many :UserMatches
   has_many :users, through: :UserMatches
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
 
   include PgSearch::Model
   pg_search_scope :search,

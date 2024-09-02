@@ -1,5 +1,5 @@
 require "date"
-class MatchesController < ApplicationController
+class MatchesController < ApplicationController 
   before_action :set_match, only: [:show]
   skip_before_action :authenticate_user!, only: [:index]
 
@@ -8,10 +8,20 @@ class MatchesController < ApplicationController
     query = [params[:sport] || "", params[:level] || "", params[:time] || ""].join(' ').strip
     @matches = query.empty? ? Match.all : Match.search(query)
     @matches = @matches.where(match_date: Date.parse(params[:date])) if check_date_validity(params[:date])
+
+    @mymatches = @matches.where(user: current_user)
+    @othermatches = @matches.where.not(user: current_user)
   end
 
   def show
+    @matches = Match.all
     @already_requested = already_requested?(@match)
+    @markers = @matches.geocoded.map do |match|
+      {
+        lat: match.latitude,
+        lng: match.longitude
+      }
+    end
   end
 
   def mymatches

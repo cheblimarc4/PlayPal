@@ -1,42 +1,44 @@
-<div class="container" style="width:960px ; height:700px background-color:$card-bg; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px">
-  <h1 style="font-size:48px ; font-family:$headers-font; text-align:center;margin-bottom:30px">Create Your Match</h1>
+<div class="container" style="width:960px; height:700px; background-color:$card-bg; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px">
+  <h1 style="font-size:48px; font-family:$headers-font; text-align:center; margin-bottom:30px">Create Your Match</h1>
   <div class="create-form">
-    <%= simple_form_for @match, :defaults => { :input_html => { :class => "form-control copy-form" } } do |f| %>
-    <div class="w-100 mx-auto" id="sport-input">
-      <label class="form-label select optional" for="match_sport">Select Sport</label>
-        <select class="form-select select optional form-control w-100 copy-form" name="match[sport]" id="match_sport"><option value="" label=" "></option>
-        <option value="Padel">Padel</option>
-        <option value="Football">Football</option>
-        <option value="Basketball">Basketball</option>
-        <option value="Squash">Squash</option>
-        <option value="Volleyball">Volleyball</option></select>
-    </div>
-    <div class="d-flex justify-content-center align-items-center mx-auto w-50">
-       <%= f.input :match_date,
-            as: :string,
-            input_html: { data: { controller: "datepicker" } },
-            class:"select-in" %>
-      <%= f.input :match_time, as: :select, collection: [
-        "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-        "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
-        "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-        "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
-        "20:00", "20:30", "21:00", "21:30", "22:00"
-      ],class:"select-in" %>
-    </div>
-    <div class="d-flex justify-content-center align-items-center mx-auto w-50">
-      <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"],class:"select-in" %>
-      <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"],class:"select-in"  %>
-    </div>
-    <div>
-      <%= f.input :location %>
-    </div>
-    <div>
-      <%= f.input :need, label:"How many players do you already have?" %>
-    </div>
-    <div>
-      <%= f.button :submit, label: "Create Match", class:"btn-form" %>
-    </div>
+    <%= simple_form_for @match, defaults: { input_html: { class: "form-control copy-form" } } do |f| %>
+      <div class="w-100 mx-auto" id="sport-input">
+        <label class="form-label select optional" for="match_sport">Select Sport</label>
+        <select class="form-select select optional form-control w-100 copy-form" name="match[sport]" id="match_sport">
+          <option value="" label=" "></option>
+          <option value="Padel">Padel</option>
+          <option value="Football">Football</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Squash">Squash</option>
+          <option value="Volleyball">Volleyball</option>
+        </select>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mx-auto w-50">
+        <%= f.input :match_date, as: :string, input_html: { data: { controller: "datepicker" }, class: "select-in form-control copy-form" } %>
+        <%= f.input :match_time, as: :select, collection: [
+          "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
+          "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
+          "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+          "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
+          "20:00", "20:30", "21:00", "21:30", "22:00"
+        ], class: "select-in form-control copy-form" %>
+      </div>
+      <div class="d-flex justify-content-center align-items-center mx-auto w-50">
+        <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"], class: "select-in form-control copy-form" %>
+        <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"], class: "select-in form-control copy-form" %>
+      </div>
+      <div class="w-100 mx-auto ">
+        <%= f.input :location,
+          input_html: { data: { address_autocomplete_target: "location" }, class: "d-none" },
+          wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]},class:"form-control copy-form"}
+        %>
+      </div>
+      <div>
+        <%= f.input :need, label: "How many players do you already have?", class: "form-control copy-form" %>
+      </div>
+      <div>
+        <%= f.button :submit, label: "Create Match", class: "btn-form" %>
+      </div>
     <% end %>
   </div>
 </div>

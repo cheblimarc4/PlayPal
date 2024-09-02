@@ -43,6 +43,8 @@ end
   Match.create(user:User.all.sample, match_time: time.sample, need: Random.rand(5), sport:Sport.all.sample,location:Faker::Address.full_address, level:levels.sample, match_date:Faker::Date.between(from: '2014-09-23', to: '2014-09-25') , game_type:types.sample)
 end
 
+Match.create(user:User.first,sport:Sport.first, location: "Paris, France", latitude: 48.8566, longitude: 2.3522)
+
 10.times do
   UserMatch.create(user:User.all.sample, match:Match.all.sample)
 end
