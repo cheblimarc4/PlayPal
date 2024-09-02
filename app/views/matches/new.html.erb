@@ -1,4 +1,4 @@
-<div class="container" style="width:960px; height:700px; background-color:$card-bg; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px">
+<div class="container" style="width:960px; height:700px; background-image: url(<%= asset_path 'match-form-bg.jpg' %>); background-size: cover; background-position: center; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px">
   <h1 style="font-size:48px; font-family:$headers-font; text-align:center; margin-bottom:30px">Create Your Match</h1>
   <div class="create-form">
     <%= simple_form_for @match, defaults: { input_html: { class: "form-control copy-form" } } do |f| %>

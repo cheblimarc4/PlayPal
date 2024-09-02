@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_01_103644) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_02_103647) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_103644) do
     t.integer "need"
     t.float "latitude"
     t.float "longitude"
+    t.integer "team_a_score"
+    t.integer "team_b_score"
+    t.integer "winning_team"
     t.index ["sport_id"], name: "index_matches_on_sport_id"
     t.index ["user_id"], name: "index_matches_on_user_id"
   end
@@ -61,7 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_103644) do
     t.string "first_name"
     t.string "last_name"
     t.integer "age"
-    t.integer "rating"
+    t.float "rating"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
