@@ -8,7 +8,7 @@ export default class extends Controller {
     matchid:String
   }
   connect(){
-    console.log(this.matchidValue);
+    console.log("Connected to AcceptReject");
   }
   accept() {
     fetch(`acceptusermatch/${this.usermatchValue.id}`).then(response => response.json()).then(data => this.updateStatus(data));
@@ -34,11 +34,20 @@ export default class extends Controller {
     if (data.message["status"] === "accepted"){
       this.subtractPending();
       const addTo = document.getElementById(`${this.matchidValue}_acceptedtotal`)
-      addTo.innerHTML = parseInt(addTo.innerHTML, 10) + 1;
-      document.getElementById(`${this.matchidValue}_needtotal`).innerHTML = parseInt(document.getElementById(`${this.matchidValue}_needtotal`).innerHTML, 10) - 1;
+      addTo.innerHTML = `${parseInt(addTo.innerHTML, 10) + 1} / `;
+      const totalDoc = document.getElementById(`${this.matchidValue}_totalNeeded`)
+      if (parseInt(addTo.innerHTML, 10) == parseInt(totalDoc.innerHTML, 10)){
+        this.teamFull()
+      }
       this.element.remove();
     }
   }
+
+  teamFull(){
+      const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
+      contentdiv.innerHTML = `<h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>`;
+  }
+
   subtractPending(){
     const docID = `${this.matchidValue.toString()}_pendingtotal`;  // Use the corrected ID format
     const doc = document.getElementById(docID);
@@ -48,7 +57,7 @@ export default class extends Controller {
         doc.innerHTML = parseInt(doc.innerHTML, 10) - 1;  // Decrement count
         if (doc.innerHTML == "0") {
           const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
-          contentdiv.innerHTML = `<h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">You have no requests</h1>`;
+          contentdiv.innerHTML = `<h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">No more requests</h1>`;
         }
     } else {
         console.error(`Element with ID ${docID} not found.`);  // Log error if not found

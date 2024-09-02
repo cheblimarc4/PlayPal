@@ -1,17 +1,22 @@
-<div class="container" style="width:960px; height:700px; background-image: url(<%= asset_path 'match-form-bg.jpg' %>); background-size: cover; background-position: center; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px">
+
+<div class="container" style="width:960px; background-image: url(<%= asset_path 'match-form-bg.jpg' %>); background-size: cover; background-position: center; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px">
+
   <h1 style="font-size:48px; font-family:$headers-font; text-align:center; margin-bottom:30px">Create Your Match</h1>
   <div class="create-form">
     <%= simple_form_for @match, defaults: { input_html: { class: "form-control copy-form" } } do |f| %>
       <div class="w-100 mx-auto" id="sport-input">
         <label class="form-label select optional" for="match_sport">Select Sport</label>
-        <select class="form-select select optional form-control w-100 copy-form" name="match[sport]" id="match_sport">
-          <option value="" label=" "></option>
-          <option value="Padel">Padel</option>
-          <option value="Football">Football</option>
-          <option value="Basketball">Basketball</option>
-          <option value="Squash">Squash</option>
-          <option value="Volleyball">Volleyball</option>
+        <select class="form-select select optional form-control w-100 copy-form" name="match[sport_id]" id="match_sport_id">
+          <option value=""></option>
+          <% Sport.all.each do |sport| %>
+            <option value="<%= sport.id %>"><%= sport.name.capitalize %></option>
+          <% end %>
         </select>
+        <% if @match.errors[:sport].any? %>
+          <div class="invalid-feedback d-block">
+            <%= "Sport #{@match.errors[:sport].join(', ')}" %>
+          </div>
+        <% end %>
       </div>
       <div class="d-flex justify-content-center align-items-center mx-auto w-50">
         <%= f.input :match_date, as: :string, input_html: { data: { controller: "datepicker" }, class: "select-in form-control copy-form" } %>

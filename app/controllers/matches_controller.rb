@@ -1,6 +1,6 @@
 require "date"
-class MatchesController < ApplicationController 
-  before_action :set_match, only: [:show]
+class MatchesController < ApplicationController
+  before_action :set_match, only: [:show, :update_results]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -24,6 +24,20 @@ class MatchesController < ApplicationController
     end
   end
 
+  def update_results
+    if @match.user_id == current_user.id
+      team_a_score = params[:team_a_score].to_i
+      team_b_score = params[:team_b_score].to_i
+      if @match.add_results(team_a_score, team_b_score)
+        redirect_to @match, notice: "Match results added successfully."
+      else
+        redirect_to @match, alert: "Failed to add match results."
+      end
+    else
+      redirect_to @match, alert: "You are not authorized to add results for this match."
+    end
+  end
+
   def mymatches
     @matches = Match.where(user: current_user)
     @user_requests = UserMatch.where(user: current_user)
@@ -39,11 +53,9 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
-    sport =  sport_param
-    @match.sport = Sport.where(name:sport[:sport].downcase)[0]
     @match.user = current_user
     if @match.save
-      redirect_to matches_path
+      redirect_to matches_path, notice: 'Match was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -65,11 +77,7 @@ class MatchesController < ApplicationController
   end
 
   def match_params
-    params.require(:match).permit(:game_type, :level, :match_date, :location, :match_time, :need)
-  end
-
-  def sport_param
-    params.require(:match).permit(:sport)
+    params.require(:match).permit(:game_type, :level, :match_date, :location, :match_time, :need, :sport_id)
   end
 
   def already_requested?(match)

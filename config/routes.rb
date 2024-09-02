@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :matches, only: [:index, :show, :new, :create] do
+    member do
+      patch :update_results
+    end
     resources :user_matches, only: [:create]
   end
 

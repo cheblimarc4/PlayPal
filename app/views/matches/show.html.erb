@@ -43,7 +43,6 @@
     </div>
   </div>
 
-
   <div class="game-teams" style="z-index:1000">
     <div>
       <h1 style="font-size:20px; padding: 10px 10px">Players</h1>
@@ -63,9 +62,39 @@
     </div>
     <div class="d-flex justify-content-between mt-4 align-items-end">
       <h1 style="margin-left:10px; font-size:30px ">A</h1>
-      <h1 style="margin-right:10px; font-size:30px">B</h1>
+    <h1 style="margin-right:10px; font-size:30px">B</h1>
     </div>
   </div>
+  <% if current_user == @match.user %> <!-- Check if the current user is the match owner -->
+    <% if Time.now >= @match.match_date.to_time + @match.match_time.to_time.seconds_since_midnight + 5.minutes %>
+      <!-- Display the form if more than 5 minutes have passed since the match start time -->
+      <div class="add-results-container" style="width:100%; text-align:center; margin-top:20px;">
+        <div class="add-results-form" style="display:inline-block; background-color:#F9FDFE; padding:20px; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <h2 style="color: #00867a; margin-bottom: 20px;">Add Match Results</h2>
+          <%= form_with(url: update_results_match_path(@match), method: :patch, class: "result-form") do |form| %>
+            <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="flex: 0 0 45%;">
+                <%= form.label :team_a_score, "Team A Score", style: "color: #00867a; font-weight: bold;" %>
+                <%= form.number_field :team_a_score, value: @match.team_a_score, class: "form-control", style: "width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #5CBC30;" %>
+              </div>
+              <div style="flex: 0 0 45%;">
+                <%= form.label :team_b_score, "Team B Score", style: "color: #00867a; font-weight: bold;" %>
+                <%= form.number_field :team_b_score, value: @match.team_b_score, class: "form-control", style: "width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #5CBC30;" %>
+              </div>
+            </div>
+            <div style="margin-top: 20px;">
+              <%= form.submit "Submit Results", class: "submit-btn", style: "background-color: #5CBC30; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <!-- Countdown Timer -->
+      <div style="text-align: center; margin-top: 20px;">
+        <p style="color: #00867a; font-size: 18px;">You can add the results 5 minutes after the match starts.</p>
+      </div>
+    <% end %>
+  <% end %>
   <div class="d-flex justify-content-center mt-3" style="margin:0px auto">
     <button class="chat-btn"><i class="fa-regular fa-comment"></i> Chat </button>
   </div>
