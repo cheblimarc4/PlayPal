@@ -5,6 +5,13 @@ class Match < ApplicationRecord
   has_many :users, through: :UserMatches
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+  validate :need_less_than_sport_players
+  validates :match_date, :sport_id, :need, :game_type, :level, :match_time, presence: true
+
+
+
+
+
 
   include PgSearch::Model
   pg_search_scope :search,
@@ -31,6 +38,13 @@ class Match < ApplicationRecord
     "padel" => "https://plus.unsplash.com/premium_photo-1709075562029-b64d3ddeb79a?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "squash" => "https://plus.unsplash.com/premium_photo-1707152794942-03740f9f46b9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }.freeze
+
+  def need_less_than_sport_players
+    # Ensure the associated Sport exists and check the condition
+    if sport.present? && need >= sport.number_of_players
+      errors.add(:need, "must be less than the number of players allowed in the sport")
+    end
+  end
 
   def add_results(team_a_score, team_b_score)
     # return false unless self.user == current_user
