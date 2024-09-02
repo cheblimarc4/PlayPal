@@ -2,6 +2,14 @@
   background-color: $webapp-bg;
   position: relative;
 }
+
+.icon-text{
+  color: $icons;
+}
+.icon2-text{
+  color: $icons2;
+}
+
 .matches-section {
   background-color: $section-bg;
 }
@@ -44,6 +52,10 @@
 .shadow-gray {
   box-shadow: 1px 1px 5px gray;
 }
+.shadow-icon {
+  box-shadow: 1px 1px 5px $icons;
+}
+
 .hover-effect {
   transition: all 0.2s linear;
   cursor: pointer;
@@ -153,8 +165,7 @@
 
 /* Icon styles */
 .icon-container i {
-  font-size: 2rem; /* Make the icon twice its default size */
-  color: #00867a; /* Keep the color as specified */
+  font-size: 2rem; /* Make the icon twice its default size */ /* Keep the color as specified */
   animation: rotateIcon 10s infinite; /* Apply rotation animation */
 }
 
