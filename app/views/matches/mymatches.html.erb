@@ -13,7 +13,7 @@
       <h1 class="text-center my-2" style="font-size:48px; font-family:$headers-font">My Requests</h1>
       <div class="request-container slight-boxshadow rounded-5">
         <% if @user_requests.length == 0  %>
-          <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
+          <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">No one requested to join your match</h1>
         <%else %>
           <% @user_requests.each do |request| %>
           <div class="request d-flex align-items-center justify-content-between" data-controller="cancel-request" data-cancel-request-usermatch-value="<%=request.to_json%>">
@@ -58,7 +58,7 @@
     <div data-mainrequest-target="users" id="my_matches" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
       <h1 class="text-center my-2" style="font-size:48px;">My Matches</h1>
       <% @matches.each do |match| %>
-        <div class="matches-section container rounded-5 slight-boxshadow mymatches-grid px-5 my-1" style="padding-top:2rem;height:20rem">
+        <div class="matches-section container rounded-5 slight-boxshadow mymatches-grid px-5 my-1" style="padding-top:2rem;height:20rem;width:50rem;">
           <div class="mymatches-child-1" style="">
               <div class="d-flex align-items-center justify-content-between bg-white px-3" style="margin-bottom:0.5rem;width:90%">
                 <div class="d-flex align-items-center fs-3">
@@ -67,7 +67,7 @@
                   <% @accepted =  match.UserMatches.where(status: "accepted") %>
                   <% @pending_requests = match.UserMatches.where(status: "pending") %>
                   <div class="d-flex flex-column">
-                    <span style="font-size:15px;">You accepted: <span id="<%=match.id%>_acceptedtotal" class="text-success"><%=@accepted.length%></span> (<span class="text-warning" id="<%=match.id%>_needtotal"><%= match.sport.number_of_players - (match.need + @accepted.length) %></span> more players to complete) </span>
+                    <span style="font-size:15px;">Total Players: <span id="<%=match.id%>_acceptedtotal" class=""><%= match.need + @accepted.length%> / </span><span id="<%=match.id%>_totalNeeded"><%= match.sport.number_of_players %></span></span>
                     <div style="font-size:15px;">Pending: <span id="<%=match.id%>_pendingtotal" class="fw-bolder"><%= @pending_requests.length %></span></div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@
                   <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
                 <%else %>
                   <% @pending_requests.each do |usermatch| %>
-                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="border matches-section request d-flex align-items-center justify-content-between">
+                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="border request d-flex align-items-center justify-content-between">
                                   <div class="request-info-container">
                                           <div class="d-flex align-items-start">
                                                   <img src="" alt="">
