@@ -27,14 +27,21 @@
 .create-form .form-control,
 .create-form .btn-form {
   width: 100%; /* Full width within the form group */
-  padding: 20px 60px; /* Maintain padding */
+  padding: 0 60px; /* Adjust padding for the new height */
   border-radius: 57px; /* Rounded corners as requested */
   border: 1px solid #ccc;
   background-color: #fff;
   font-size: 16px;
   appearance: none;
-  height: 60px; /* Ensure consistent height for all inputs and buttons */
+  height: 53px; /* Set consistent height for inputs and buttons */
   box-sizing: border-box; /* Ensure padding doesn't affect the total width/height */
+}
+
+/* Focus state for inputs and buttons */
+.create-form .form-control:focus,
+.create-form .btn-form:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3); /* Custom shadow with gray color */
 }
 
 .create-form .btn-form {
@@ -51,4 +58,11 @@
 /* Additional Specific Styling for Select */
 .create-form select.form-control {
   width: 100%; /* Ensure select inputs take full width */
+}
+
+.create-form .form-group label {
+  text-align: center; /* Center the label text */
+  width: 100%; /* Make the label take the full width */
+  display: block; /* Ensure block display for full width */
+  margin-bottom: 8px; /* Add some space below the label */
 }
