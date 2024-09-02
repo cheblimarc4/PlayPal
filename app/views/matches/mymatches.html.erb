@@ -83,7 +83,7 @@
                   <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
                 <%else %>
                   <% @pending_requests.each do |usermatch| %>
-                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="border matches-section request d-flex align-items-center justify-content-between">
+                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="border request d-flex align-items-center justify-content-between">
                                   <div class="request-info-container">
                                           <div class="d-flex align-items-start">
                                                   <img src="" alt="">

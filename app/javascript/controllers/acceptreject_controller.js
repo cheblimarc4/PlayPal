@@ -8,7 +8,7 @@ export default class extends Controller {
     matchid:String
   }
   connect(){
-    console.log(this.matchidValue);
+    console.log("Connected to AcceptReject");
   }
   accept() {
     fetch(`acceptusermatch/${this.usermatchValue.id}`).then(response => response.json()).then(data => this.updateStatus(data));
@@ -36,15 +36,16 @@ export default class extends Controller {
       const addTo = document.getElementById(`${this.matchidValue}_acceptedtotal`)
       addTo.innerHTML = parseInt(addTo.innerHTML, 10) + 1;
       document.getElementById(`${this.matchidValue}_needtotal`).innerHTML = parseInt(document.getElementById(`${this.matchidValue}_needtotal`).innerHTML, 10) - 1;
-      console.log(parseInt(document.getElementById(`${this.matchidValue}_needtotal`).innerHTML, 10) == 0);
-      this.teamFull() && parseInt(document.getElementById(`${this.matchidValue}_needtotal`).innerHTML, 10) == 0
+      if (parseInt(document.getElementById(`${this.matchidValue}_needtotal`).innerHTML, 10) == 0){
+        this.teamFull()
+      }
       this.element.remove();
     }
   }
 
   teamFull(){
-    const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
-    contentdiv.innerHTML = `<h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>`;
+      const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
+      contentdiv.innerHTML = `<h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>`;
   }
 
   subtractPending(){
