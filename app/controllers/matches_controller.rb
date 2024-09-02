@@ -53,14 +53,9 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new(match_params)
-    sport =  Sport.where(name: sport_param[:sport].downcase)[0]
-    if sport.nil?
-      @match.errors.add(:sport_id, "must be less than the number of players allowed in the sport")
-    end
-    @match.sport = sport
     @match.user = current_user
     if @match.save
-      redirect_to matches_path
+      redirect_to matches_path, notice: 'Match was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -82,11 +77,7 @@ class MatchesController < ApplicationController
   end
 
   def match_params
-    params.require(:match).permit(:game_type, :level, :match_date, :location, :match_time, :need)
-  end
-
-  def sport_param
-    params.require(:match).permit(:sport)
+    params.require(:match).permit(:game_type, :level, :match_date, :location, :match_time, :need, :sport_id)
   end
 
   def already_requested?(match)
