@@ -1,4 +1,4 @@
-<div data-controller="mainrequest" class=" d-flex flex-column justify-content-center align-items-center bg-light" style="width:100%">
+<div data-controller="mainrequest" class=" d-flex flex-column justify-content-center align-items-center bg-light" style="width:100%;">
   <div class="d-flex justify-content-center my-5">
     <button data-action="click->mainrequest#both" class="btn btn-secondary ">Show Both</button>
     <button data-action="click->mainrequest#your" class="btn btn-secondary">Show my requests</button>
@@ -9,7 +9,7 @@
 
 
 
-    <div data-mainrequest-target="your" id="your_requests" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
+    <div data-mainrequest-target="your" id="your_requests" class="px-3 slight-boxshadow bg-light overflow-scroll d-none" style='height:45rem'>
       <h1 class="text-center my-2" style="font-size:48px; font-family:$headers-font">My Requests</h1>
       <div class="request-container slight-boxshadow rounded-5">
         <% if @user_requests.length == 0  %>
@@ -55,81 +55,151 @@
 
 
 
-    <div data-mainrequest-target="users" id="my_matches" class="px-3 slight-boxshadow bg-light overflow-scroll" style='height:45rem'>
-      <h1 class="text-center my-2" style="font-size:48px;">My Matches</h1>
-      <% @matches.each do |match| %>
-        <div class="matches-section container rounded-5 slight-boxshadow mymatches-grid px-5 my-1" style="padding-top:2rem;height:20rem;width:50rem;">
-          <div class="mymatches-child-1" style="">
-              <div class="d-flex align-items-center justify-content-between bg-white px-3" style="margin-bottom:0.5rem;width:90%">
-                <div class="d-flex align-items-center fs-3">
-                  <h2 style="font-size:30px; font-family:$headers-font; margin: 0;"><%= match.sport.name.capitalize %></h2>
-                  <i class="<%=match.sport_icon%> m-3"></i>
-                  <% @accepted =  match.UserMatches.where(status: "accepted") %>
-                  <% @pending_requests = match.UserMatches.where(status: "pending") %>
-                  <div class="d-flex flex-column">
-                    <span style="font-size:15px;">Total Players: <span id="<%=match.id%>_acceptedtotal" class=""><%= match.need + @accepted.length%> / </span><span id="<%=match.id%>_totalNeeded"><%= match.sport.number_of_players %></span></span>
-                    <div style="font-size:15px;">Pending: <span id="<%=match.id%>_pendingtotal" class="fw-bolder"><%= @pending_requests.length %></span></div>
-                  </div>
+
+
+  <% @matches.each do |match| %>
+    <div data-controller="mymatches">
+      <div data-action="click->mymatches#next" class="fs-3 fw-bolder" style="position:absolute;right:5%;top:50%;">>></div>
+      <div class="matches-div d-flex align-items-center flex-column slight-boxshadow" style="height:40rem;width:100rem;">
+        <h1 class="text-center">
+          My Matches
+
+        </h1>
+        <div class="w-100 d-flex justify-content-end"> <h2 class="px-5">READY</h2></div>
+        <% @accepted =  match.UserMatches.where(status: "accepted") %>
+        <% @pending_requests = match.UserMatches.where(status: "pending") %>
+        <div style="width:90%;min-height:30rem;" class="">
+          <div class=" d-flex justify-content-between px-5 fw-bolder">
+            <p>Owned Matches: <%= @matches.count %></p>
+            <p>Total Requests: <strong id="<%=match.id%>_pendingtotal" > <%= @pending_requests.length %> </strong></p>
+          </div>
+          <div>
+          </div>
+          <div style="height:25rem" class="bg-light d-flex">
+            <div class="" style="width:60%;height:100%">
+              <div class=" py-5 d-flex align-items-center px-5" style="height:20%">
+                <div class="d-flex align-items-center" style="border-right: 1px solid black;">
+                  <i class="<%= match.sport_icon%> fs-2"></i>
+                  <h2 style="margin:0px" class="px-3"><%= match.sport.name.capitalize %></h2>
                 </div>
-                <div class="d-flex flex-column align-items-end">
-                  <span class="fst-italic"><%= match.match_date.strftime("%A, %d %B %Y") %></span>
-                  <span class="fst-italic"><%= match.match_time %></span>
-                </div>
+
+                <span class="px-5">Total Players: <span id="<%=match.id%>_acceptedtotal" class="fw-bold"> <%= match.need + @accepted.length%> / </span>   <span class="fw-bold" id="<%=match.id%>_totalNeeded"><%= match.sport.number_of_players %></span></span>
               </div>
-              <div id="<%=match.id%>_contentdiv" class="overflow-scroll align-content-center" style="height:11rem">
-                <% if @accepted.length >= match.sport.number_of_players - match.need %>
-                  <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Your team is full</h1>
-                <% elsif @pending_requests.length == 0  %>
-                  <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">Sorry , You have no requests</h1>
-                <%else %>
-                  <% @pending_requests.each do |usermatch| %>
-                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="border request d-flex align-items-center justify-content-between">
-                                  <div class="request-info-container">
-                                          <div class="d-flex align-items-start">
-                                                  <img src="" alt="">
-                                                  <h2 style="font-size:24px; font-family:$headers-font; margin: 0;"><%= "#{usermatch.user.first_name.capitalize} #{usermatch.user.last_name.capitalize unless usermatch.user.last_name.nil?}"%>  </h2>
-                                          </div>
-                                          <div class="request-info ">
-                                                  <div class="info-label">
-                                                    <strong>Age</strong>
-                                                    <p><%= usermatch.user.age || "Not Specified" %></p>
-                                                  </div>
-                                                  <div class="info-label">
-                                                    <strong>Rating</strong>
-                                                    <p><%= usermatch.user.rating || "Newbie" %></p>
-                                                  </div>
-                                          </div>
-                                  </div>
-                                  <div class=" d-flex flex-column justify-content-between align-items-end" style="">
-                                            <div class="text-style">
-                                                    <strong>Requested on: </strong><%= usermatch.created_at %>
-                                            </div>
-                                            <div class="my-3">
-                                                    <button data-action="click->acceptreject#accept" class="px-4 py-2 rounded-5 accept-button">Accept</button>
-                                                    <button data-action="click->acceptreject#confirmReject" class="px-4 py-2 rounded-5 reject-button">Reject</button>
-                                            </div>
-                                  </div>
-                                  <div data-acceptreject-target="confirm" id="confirmDialog" class="d-none">
-                                            <div id="confirmationDialog">
-                                                <p>Are you sure you want to reject <%=usermatch.user.first_name%>?</p>
-                                                <p style="font-size:15px" class="fst-italic">You will not be able to change your decision</p>
-                                                <button data-action="click->acceptreject#reject" id="okBtn">OK</button>
-                                                <button data-action="click->acceptreject#cancelReject" id="cancelBtn">Cancel</button>
-                                            </div>
+
+              <div class="px-5" style="height:80%">
+                <div style="height:90%" id="<%=match.id%>_contentdiv" style="position:relative;" class="overflow-scroll"> <!-- User Requests -->
+                  <% if (@accepted.count + match.need) == match.sport.number_of_players %>
+                    <div class="d-flex justify-content-center align-items-center" style="height:100%;width:100%;">
+                      <h2 class="d-flex align-items-center">Your team is full<i class="px-3 <%= match.sport_icon %> fs-3 bounce2"></i></h2>
+                    </div>
+                  <% else %>
+                    <% @pending_requests.each do |usermatch| %>
+                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="matches-div d-flex align-items-center px-2 justify-content-between my-3 rounded-5 py-2 d-flex" style="">
+                        <div class="d-flex">
+                          <h3><%= "#{usermatch.user.first_name} #{usermatch.user.last_name}"  %></h3><h3 class="px-3"><%= usermatch.user.rating %></h3>
+                        </div>
+                        <div class="px-3">
+                          <button data-action="click->acceptreject#accept"  class="join-btn py-3" style="margin-right:0px">Accept</button> <button data-action="click->acceptreject#confirmReject" class="join-btn bg-white text-dark py-3" style="margin-right:0px">Reject</button>
+                        </div>
+                        <div data-acceptreject-target="confirm" id="confirmDialog" class="d-none">
+                                  <div id="confirmationDialog">
+                                      <p>Are you sure you want to reject?</p>
+                                      <p style="font-size:15px" class="fst-italic">You will not be able to change your decision</p>
+                                      <button data-action="click->acceptreject#reject" id="okBtn">OK</button>
+                                      <button data-action="click->acceptreject#cancelReject" id="cancelBtn">Cancel</button>
                                   </div>
                         </div>
+                      </div>
+                    <% end  %>
                   <% end %>
-                <% end %>
+                </div>
+
+
               </div>
+            </div>
+            <div id="<%= match.id%>_playershow" class=" w-40 d-flex justify-content-center align-items-center" style="width:40%;height:100%">
+                <div id="<%= match.id %>_playershow" class="matches-div slight-boxshadow rounded-5 d-flex overflow-scroll flex-wrap" style="height:20rem;width:25rem;">
+                  <% team_a = match.UserMatches.where(team: "teamA") %>
+                  <% team_b = match.UserMatches.where(team: "teamB") %>
+                  <div class="d-flex w-100 flex-column border-top align-items-center justify-content-center">
+                    <h5 class="text-center mb-3">Team A</h5>
+                    <div class="d-flex w-100 justify-content-evenly overflow-scroll flex-wrap py-3" style="height:10vh"> <!-- User Avatars -->
+                      <% team_a.each do |usermatch| %>
+                      <div class="d-flex flex-column align-items-center justify-content-center">
+                        <% if usermatch.user.photo.attached? %>
+                          <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+                        <% else %>
+                          <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar" %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <% if @sorted_team == true %>
+                      <% (( match.sport.number_of_players / 2 ) - team_a.count ).times do  %>
+                         <div class="d-flex flex-column align-items-center justify-content-center">
+                            <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                        </div>
+                      <% end %>
+                    <% elsif @sorted_team.is_a?(Array) %>
+                          <% (@sorted_team[0]).times do  %>
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                            </div>
+                          <% end %>
+                    <% end %>
+                    <% unless @sorted_team == true %>
+                      <% ( (match.sport.number_of_players / 2) - (@sorted_team[0] + team_a.count)).times do %>
+                          <div class="d-flex flex-column align-items-center justify-content-center">
+                                  <%= cl_image_tag "13360661_lfftyd", class:"avatar" %>
+                          </div>
+                        <% end %>
+                    <% end %>
+                  </div>
+
+
+                  <div class="d-flex w-100 flex-column border-top align-items-center justify-content-center">
+                    <h5 class="text-center mb-3">Team B</h5>
+                    <div class="d-flex w-100 justify-content-evenly overflow-scroll flex-wrap py-3" style="height:10vh"> <!-- User Avatars -->
+                    <!-- Sorting accepted players we already have in team B -->
+                      <% team_b.each do |usermatch| %>
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                          <% if usermatch.user.photo.attached? %>
+                            <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+                          <% else %>
+                            <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar" %>
+                          <% end %>
+                        </div>
+                      <%end %>
+                      <!-- Sorting players we already have -->
+                      <% if @sorted_team == true %>
+                        <% (( match.sport.number_of_players / 2 ) - team_b.count ).times do  %>
+                          <div class="d-flex flex-column align-items-center justify-content-center">
+                              <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                          </div>
+                        <% end %>
+                      <% elsif @sorted_team.is_a?(Array) %>
+                          <% (@sorted_team[1]).times do  %>
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                            </div>
+                          <% end %>
+                      <% end %>
+                      <!-- Show empty avatars for empty space-->
+                      <% unless @sorted_team == true %>
+                        <%  ( (match.sport.number_of_players/2) - (@sorted_team[1] + team_b.count)).times do %>
+                          <div class="d-flex flex-column align-items-center justify-content-center">
+                                <%= cl_image_tag "13360661_lfftyd", class:"avatar" %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
           </div>
         </div>
-      <% end %>
+
+
+        </div>
     </div>
-
-
-
-
-
-
-  </div>
-</div>
+  <% end %>
