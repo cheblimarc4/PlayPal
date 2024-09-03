@@ -82,6 +82,8 @@ export default class extends Controller {
                     </div>`
       contentdiv.innerHTML = match_full;
       this.contantMatchReady()
+  }
+
 
   }
   contantMatchReady(){

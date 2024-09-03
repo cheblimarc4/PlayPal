@@ -11,13 +11,13 @@
             <%= f.input :first_name,
                         required: false,
                         autofocus: true,
-                        input_html: { autocomplete: "given-name", style: "color: #1D1D1D; border-color: #878787;" },
+                        input_html: { autocomplete: "given-name", class: "common-input", style: "color: #1D1D1D; border-color: #878787;" },
                         label_html: { style: "color: #1D1D1D;" } %>
           </div>
           <div style="flex: 1;">
             <%= f.input :last_name,
                         autofocus: true,
-                        input_html: { autocomplete: "family-name", style: "color: #1D1D1D; border-color: #878787;" },
+                        input_html: { autocomplete: "family-name", class: "common-input", style: "color: #1D1D1D; border-color: #878787;" },
                         label_html: { style: "color: #1D1D1D;" } %>
           </div>
         </div>
@@ -27,13 +27,13 @@
             <%= f.input :email,
                         required: true,
                         autofocus: true,
-                        input_html: { autocomplete: "email", style: "color: #1D1D1D; border-color: #878787;" },
+                        input_html: { autocomplete: "email", class: "common-input", style: "color: #1D1D1D; border-color: #878787;" },
                         label_html: { style: "color: #1D1D1D;" } %>
           </div>
           <div style="flex: 1;">
             <%= f.input :age,
                         autofocus: true,
-                        input_html: { autocomplete: "age", type: "text", style: "color: #1D1D1D; border-color: #878787;" },
+                        input_html: { autocomplete: "age", type: "text", class: "common-input", style: "color: #1D1D1D; border-color: #878787;" },
                         label_html: { style: "color: #1D1D1D;" } %>
           </div>
         </div>
@@ -42,17 +42,17 @@
                     required: true,
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                     hint_html: { style: "font-size: 12px; color: #878787; margin-top: 0" },
-                    input_html: { autocomplete: "new-password", style: "color: #1D1D1D; border-color: #878787; margin-bottom: 0" },
+                    input_html: { autocomplete: "new-password", class: "common-input", style: "color: #1D1D1D; border-color: #878787; margin-bottom: 0" },
                     label_html: { style: "color: #1D1D1D;" } %>
         <%= f.input :password_confirmation,
                     required: true,
-                    input_html: { autocomplete: "new-password", style: "color: #1D1D1D; border-color: #878787;" },
+                    input_html: { autocomplete: "new-password", class: "common-input", style: "color: #1D1D1D; border-color: #878787;" },
                     label_html: { style: "color: #1D1D1D;" } %>
       </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Sign up", class: "bt-sign-up" %>
-        <%= link_to "Log in", new_session_path(resource_name), class: "bt-login" %>
+      <div class="form-actions2">
+        <%= f.button :submit, "Sign up", class: "common-button bt-sign-up" %>
+        <%= link_to "Log in", new_session_path(resource_name), class: "bt-forgot-pass" %>
       </div>
     <% end %>
   </div>

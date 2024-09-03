@@ -24,6 +24,13 @@ class MatchesController < ApplicationController
     end
   end
 
+  def match_ready
+    players_we_have = @match.UserMatches.where(status: "accepted").count + @match.need
+    enough_players =  players_we_have == @match.sport.number_of_players
+    @match.ready = true if enough_players
+    render json: { message: @match.save ? true : false }
+  end
+
   def update_results
     if @match.user_id == current_user.id
       team_a_score = params[:team_a_score].to_i

@@ -1,37 +1,97 @@
-.create-form{
+body {
+  min-height: 100vh;
+  background-color: #EFF7F9;
+}
+
+h1 {
+  color: #00867a;
+  margin-top: 50px;  // Adjusted to be closer to the form
+  margin-bottom: 10px;  // Closer to the form
+  text-align: center;  // Centered heading
+}
+
+.container2 {
+  background-color: #F9FDFE;
+  margin-top: 20px;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-.create-form div {
-  margin: 7px 8px;
-}
-.simple_form{
-  text-align: center;
-}
-.create-form select{
-  width: 205px;
-}
-#sport-input{
-  width: 100%;
-}
-.copy-form{
-  width: 100%;
-  padding: 10px 40px 10px 20px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  // background-color: #fff;
-  font-size: 16px;
-  appearance: none;
+  align-items: center;
+  min-width: 300px;
+  margin: 0 auto;
 }
 
-.btn-form{
-  padding: 10px 30px;
-  border-radius: 20px;
+.create-form .form-inline {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 7px 0;  // Consistent margin for form-inline elements
+}
+
+.create-form .form-control,
+.create-form .btn-form {
+  width: 100%;
+  border-radius: 57px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  appearance: none;
+  height: 53px;
+  box-sizing: border-box;
+}
+
+.create-form .form-control:focus,
+.create-form .btn-form:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3);
+}
+
+.create-form .btn-form {
   background-color: #000;
   color: #fff;
   border: none;
-  font-size: 16px;
-  width: 100%;
   margin-top: 20px;
+}
+
+#sport-input {
+  width: 100%;
+}
+
+.create-form select.form-control {
+  width: 100%;
+}
+
+.create-form .form-group label {
+  text-align: left;
+  width: 100%;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  border-radius: 57px;
+  background-color: #fff;
+  font-size: 16px;
+  appearance: none;
+  height: 53px;
+  box-sizing: border-box;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  height: 50px;
+  padding: 6px 35px;
+}
+
+.mapboxgl-ctrl-geocoder--icon-search {
+  top: 15px;
+  left: 10px;
 }
