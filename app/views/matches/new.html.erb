@@ -18,51 +18,41 @@
               <%= "Sport #{@match.errors[:sport].join(', ')}" %>
             </div>
           <% end %>
+        </div>
 
-        </select>
-        <% if @match.errors[:sport].any? %>
-          <div class="invalid-feedback d-block">
-            <%= "Sport #{@match.errors[:sport].join(', ')}" %>
-          </div>
-        <% end %>
-      </div>
+        <div class="form-inline">
+          <%= f.input :match_date, as: :string, input_html: { style:"width:240px", data: { controller: "datepicker" }, class: "form-control" }, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+          <%= f.input :match_time, as: :select, collection: [
+            "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
+            "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
+            "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+            "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
+            "20:00", "20:30", "21:00", "21:30", "22:00"
+          ], class: "form-control", input_html: {style:"width:240px"} ,label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+        </div>
 
-      <div class="form-inline">
-        <%= f.input :match_date, as: :string, input_html: { data: { controller: "datepicker" }, class: "form-control" }, label_html: { style: "text-align: center; width: 100%; display: block;" } %>
-        <%= f.input :match_time, as: :select, collection: [
-          "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-          "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
-          "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-          "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
-          "20:00", "20:30", "21:00", "21:30", "22:00"
-        ], class: "form-control", label_html: { style: "text-align: center; width: 100%; display: block;" } %>
-      </div>
+        <div class="form-inline">
+          <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"], class: "form-control", input_html: { style:"width:240px"}, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+          <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"], class: "form-control", input_html: { style:"width:240px"}, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+        </div>
 
-      <!-- Level and Game Type -->
-      <div class="form-inline">
-        <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"], class: "form-control", label_html: { style: "text-align: center; width: 100%; display: block;" } %>
-        <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"], class: "form-control", label_html: { style: "text-align: center; width: 100%; display: block;" } %>
-      </div>
+        <!-- Location Input -->
+        <div class="form-group">
+          <%= f.input :location,
+            input_html: { data: { address_autocomplete_target: "location" }, class: "d-none" },
+            wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] } }
+          %>
+        </div>
 
-      <!-- Location Input -->
-    <div class="form-control">
-        <%= f.input :location,
-      input_html: {data: {address_autocomplete_target: "location"},class:"d-none"},
-      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-    %>
+        <div class="form-group">
+          <%= f.input :need, label: "How many players do you already have?", class: "form-control", label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.button :submit, label: "Create Match", class: "btn-form" %>
+        </div>
+
+      <% end %>
     </div>
-
-
-      <!-- How Many Players -->
-      <div class="form-group">
-        <%= f.input :need, label: "How many players do you already have?", class: "form-control", label_html: { style: "text-align: center; width: 100%; display: block;" } %>
-      </div>
-
-      <div class="form-group">
-        <%= f.button :submit, label: "Create Match", class: "btn-form" %>
-      </div>
-
-    <% end %>
-
   </div>
 </div>

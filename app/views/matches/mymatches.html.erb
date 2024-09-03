@@ -94,9 +94,9 @@
                     </div>
                   <% else %>
                     <% @pending_requests.each do |usermatch| %>
-                      <div data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="matches-div d-flex align-items-center px-2 justify-content-between my-3 rounded-5 py-2 d-flex" style="">
+                      <div data-acceptreject-profilepic-value='<%= cl_image_tag usermatch.user.photo.attached? ? usermatch.user.photo.key :  "Profile_Avatar_Image_l62tfa", class:"avatar" %>' data-controller="acceptreject" data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="matches-div d-flex align-items-center px-2 justify-content-between my-3 rounded-5 py-2 d-flex" style="">
                         <div class="d-flex">
-                          <h3><%= "#{usermatch.user.first_name} #{usermatch.user.last_name}"  %></h3><h3 class="px-3"><%= usermatch.user.rating %></h3>
+                          <h3><%= "#{usermatch.user.first_name}"  %></h3><h3 class="px-3"><%= usermatch.user.rating %></h3>
                         </div>
                         <div class="px-3">
                           <button data-action="click->acceptreject#accept"  class="join-btn py-3" style="margin-right:0px">Accept</button> <button data-action="click->acceptreject#confirmReject" class="join-btn bg-white text-dark py-3" style="margin-right:0px">Reject</button>
@@ -136,20 +136,20 @@
                     <% if @sorted_team == true %>
                       <% (( match.sport.number_of_players / 2 ) - team_a.count ).times do  %>
                          <div class="d-flex flex-column align-items-center justify-content-center">
-                            <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
+                            <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar  team_a_spot"%>
                         </div>
                       <% end %>
                     <% elsif @sorted_team.is_a?(Array) %>
                           <% (@sorted_team[0]).times do  %>
                             <div class="d-flex flex-column align-items-center justify-content-center">
-                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
+                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar  team_a_spot"%>
                             </div>
                           <% end %>
                     <% end %>
                     <% unless @sorted_team == true %>
                       <% ( (match.sport.number_of_players / 2) - (@sorted_team[0] + team_a.count)).times do %>
                           <div class="d-flex flex-column align-items-center justify-content-center">
-                                  <%= cl_image_tag "13360661_lfftyd", class:"avatar" %>
+                                  <%= cl_image_tag "13360661_lfftyd", class:"avatar team_a_available_spots" %>
                           </div>
                         <% end %>
                     <% end %>
@@ -173,13 +173,13 @@
                       <% if @sorted_team == true %>
                         <% (( match.sport.number_of_players / 2 ) - team_b.count ).times do  %>
                           <div class="d-flex flex-column align-items-center justify-content-center">
-                              <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
+                              <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar  team_b_spot"%>
                           </div>
                         <% end %>
                       <% elsif @sorted_team.is_a?(Array) %>
                           <% (@sorted_team[1]).times do  %>
                             <div class="d-flex flex-column align-items-center justify-content-center">
-                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
+                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar  team_b_spot"%>
                             </div>
                           <% end %>
                       <% end %>
@@ -187,7 +187,7 @@
                       <% unless @sorted_team == true %>
                         <%  ( (match.sport.number_of_players/2) - (@sorted_team[1] + team_b.count)).times do %>
                           <div class="d-flex flex-column align-items-center justify-content-center">
-                                <%= cl_image_tag "13360661_lfftyd", class:"avatar" %>
+                                <%= cl_image_tag "13360661_lfftyd", class:"avatar team_b_available_spots" %>
                           </div>
                         <% end %>
                       <% end %>
