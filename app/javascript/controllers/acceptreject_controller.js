@@ -6,11 +6,13 @@ export default class extends Controller {
   static targets = ["confirm"]
   static values = {
     usermatch: Object,
-    matchid:String
+    matchid:String,
+    profilepic:String
 
   }
   connect(){
     console.log("Connected to AcceptReject");
+    console.log(this.profilepicValue)
   }
   accept() {
     fetch(`acceptusermatch/${this.usermatchValue.id}`).then(response => response.json()).then(data => this.updateStatus(data));
@@ -53,22 +55,27 @@ export default class extends Controller {
     if (team == 'teamA') {
       if (spot.querySelector(".team_a_available_spots") == null){
         spot.querySelector(".team_b_available_spots").setAttribute("src", "https://www.floridapublicmedia.org/wp-content/uploads/2017/03/explorer.png")
-        spot.querySelector(".team_a_spot").setAttribute("src", "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png")
-        console.log("first condition for team A")
+        const parent = spot.querySelector(".team_a_spot").parentElement;
+        spot.querySelector(".team_a_spot").remove();
+        parent.innerHTML = this.profilepicValue;
       } else {
 
-        spot.querySelector(".team_a_available_spots").setAttribute("src", "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png")
-        spot.querySelector(".team_a_available_spots").classList.remove("team_a_available_spots")
+        const parent = spot.querySelector(".team_a_available_spots").parentElement
+        spot.querySelector(".team_a_available_spots").remove();
+        parent.innerHTML = this.profilepicValue;
       }
 
     } else {
       if (spot.querySelector(".team_b_available_spots") == null) {
         spot.querySelector(".team_a_available_spots").setAttribute("src", "https://www.floridapublicmedia.org/wp-content/uploads/2017/03/explorer.png")
-        spot.querySelector(".team_b_spot").setAttribute("src", "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png")
-        console.log("first condition for team B")
+        const parent = spot.querySelector(".team_b_spot").parentElement;
+        spot.querySelector(".team_b_spot").remove();
+        parent.innerHTML = this.profilepicValue;
       } else {
-        spot.querySelector(".team_b_available_spots").setAttribute("src", "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png")
-        spot.querySelector(".team_b_available_spots").classList.remove("team_b_available_spots")
+
+        const parent = spot.querySelector(".team_b_available_spots").parentElement
+        spot.querySelector(".team_b_available_spots").remove();
+        parent.innerHTML = this.profilepicValue;
 
       }
       console.log("added pic to team b")
