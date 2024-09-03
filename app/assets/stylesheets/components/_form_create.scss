@@ -1,5 +1,17 @@
+body {
+  min-height: 100vh;
+  background-color: #EFF7F9;
+}
+
+h1 {
+  color: #00867a; /* Apply color to all h1 elements */
+  margin-top: 50px; /* Increased margin-top for more space from navbar */
+  margin-bottom: 10px; /* Reduced margin-bottom to bring it closer to the form */
+}
+
 .container {
-  background-color: #ECF7EB;
+  background-color: white;
+  margin-top: 20px; /* Reduced margin-top to bring the form closer to the h1 */
 }
 
 .create-form {
@@ -18,7 +30,7 @@
 .create-form .form-inline {
   display: flex;
   justify-content: space-between;
-  gap: 15px; /* Increased gap for better spacing */
+  gap: 15px; /* Same gap for consistency */
   width: calc(100% - 24px); /* Increase width and account for larger margins */
   max-width: 480px; /* Increased max-width for more width */
   margin: 7px 12px; /* Consistent margin for form-inline elements */
@@ -61,8 +73,8 @@
 }
 
 .create-form .form-group label {
-  text-align: center; /* Center the label text */
+  text-align: left; /* Align the label text to the left */
   width: 100%; /* Make the label take the full width */
   display: block; /* Ensure block display for full width */
-  margin-bottom: 8px; /* Add some space below the label */
+  margin-bottom: 5px; /* Add some space below the label */
 }
