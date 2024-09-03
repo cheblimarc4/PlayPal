@@ -136,13 +136,13 @@
                     <% if @sorted_team == true %>
                       <% (( match.sport.number_of_players / 2 ) - team_a.count ).times do  %>
                          <div class="d-flex flex-column align-items-center justify-content-center">
-                            <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                            <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
                         </div>
                       <% end %>
                     <% elsif @sorted_team.is_a?(Array) %>
                           <% (@sorted_team[0]).times do  %>
                             <div class="d-flex flex-column align-items-center justify-content-center">
-                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
                             </div>
                           <% end %>
                     <% end %>
@@ -173,13 +173,13 @@
                       <% if @sorted_team == true %>
                         <% (( match.sport.number_of_players / 2 ) - team_b.count ).times do  %>
                           <div class="d-flex flex-column align-items-center justify-content-center">
-                              <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                              <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
                           </div>
                         <% end %>
                       <% elsif @sorted_team.is_a?(Array) %>
                           <% (@sorted_team[1]).times do  %>
                             <div class="d-flex flex-column align-items-center justify-content-center">
-                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa"%>
+                                <%= cl_image_tag "Profile_Avatar_Image_l62tfa", class:"avatar"%>
                             </div>
                           <% end %>
                       <% end %>
