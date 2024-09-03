@@ -20,6 +20,11 @@ gem 'flatpickr'
 #Map
 gem "geocoder"
 
+
+#Cloudinary
+gem 'cloudinary'
+
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", "~> 1.2.3"
 

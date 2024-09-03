@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :photo])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :photo])
   end
 end
