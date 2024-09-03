@@ -3,4 +3,38 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  font-family: "Open Sans", sans-serif;
+  color: #ffffff; /* Default text color for better contrast */
+  width: 300px;
+
+  &.alert-info {
+    background-color: #F9FDFE; /* Light blue background for info alerts */
+    border-color: #00867a; /* Optional: border color if needed */
+    color: #333; /* Dark text color for contrast */
+  }
+
+  &.alert-success {
+    background-color: #F9FDFE; /* Light green background for success alerts */
+    border-color: #00867a; /* Optional: border color if needed */
+    color: #00867a; /* Dark green text color for contrast */
+  }
+
+  &.alert-warning {
+    background-color: #faecc5; /* Light yellow background for warning alerts */
+    border-color: #856404; /* Optional: border color if needed */
+    color: #856404; /* Dark yellow text color for contrast */
+  }
+
+  .btn-close {
+    color: white;
+    opacity: 0.8;
+
+    &:hover {
+      color: white;
+      opacity: 1;
+    }
+  }
 }
