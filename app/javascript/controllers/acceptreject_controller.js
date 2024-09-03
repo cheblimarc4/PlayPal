@@ -75,16 +75,13 @@ export default class extends Controller {
     }
   }
 
-  teamFull(){
+  teamFull() {
       const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
       const match_full = `<div class="d-flex justify-content-center align-items-center" style="height:100%;width:100%;">
                       <h2 class="d-flex align-items-center">Your team is full<i class="px-3 <%= match.sport_icon %> fs-3 bounce2"></i></h2>
-                    </div>`
+                    </div>`;
       contentdiv.innerHTML = match_full;
-      this.contantMatchReady()
-  }
-
-
+      this.contantMatchReady();
   }
   contantMatchReady(){
     fetch(`matches/${this.matchidValue}/ready`);
