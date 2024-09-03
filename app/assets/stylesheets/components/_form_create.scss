@@ -72,3 +72,26 @@ h1 {
   display: block;
   margin-bottom: 5px;
 }
+
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  border-radius: 57px;
+  background-color: #fff;
+  font-size: 16px;
+  appearance: none;
+  height: 53px;
+  box-sizing: border-box;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  height: 50px;
+  padding: 6px 35px;
+}
+
+.mapboxgl-ctrl-geocoder--icon-search {
+  top: 15px;
+  left: 10px;
+}
