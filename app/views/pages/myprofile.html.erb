@@ -1,0 +1,90 @@
+<div class="show-profile">
+  <div class="prof-info">
+    <%= cl_image_tag @user.photo.key, class:"avatar"%>
+    <div>
+      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+      <p>Plays in Madrid, Spain</p>
+    </div>
+  </div>
+  <div class="prof-stats">
+    <div class="d-flex flex-column text-center">
+      <p>25</p>
+      <h2>Matches</h2>
+    </div>
+    <div class="vl"></div>
+    <div class="d-flex flex-column text-center">
+      <p>20</p>
+      <h2>Wins</h2>
+    </div>
+    <div class="vl"></div>
+    <div class="d-flex flex-column text-center">
+      <p>5</p>
+      <h2>Losses</h2>
+    </div>
+  </div>
+  <div class="prof-rectangles">
+    <div class="rectangle main">
+      <div class="star">★</div>
+      <div class="rating"><%= @user.rating %></div>
+      <div class="label">Level Rating *</div>
+    </div>
+    <div class="rectangle secondary">
+      <div class="star">★</div>
+      <div class="percentage">35%</div>
+      <div class="text">Of matches won</div>
+        </div>
+    <div class="rectangle secondary">
+      <div class="star">★</div>
+      <div class="percentage">55%</div>
+      <div class="text">Level Reliability</div>
+    </div>
+  </div>
+  <div class="match-history">
+    <h1>Match History</h1>
+    <div class="match-cards">
+        <% combined_matches = @matches + @user_matches.map(&:match) %>
+        <% combined_matches.each do |match| %>
+          <% if match.ready %>
+               <div class="match-card">
+            <div class="dateRes">Thur 26</div>
+            <div class="teams">
+                <div class="teamA">
+                    <h2>A</h2>
+                    <% ((match.sport.number_of_players / 2) - (match.UserMatches.where(team: "teamA").count)).times do %>
+                    <%= cl_image_tag "13360661_lfftyd",class:"avatar" %>
+                    <% end %>
+                    <% match.UserMatches.where(team: "teamA").each do |usermatch|%>
+                      <% if  usermatch.user.photo.attached? %>
+                        <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+                      <% else %>
+                        <%= cl_image_tag "Profile_Avatar_Image_l62tfa",class:"avatar" %>
+                      <% end %>
+
+                    <% end %>
+                </div>
+                <hr class="team-divider">
+                <div class="teamB">
+                    <h2>B</h2>
+                    <% ((match.sport.number_of_players) / 2).times do %>
+                    <img src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="avatar">
+                    <% end %>
+                </div>
+            </div>
+            <div class="score">
+                <div class="result">
+                    <h2>Results</h2>
+                    <div><%= match.team_a_score%></div>
+                    <hr>
+                    <div><%= match.team_b_score %></div>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+          <% end %>
+</div>
+
+
+
+
+</div>

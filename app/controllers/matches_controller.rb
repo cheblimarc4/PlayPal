@@ -14,14 +14,12 @@ class MatchesController < ApplicationController
   end
 
   def show
-    @matches = Match.all
     @already_requested = already_requested?(@match)
-    @markers = @matches.geocoded.map do |match|
-      {
-        lat: match.latitude,
-        lng: match.longitude
-      }
-    end
+    @markers =
+      [{
+        lat: @match.latitude,
+        lng: @match.longitude
+      }]
   end
 
   def match_ready

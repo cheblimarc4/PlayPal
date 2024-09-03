@@ -1,0 +1,242 @@
+.profile-banner{
+  width: 100%;
+  height: 115px;
+  background-color: #B7E5E1;
+}
+.profile-banner h1 {
+  font-family: $headers-font;
+  font-size: 48px;
+  padding:15px 15px;
+}
+.show-profile{
+  background-color: #EFF7F9;
+  height: 100vh;
+  width: 90%;
+  margin:0px auto;
+}
+// .avatar {
+//   vertical-align: middle;
+//   width: 70px;
+//   height: 70px;
+//   border-radius: 50%;
+// }
+.prof-info{
+  width: 100%;
+  display: flex;
+  align-items: start;
+  margin-top: 15px;
+}
+.prof-info div{
+  margin-left: 40px;
+}
+.prof-info h1{
+  font-family: $headers-font;
+  font-size: 38px;
+  margin: 0px;
+}
+.prof-info p{
+  font-family: $body-font;
+  font-size: 18px;
+  margin: 0px;
+  color: #878787;
+}
+.prof-stats{
+  margin:0px auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 85px;
+}
+.prof-stats p{
+  font-weight: bold;
+  font-family: $body-font;
+  font-size: 25px;
+}
+.prof-stats h2{
+  font-family: $body-font;
+  font-size: 24px;
+}
+.vl {
+  border-left: 3px solid black;
+  height: 100px;
+}
+.prof-rectangles{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin:0;
+  padding: 0;
+  gap: 15px;
+  margin-top: 55px;
+}
+.rectangle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+}
+.main{
+  width: 605px;
+  height:440px;
+  background-color: #00867A;
+  color: #9ADD00;
+  position: relative;
+}
+.secondary{
+  width: 258px;
+  height: 440px;
+  background-color: #B7E5E1 ;
+  color: #00867A;
+  position: relative;
+}
+.star {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 40px;
+}
+.label{
+  bottom: 20px;
+  right: 15px;
+  position: absolute;
+}
+.text{
+  bottom: 20px;
+  position: absolute;
+}
+
+.rating {
+  font-family: $headers-font;
+  font-size: 100px;
+  font-weight: bold;
+}
+.percentage {
+  margin-top: 150px;
+  font-size: 65px;
+  font-weight: bold;
+  font-family: $headers-font;
+}
+
+.label, .text {
+  font-family: $headers-font;
+  font-size: 24px;
+  margin-top: 5px;
+  color: inherit; /* Inherit text color from parent */
+}
+
+.match-history{
+  width: 100%;
+  margin: 0px auto;
+  margin-top: 40px;
+}
+.match-history h1{
+  font-family: $headers-font;
+  font-size: 24px;
+  font-weight: bold;
+}
+.match-cards {
+  display: flex;
+  overflow-x: auto; /* Horizontally scrollable */
+  gap: 20px; /* Spacing between cards */
+  padding: 10px 0;
+}
+
+.match-card {
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Column layout to stack content */
+  justify-content: flex-start;
+  background-color: #e9f4f5; /* Background color */
+  border-radius: 10px;
+  padding: 20px;
+  width: 55%; /* Adjust width to 48% to fit only 2 cards */
+  min-width: 600px; /* Minimum width of each card */
+  border: 1px solid #d0e0e2; /* Border for the cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px; /* Space between sections inside card */
+  flex-shrink: 0; /* Prevent shrinking */
+  position: relative; /* To position the date */
+}
+
+.dateRes {
+  position: absolute; /* Position date at the top right */
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: $headers-font;
+}
+
+.teams {
+  display: flex;
+  flex-direction: column; /* Column layout for teams */
+  width: 100%;
+  gap: 10px; /* Space between team sections */
+}
+
+.teamA, .teamB {
+  display: flex;
+  overflow-x: auto; /* Make each team section scrollable horizontally */
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Space between avatars */
+  padding: 10px 0; /* Padding inside the team container */
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding and border in the element's width */
+  position: relative;
+}
+
+.team-divider {
+  width: 100%;
+  margin: 10px 0;
+  border: 1px solid black; /* Black line to separate teams */
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #dcdcdc;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white; /* Background for the score area */
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Take full width for consistent alignment */
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Space between scores */
+}
+.result h2{
+  font-family: $headers-font;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result hr {
+  width: 100%;
+  margin: 5px 0;
+}
+.teamA h2{
+  position: absolute;
+  top:30px;
+  left: 20px;
+}
+.teamB h2{
+  position: absolute;
+  top:30px;
+  left: 20px;
+}

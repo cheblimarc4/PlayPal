@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   get "my_matches", to: "matches#mymatches"
+  get "my_profile", to: "pages#myprofile"
   get "cancelmymatch/:id", to: "user_matches#cancel_match"
   get "acceptusermatch/:id", to: "user_matches#acceptuser"
   get "rejectusermatch/:id", to: "user_matches#rejectuser"

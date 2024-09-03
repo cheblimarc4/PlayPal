@@ -36,13 +36,13 @@
       </div>
 
       <!-- Location Input -->
-      <div class="form-group">
+    <div class="form-control">
         <%= f.input :location,
-          input_html: { data: { address_autocomplete_target: "location" }, class: "d-none" },
-          wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}, class:"form-control"},
-          label_html: { style: "text-align: center; width: 100%; display: block;" }
-        %>
-      </div>
+      input_html: {data: {address_autocomplete_target: "location"},class:"d-none"},
+      wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+    %>
+    </div>
+
 
       <!-- How Many Players -->
       <div class="form-group">

@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :matches, through: :UserMatches
   validates :first_name, presence: true
   validates :email, uniqueness: true
+  has_one_attached :photo
 end

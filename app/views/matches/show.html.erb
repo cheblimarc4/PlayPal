@@ -26,11 +26,11 @@
     </div>
   </div>
   <div class="game-type-i">
-    <p><%= @match.game_type %></p>
+    <p style="padding-top:5px; font-weight:bold"><%= @match.game_type %></p>
     <% if @match.game_type == "Competitive" %>
-      <p style="color:grey">The result of this match will count towards your rating</p>
+      <p style="color:grey; ">The result of this match will count towards your rating</p>
     <%else %>
-      <p style="color:grey">The result of this match will not count towards your rating</p>
+      <p style="color:grey;">The result of this match will not count towards your rating</p>
     <% end %>
   </div>
 
