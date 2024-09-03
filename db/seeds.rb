@@ -36,7 +36,7 @@ end
 10.times do
   name = Faker::Name.name.delete(" ")
   puts name
-  User.create!(first_name: name, last_name: name, email: "#{name}@gmail.com", password:"123456",rating: (rand(10..50) / 10.0))
+  User.create!(first_name: name, last_name: name, email: "#{name}@gmail.com", password:"123456",rating:  format('%.1f', (rand(10..50) / 10.0)) )
 end
 
 10.times do
@@ -47,5 +47,4 @@ end
 10.times do
   UserMatch.create(user:User.all.sample, match:Match.all.sample)
 end
-
-puts "Done Seeding"
+puts "Done!"
