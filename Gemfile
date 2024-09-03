@@ -20,8 +20,10 @@ gem 'flatpickr'
 #Map
 gem "geocoder"
 
+
 #Cloudinary
 gem 'cloudinary'
+
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", "~> 1.2.3"
@@ -49,7 +51,6 @@ gem "pundit"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
-
 
 gem "pg_search"
 

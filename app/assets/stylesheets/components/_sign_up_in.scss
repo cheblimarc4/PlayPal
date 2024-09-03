@@ -1,40 +1,53 @@
+
+.common-input,
+.common-button {
+  width: 100%;
+  height: 53px;
+  padding: 0 60px;
+  border-radius: 57px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+.common-input:focus,
+.common-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3);
+}
+
+.common-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  margin-top: 20px;
+}
+
 .signup-container {
-  display: flex; /* Enables flexbox layout */
-  flex-direction: column; /* Stacks child elements vertically */
-  justify-content: center; /* Centers the container content vertically */
-  align-items: center; /* Centers the container content horizontally */
-   /* 100% of the viewport height */
-  padding: 0 15px; /* Adds padding to prevent overflow on small screens */
-  background-color: #EFF7F9; /* Background color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  background-color: #EFF7F9;
+  min-height: 100vh;
 }
 
 .signup-form {
-  width: 33.33%; /* Makes the form take up 1/3 of the viewport width */
-  min-width: 300px; /* Optional: minimum width for smaller screens */
-  background-color: #F9FDFE; /* Background color */
-  padding: 20px; /* Adds padding inside the form */
-  border-radius: 20px; /* Rounds the corners of the form */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for a subtle effect */
+  width: 33.33%;
+  min-width: 300px;
+  background-color: #F9FDFE;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .signup-container h2 {
-  margin-bottom: 20px; /* Adds space between the header and form */
-  color:#00867A; /* Optional: text color */
-  text-align: center; /* Centers the text */
-}
-
-.signup-form .form-control:focus {
-  border-color: #878787; /* Change the border color on focus */
-  box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3); /* Change the shadow color and size */
-  outline: none; /* Removes the default blue outline */
-}
-
-.form-actions {
-  display: flex; /* Enable Flexbox */
-  justify-content: space-between; /* Space items as far apart as possible */
-  align-items: center; /* Align items vertically centered */
-  width: 100%; /* Optional: Ensure the actions take full width */
-  padding-top: 30px; /* Optional: Add spacing above the actions */
+  margin-bottom: 20px;
+  color: #00867A;
+  text-align: center;
 }
 
 .bt-sign-up {
@@ -43,34 +56,17 @@
   color: white;
   width: 177px;
   height: 53px;
-
-  &:hover {
-    color: #000000; /* Change color on hover (example color) */
-    background-color: #EFF7F9;
-    border-radius: 57px;
-    border: 2px solid #878787;
-  }
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
-.bt-login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-radius: 57px;
-  color: #000000; /* Set the text color */
-  width: 177px;
-  height: 53px;
-  text-decoration: none; /* Remove underline */
-  border: 2px solid #000000;
-
-  &:hover {
-    color: #000000; /* Change color on hover (example color) */
-    background-color: #EFF7F9;
-    border-radius: 57px;
-    border: 2px solid #878787;
-  }
+.bt-sign-up:hover {
+  color: #000000;
+  background-color: #EFF7F9;
+  border: 2px solid #878787;
 }
+
 
 .bt-forgot-pass {
   display: flex;
@@ -78,57 +74,71 @@
   align-items: center;
   background-color: #F9FDFE;
   border-radius: 57px;
-  color: #000000; /* Set the text color */
+  color: #000000;
   width: 177px;
   height: 26px;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
   font-size: 12px;
   padding: 12px;
   margin-bottom: -5px;
+  cursor: pointer;
+}
 
-  &:hover {
-    color: #00867A; /* Change color on hover (example color) */
-  }
+.bt-forgot-pass:hover {
+  color: #00867A;
 }
 
 .form-actions2 {
-  display: flex; /* Enable Flexbox */
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  gap: 10px; /* Space between button and link */
-  width: 100%; /* Full width of the container */
-  padding-top: 20px; /* Optional: add spacing above if needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 20px;
 }
 
-.form-inputs {
-  .remember-checkbox {
-    /* General checkbox styles */
-    accent-color: #1D1D1D; /* Use this to set checkbox color in supported browsers */
-    border: 2px solid #878787; /* Initial border color */
-    background-color: white; /* Initial background color */
+.form-inputs .remember-checkbox {
+  accent-color: #1D1D1D;
+  border: 2px solid #878787;
+  background-color: white;
+}
 
-    &:focus {
-      /* Remove default focus outline */
-      outline: none;
-      /* Custom focus styles */
-      box-shadow: 0 0 0 3px rgba(29, 29, 29, 0.3); /* Custom shadow color when focused */
-    }
+.form-inputs .remember-checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 29, 29, 0.3);
+}
 
-    &:checked {
-      /* Custom styles when checkbox is checked */
-      background-color: #1D1D1D; /* Change background color when checked */
-      border-color: #1D1D1D; /* Change border color when checked */
-    }
+.form-inputs .remember-checkbox:checked {
+  background-color: #1D1D1D;
+  border-color: #1D1D1D;
+}
 
-    &:checked:focus {
-      /* Custom styles when checkbox is checked and focused */
-      box-shadow: 0 0 0 3px rgba(29, 29, 29, 0.3); /* Custom shadow color */
-    }
-  }
+.form-inputs .remember-checkbox:checked:focus {
+  box-shadow: 0 0 0 3px rgba(29, 29, 29, 0.3);
+}
 
-  .remember-label {
-    /* Style the label */
-    color: #1D1D1D; /* Text color of the label */
-  }
+.form-inputs .remember-label {
+
+  color: #1D1D1D;
+}
+.common-button {
+  width: 35%;
+  height: 53px;
+  border-radius: 57px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  font-size: 16px;
+}
+
+.common-button:hover {
+  color: #000;
+  background-color: #EFF7F9;
+  border: 2px solid #878787;
 }

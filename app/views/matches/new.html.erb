@@ -1,15 +1,24 @@
-<div class="container" style="position: relative; width:960px; border:1px solid gray; border-radius:20px; padding:20px; margin-top:90px;">
-  <h1 style="font-size:48px; font-family:$headers-font; text-align:center; margin-bottom:30px">Create Your Match</h1>
-  <div class="create-form">
-    <%= simple_form_for @match, defaults: { input_html: { class: "form-control copy-form" }, label_html: { style: "text-align: center; width: 100%; display: block;" } } do |f| %>
+<div>
+  <h1>Create Your Match</h1>
 
-      <div class="form-group" id="sport-input">
-        <label class="form-label select optional" for="match_sport" style="text-align: center; width: 100%; display: block;">Select Sport</label>
-        <select class="form-select select optional form-control" name="match[sport_id]" id="match_sport_id">
-          <option value=""></option>
-          <% Sport.all.each do |sport| %>
-            <option value="<%= sport.id %>"><%= sport.name.capitalize %></option>
+  <div class="container2">
+    <div class="create-form">
+      <%= simple_form_for @match, defaults: { input_html: { class: "form-control copy-form" }, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } } do |f| %>
+
+        <div class="form-group" id="sport-input">
+          <label class="form-label select optional" for="match_sport">Select Sport</label>
+          <select class="form-select select optional form-control" style="width:500px" name="match[sport_id]" id="match_sport_id">
+            <option value=""></option>
+            <% Sport.all.each do |sport| %>
+              <option value="<%= sport.id %>"><%= sport.name.capitalize %></option>
+            <% end %>
+          </select>
+          <% if @match.errors[:sport].any? %>
+            <div class="invalid-feedback d-block">
+              <%= "Sport #{@match.errors[:sport].join(', ')}" %>
+            </div>
           <% end %>
+
         </select>
         <% if @match.errors[:sport].any? %>
           <div class="invalid-feedback d-block">
@@ -54,5 +63,6 @@
       </div>
 
     <% end %>
+
   </div>
 </div>
