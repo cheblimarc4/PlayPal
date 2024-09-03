@@ -45,6 +45,7 @@ class MatchesController < ApplicationController
 
   def mymatches
     @matches = Match.where(user: current_user)
+    @sorted_team = sort_team(@matches.first)
     @user_requests = UserMatch.where(user: current_user)
   end
 
@@ -66,7 +67,39 @@ class MatchesController < ApplicationController
     end
   end
 
+  def match_ready
+    players_we_have = @match.UserMatches.where(status: "accepted").count + @match.need
+    enough_players =  players_we_have == @match.sport.number_of_players
+    @match.ready = true if enough_players
+    render json: { message: @match.save ? true : false }
+  end
+
+
+
   private
+
+  def sort_team(match)
+    team_a = match.UserMatches.where(team: "teamA")
+    team_b = match.UserMatches.where(team: "teamB")
+    players_have = match.need
+    return true if team_a.count + team_b.count + players_have == match.sport.number_of_players
+
+    have = players_have.even? ? players_have / 2 : [(players_have.to_f / 2).floor, (players_have.to_f / 2).ceil]
+    if have.is_a?(Integer)
+      sorted_team = [have, have]
+    else
+      if team_a.count > team_b.count
+        sorted_team = [have[0], have[1]]
+      elsif team_b.count > team_a.count
+        sorted_team = [have[1], have[0]]
+      else
+        a = have.sample
+        have.delete(a)
+        sorted_team = [a, have[0]]
+      end
+    end
+    return sorted_team
+  end
 
   def check_date_validity(test_date)
     return false if test_date.nil?
