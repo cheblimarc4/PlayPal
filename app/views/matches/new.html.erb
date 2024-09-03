@@ -1,16 +1,13 @@
 <div>
-  <!-- Updated margin-top to 10px and margin-bottom to 50px -->
-  <h1 style="font-size: 48px; font-family: $headers-font; text-align: center; margin-top: 50px; margin-bottom: 10px; color: #00867a;">Create Your Match</h1>
+  <h1>Create Your Match</h1>
 
-  <!-- Adjust margin-top of container to bring it closer to h1 -->
-  <div class="container" style="position: relative; width: 960px; border: 1px solid gray; border-radius: 20px; padding: 20px; margin-top: 20px;">
+  <div class="container">
     <div class="create-form">
       <%= simple_form_for @match, defaults: { input_html: { class: "form-control copy-form" }, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } } do |f| %>
 
-        <!-- Form elements go here -->
         <div class="form-group" id="sport-input">
-          <label class="form-label select optional" for="match_sport" style="text-align: left; width: 100%; display: block; margin-bottom: 5px;">Select Sport</label>
-          <select class="form-select select optional form-control" name="match[sport_id]" id="match_sport_id">
+          <label class="form-label select optional" for="match_sport">Select Sport</label>
+          <select class="form-select select optional form-control" style="width:500px" name="match[sport_id]" id="match_sport_id">
             <option value=""></option>
             <% Sport.all.each do |sport| %>
               <option value="<%= sport.id %>"><%= sport.name.capitalize %></option>
@@ -24,32 +21,30 @@
         </div>
 
         <div class="form-inline">
-          <%= f.input :match_date, as: :string, input_html: { data: { controller: "datepicker" }, class: "form-control" }, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+          <%= f.input :match_date, as: :string, input_html: { style:"width:240px", data: { controller: "datepicker" }, class: "form-control" }, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
           <%= f.input :match_time, as: :select, collection: [
             "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
             "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
             "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
             "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
             "20:00", "20:30", "21:00", "21:30", "22:00"
-          ], class: "form-control", label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+          ], class: "form-control", input_html: {style:"width:240px"} ,label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
         </div>
 
-        <!-- Level and Game Type -->
         <div class="form-inline">
-          <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"], class: "form-control", label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
-          <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"], class: "form-control", label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+          <%= f.input :level, as: :select, collection: ["Beginner", "Intermediate", "Advanced"], class: "form-control", input_html: { style:"width:240px"}, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
+          <%= f.input :game_type, as: :select, collection: ["Friendly", "Competitive"], class: "form-control", input_html: { style:"width:240px"}, label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
         </div>
 
         <!-- Location Input -->
         <div class="form-group">
           <%= f.input :location,
             input_html: { data: { address_autocomplete_target: "location" }, class: "d-none" },
-            wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}, class:"form-control"},
-            label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" }
+            wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] }, class: "form-control" },
+            label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px; padding: 0;" }
           %>
         </div>
 
-        <!-- How Many Players -->
         <div class="form-group">
           <%= f.input :need, label: "How many players do you already have?", class: "form-control", label_html: { style: "text-align: left; width: 100%; display: block; margin-bottom: 5px;" } %>
         </div>
