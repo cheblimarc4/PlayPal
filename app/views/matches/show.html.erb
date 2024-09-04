@@ -49,14 +49,75 @@
     </div>
     <div class="d-flex justify-content-evenly">
       <div class="teama overflow-scroll">
-      <% ((@match.sport.number_of_players) / 2 ).times do  %>
-        <img src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="avatar">
+
+      <% team_a = @match.UserMatches.where(team: "teamA") %>
+      <% team_a.each do |usermatch| %>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <% if usermatch.user.photo.attached? %>
+            <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+          <% else %>
+            <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+          <% end %>
+        </div>
       <% end %>
+      <% if @sorted_team == true %>
+        <% (( @match.sport.number_of_players / 2 ) - team_a.count ).times do  %>
+          <div class="d-flex flex-column align-items-center justify-content-center">
+              <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+          </div>
+        <% end %>
+      <% elsif @sorted_team.is_a?(Array) %>
+            <% (@sorted_team[0]).times do  %>
+              <div class="d-flex flex-column align-items-center justify-content-center">
+              <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+              </div>
+            <% end %>
+      <% end %>
+      <% unless (@sorted_team == true) %>
+          <%((@match.sport.number_of_players / 2) - (@sorted_team[0] + team_a.count)).times do %>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                    <%= image_tag "add.png", class:"avatar", alt:"Spot Available" %>
+            </div>
+          <% end %>
+      <% end %>
+
+
     </div>
     <div class="vl"></div>
-    <div class="teamb overflow-scroll"">
-      <% ((@match.sport.number_of_players) / 2 ).times do  %>
-        <img src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="avatar">
+    <div class="teamb overflow-scroll">
+
+
+      <% team_b = @match.UserMatches.where(team: "teamB") %>
+      <% team_b.each do |usermatch| %>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <% if usermatch.user.photo.attached? %>
+            <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+          <% else %>
+            <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+          <% end %>
+        </div>
+      <%end %>
+      <!-- Sorting players we already have -->
+      <% if @sorted_team == true %>
+        <% (( @match.sport.number_of_players / 2 ) - team_b.count ).times do  %>
+          <div class="d-flex flex-column align-items-center justify-content-center">
+              <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+          </div>
+        <% end %>
+      <% elsif @sorted_team.is_a?(Array) %>
+          <% (@sorted_team[1]).times do  %>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+              <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+            </div>
+          <% end %>
+      <% end %>
+      <!-- Show empty avatars for empty space-->
+      <% unless @sorted_team == true %>
+        <%  ( (@match.sport.number_of_players/2) - ((@sorted_team[1] ) + team_b.count)).times do %>
+          <div class="d-flex flex-column align-items-center justify-content-center">
+              <%= image_tag "add.png", class:"avatar", alt:"Spot Available" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     </div>
@@ -109,7 +170,11 @@
 </div>
 
   <div>
-    <% if @already_requested %>
+    <% if current_user == @match.user %>
+        <div class="request-btn" style="opacity:.8">
+        Your match
+      </div>
+    <% elsif @already_requested %>
       <div class="request-btn" style="opacity:.8">
         You already requested to join
       </div>

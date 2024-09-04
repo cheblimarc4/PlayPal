@@ -3,7 +3,7 @@ class UserMatchesController < ApplicationController
   before_action :set_usermatch, only: [:acceptuser, :rejectuser, :cancel_match]
 
   def create
-    if @match.UserMatches.accepted.length < @match.need
+    if @match.UserMatches.accepted.length < (@match.sport.number_of_players - @match.need)
       if already_requested(@match)
         redirect_to match_path(@match), notice: "You already requested to join."
         return
