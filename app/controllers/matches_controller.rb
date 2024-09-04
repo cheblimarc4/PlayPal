@@ -15,6 +15,7 @@ class MatchesController < ApplicationController
 
   def show
     @already_requested = already_requested?(@match)
+    @sorted_team = sort_team(@match)
     @messages = @match.messages
     @message = Message.new
     @markers =
