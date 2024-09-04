@@ -10,7 +10,7 @@
         <p><%= @match.match_date.strftime('%A') %> <%= @match.match_time %></p>
       </div>
     </div>
-    <div class="d-flex justify-content-around mt-5">
+    <div class="d-flex justify-content-around mt-3">
       <div class="d-flex flex-column">
         <p class="s-info-gray">Gender</p>
         <p class="s-info-black">All Players</p>
@@ -61,7 +61,7 @@
     </div>
     </div>
     <div class="d-flex justify-content-between mt-4 align-items-end">
-      <h1 style="margin-left:10px; font-size:30px ">A</h1>
+      <h1 style="margin-left:10px; font-size:30px; ">A</h1>
     <h1 style="margin-right:10px; font-size:30px">B</h1>
     </div>
   </div>
@@ -95,9 +95,19 @@
       </div>
     <% end %>
   <% end %>
+
   <div class="d-flex justify-content-center mt-3" style="margin:0px auto">
-    <button class="chat-btn"><i class="fa-regular fa-comment"></i> Chat </button>
-  </div>
+  <!-- Use a regular button to prevent form submission -->
+  <button id="chat-button" class="chat-btn" data-controller="display-chat" data-action="click->display-chat#toggle">
+    <i class="fa-regular fa-comment"></i> Chat
+  </button>
+</div>
+
+<!-- Chat partial, initially hidden and with a Stimulus target -->
+<div id="chat-section" class="hidden" data-display-chat-target="chatSection">
+  <%= render 'chat' %>
+</div>
+
   <div>
     <% if @already_requested %>
       <div class="request-btn" style="opacity:.8">

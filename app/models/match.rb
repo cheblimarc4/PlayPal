@@ -3,6 +3,7 @@ class Match < ApplicationRecord
   belongs_to :sport
   has_many :UserMatches, dependent: :destroy
   has_many :users, through: :UserMatches
+  has_many :messages, dependent: :destroy
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
   validates :match_date, :sport, :need, :game_type, :level, :match_time, presence: true

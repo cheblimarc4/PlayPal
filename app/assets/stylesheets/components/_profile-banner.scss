@@ -14,12 +14,12 @@
   width: 90%;
   margin:0px auto;
 }
-// .avatar {
-//   vertical-align: middle;
-//   width: 70px;
-//   height: 70px;
-//   border-radius: 50%;
-// }
+.avatar {
+  vertical-align: middle;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 .prof-info{
   width: 100%;
   display: flex;
@@ -103,7 +103,7 @@
   right: 15px;
   position: absolute;
 }
-.text{
+.text-profile{
   bottom: 20px;
   position: absolute;
 }
@@ -194,12 +194,6 @@
   border: 1px solid black; /* Black line to separate teams */
 }
 
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-
-}
 
 .score {
   display: flex;

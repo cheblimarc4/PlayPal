@@ -11,6 +11,9 @@
   color: $text;
   font-weight: bold;
 }
+.d-flex-flex-column p {
+  margin:0px;
+}
 
 .s-info-black{
   font-family: $body-font;
@@ -38,12 +41,12 @@
   border-radius: 20px;
   margin-top: 15px;
 }
-.avatar {
-  vertical-align: middle;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-}
+// .avatar {
+//   vertical-align: middle;
+//   width: 56px;
+//   height: 56px;
+//   border-radius: 50%;
+// }
 .teama{
   display: flex;
   width: 45%;
