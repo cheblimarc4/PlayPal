@@ -31,6 +31,9 @@ gem "importmap-rails", "~> 1.2.3"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
+gem "actioncable-enhanced-postgresql-adapter"
+
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 

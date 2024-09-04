@@ -15,6 +15,8 @@ class MatchesController < ApplicationController
 
   def show
     @already_requested = already_requested?(@match)
+    @messages = @match.messages
+    @message = Message.new
     @markers =
       [{
         lat: @match.latitude,

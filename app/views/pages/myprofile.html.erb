@@ -31,12 +31,12 @@
     <div class="rectangle secondary">
       <div class="star">★</div>
       <div class="percentage">35%</div>
-      <div class="text">Of matches won</div>
+      <div class="text-profile">Of matches won</div>
         </div>
     <div class="rectangle secondary">
       <div class="star">★</div>
       <div class="percentage">55%</div>
-      <div class="text">Level Reliability</div>
+      <div class="text-profile">Level Reliability</div>
     </div>
   </div>
   <div class="match-history">
@@ -65,8 +65,16 @@
                 <hr class="team-divider">
                 <div class="teamB">
                     <h2>B</h2>
-                    <% ((match.sport.number_of_players) / 2).times do %>
-                    <img src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="avatar">
+                    <% ((match.sport.number_of_players / 2) - (match.UserMatches.where(team: "teamB").count)).times do %>
+                    <%= cl_image_tag "13360661_lfftyd",class:"avatar" %>
+                    <% end %>
+                    <% match.UserMatches.where(team: "teamB").each do |usermatch|%>
+                      <% if  usermatch.user.photo.attached? %>
+                        <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+                      <% else %>
+                        <%= cl_image_tag "Profile_Avatar_Image_l62tfa",class:"avatar" %>
+                      <% end %>
+
                     <% end %>
                 </div>
             </div>
