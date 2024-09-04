@@ -1,6 +1,6 @@
 <div class="show-profile">
   <div class="prof-info align-items-center">
-    <%= @user.photo.attached? ? cl_image_tag(@user.photo.key, class:"avatar") : image_tag( asset_path "profile-user.png", class:"avatar") %>
+    <%= @user.photo.attached? ? cl_image_tag(@user.photo.key, class:"avatar") : image_tag( asset_path "user.png", class:"avatar") %>
     <div>
       <h1><%= @user.first_name %> <%= @user.last_name %></h1>
       <p>Plays in Madrid, Spain</p>
