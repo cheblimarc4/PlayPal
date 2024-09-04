@@ -6,7 +6,7 @@
 
     <div id="messages" class="messages">
       <% @messages.each do |message| %>
-        <%= render "messages/message", message: message, user: current_user %> <!-- Pass user here -->
+        <%= render "messages/message", message: message, user: message.user %> <!-- Pass user here -->
       <% end %>
     </div>
 
