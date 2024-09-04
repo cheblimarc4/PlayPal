@@ -1,6 +1,6 @@
 <% if @match.ready? %>
-  <div class="container chat">
-    <h1>Chat for match: <%= @match.id %></h1>
+  <div class="container chat" style="height:500px;width:500px">
+    <h4>Chat for match: <%= @match.id %></h4>
 
     <%= turbo_stream_from "match_#{@match.id}_messages" %>
 
@@ -9,10 +9,8 @@
         <%= render "messages/message", message: message, user: message.user %> <!-- Pass user here -->
       <% end %>
     </div>
-
-    <%= simple_form_for [@match, @message], html: { class: "d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
-      <% other_user = @match.users.where.not(id: current_user.id).first %>
-      <%= f.input :content, label: false, placeholder: "Message #{other_user.first_name if other_user}", wrapper_html: { class: "flex-grow-1" } %>
+    <%= simple_form_for [@match, @message], html: { class: "d-flex", style:"height:100px", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
+      <%= f.input :content, label: false, placeholder: "Say Hello to your team", wrapper_html: { class: "flex-grow-1"} %>
       <%= f.submit "Send", class: "btn btn-primary mb-3" %>
     <% end %>
   </div>

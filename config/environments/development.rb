@@ -1,12 +1,12 @@
+# config/environments/development.rb
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # URL for ActionMailer in development
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
-  # Settings specified here will take precedence over those in config/application.rb.
 
-  # In the development environment your application's code is reloaded any time
-  # it changes. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
+  # Code reloads on every request in development
   config.enable_reloading = true
 
   # Do not eager load code on boot.
@@ -19,22 +19,19 @@ Rails.application.configure do
   config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
-  if Rails.root.join("tmp/caching-dev.txt").exist?
-    config.action_controller.perform_caching = false
-    config.action_controller.enable_fragment_cache_logging = true
+  # Run `rails dev:cache` to toggle caching.
+  # Disabling caching completely for development to avoid stale assets.
+  config.action_controller.perform_caching = false
+  config.action_controller.enable_fragment_cache_logging = false
+  config.cache_store = :null_store
 
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
+  # Serve static files and disable caching to prevent stale assets
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = {
+    "Cache-Control" => "no-store"
+  }
 
-    config.cache_store = :null_store
-  end
-
-  # Store uploaded files on the local file system (see config/storage.yml for options).
+  # Store uploaded files on the Cloudinary service (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
 
   # Don't care if the mailer can't send.
@@ -63,12 +60,15 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  # Disable asset digests to prevent unnecessary caching
+  # This is not necessary for production, but useful for development.
+  config.assets.debug = true
 
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
+  # Enable live compilation of assets to avoid needing `rails assets:precompile`.
+  # Note: This increases response time slightly.
+  config.assets.compile = true
 
+  # Automatically disable request forgery protection for Action Cable in development
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 

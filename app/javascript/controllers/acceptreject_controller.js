@@ -8,7 +8,8 @@ export default class extends Controller {
     usermatch: Object,
     matchid:String,
     profilepic:String,
-    classicon: String
+    classicon: String,
+    defaultImageValue: String
 
   }
   connect(){
@@ -55,7 +56,7 @@ export default class extends Controller {
     const spot = document.getElementById(`${this.matchidValue}_playershow`)
     if (team == 'teamA') {
       if (spot.querySelector(".team_a_available_spots") == null){
-        spot.querySelector(".team_b_available_spots").setAttribute("src", "https://www.floridapublicmedia.org/wp-content/uploads/2017/03/explorer.png")
+        spot.querySelector(".team_b_available_spots").setAttribute("src", this.defaultImageValue )
         const parent = spot.querySelector(".team_a_spot").parentElement;
         spot.querySelector(".team_a_spot").remove();
         parent.innerHTML = this.profilepicValue;
@@ -68,7 +69,7 @@ export default class extends Controller {
 
     } else {
       if (spot.querySelector(".team_b_available_spots") == null) {
-        spot.querySelector(".team_a_available_spots").setAttribute("src", "https://www.floridapublicmedia.org/wp-content/uploads/2017/03/explorer.png")
+        spot.querySelector(".team_a_available_spots").setAttribute("src", this.defaultImageValue )
         const parent = spot.querySelector(".team_b_spot").parentElement;
         spot.querySelector(".team_b_spot").remove();
         parent.innerHTML = this.profilepicValue;
