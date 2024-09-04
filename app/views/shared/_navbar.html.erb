@@ -8,7 +8,7 @@
 
     <% if user_signed_in? %>
       <div class="dropdown" style="width:auto">
-        <%= image_tag "profile-user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>
+        <%= image_tag "user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }, style: "width: 55px; height: 55px;" %>
         <ul class="dropdown-menu dropdown-menu-start" style="top: 100%; left: 0; transform: translate(-125px, 0);" aria-labelledby="navbarDropdown">
           <li><%= link_to "Profile", my_profile_path, class: "dropdown-item" %></li>
           <li><%= link_to "My Matches", my_matches_path, class: "dropdown-item" %></li>
