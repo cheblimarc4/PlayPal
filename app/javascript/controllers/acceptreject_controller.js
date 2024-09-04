@@ -7,7 +7,8 @@ export default class extends Controller {
   static values = {
     usermatch: Object,
     matchid:String,
-    profilepic:String
+    profilepic:String,
+    classicon: String
 
   }
   connect(){
@@ -84,14 +85,16 @@ export default class extends Controller {
 
   teamFull() {
       const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
-      const match_full = `<div class="d-flex justify-content-center align-items-center" style="height:100%;width:100%;">
-                      <h2 class="d-flex align-items-center">Your team is full<i class="px-3 <%= match.sport_icon %> fs-3 bounce2"></i></h2>
-                    </div>`;
+      const match_full = `<div class="d-flex justify-content-center flex-column align-items-center" style="height:100%;width:100%;">
+                      <div><h2 class="d-flex align-items-center">Your team is full<i class=${this.classiconValue}></i></h2></div>
+                      <br><a class="join-btn m-0" href="/matches/63">Match Details</a>
+                      </div>`;
       contentdiv.innerHTML = match_full;
       this.contantMatchReady();
   }
   contantMatchReady(){
     fetch(`matches/${this.matchidValue}/ready`);
+    document.getElementById(`${this.matchidValue}_readystatus`).classList.remove("d-none");
   }
   subtractPending(){
     const docID = `${this.matchidValue.toString()}_pendingtotal`;  // Use the corrected ID format

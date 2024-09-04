@@ -47,7 +47,7 @@ class MatchesController < ApplicationController
 
   def mymatches
     @matches = Match.where(user: current_user)
-    @sorted_team = sort_team(@matches.first)
+    @sorted_team_array = @matches.map { |sort_match| sort_team(sort_match) }
     @user_requests = UserMatch.where(user: current_user)
   end
 
@@ -63,6 +63,9 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
     @match.user = current_user
     if @match.save
+      @match.need -= 1 unless @match.need.zero?
+      @match.save
+      UserMatch.create(match: @match, user: current_user, status: "accepted", team: Random.rand() > 0.5 ? "teamA" : "teamB")
       redirect_to matches_path, notice: 'Match was successfully created.'
     else
       render :new, status: :unprocessable_entity
@@ -75,8 +78,6 @@ class MatchesController < ApplicationController
     @match.ready = true if enough_players
     render json: { message: @match.save ? true : false }
   end
-
-
 
   private
 
