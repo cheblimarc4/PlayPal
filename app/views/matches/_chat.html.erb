@@ -1,17 +1,21 @@
 <% if @match.ready? %>
-  <div class="container chat" style="height:500px;width:500px">
-    <h4>Chat for match: <%= @match.id %></h4>
+  <div class="container chat" style="height:500px; width:500px; background-color: #F9FDFE; border-radius: 10px; padding: 20px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h4 style="color: #00867a; font-size: 1.2em;">Chat for match: <%= @match.id %></h4>
 
     <%= turbo_stream_from "match_#{@match.id}_messages" %>
 
-    <div id="messages" class="messages">
+    <div id="messages" class="messages" style="height:350px; overflow-y: auto; margin-bottom: 15px; padding: 10px; background-color: #EFF7F9; border-radius: 10px; border: 1px solid #ECF7EB;">
       <% @messages.each do |message| %>
-        <%= render "messages/message", message: message, user: message.user %> <!-- Pass user here -->
+        <div style="margin-bottom: 10px; padding: 8px; background-color: <%= message.user == current_user ? '#ECF7EB' : '#F4F4F4' %>; border-radius: 10px;">
+          <%= render "messages/message", message: message, user: message.user %> <!-- Pass user here -->
+        </div>
       <% end %>
     </div>
-    <%= simple_form_for [@match, @message], html: { class: "d-flex", style:"height:100px", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
-      <%= f.input :content, label: false, placeholder: "Say Hello to your team", wrapper_html: { class: "flex-grow-1"} %>
-      <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+    <%= simple_form_for [@match, @message], html: { class: "d-flex", style: "gap: 10px; align-items: stretch;", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f| %>
+      <div style="flex-grow: 1;">
+        <%= f.input :content, label: false, placeholder: "Say Hello to your team", input_html: { style: "width: 100%; border-radius: 5px; border: 1px solid #9ADD00; padding: 10px; background-color: #F4F4F4; height: 100%;" } %>
+      </div>
+      <%= f.submit "Send", class: "btn btn-primary", style: "background-color: #00867a; border-color: #00867a; color: #F4F4F4; padding: 0 20px; border-radius: 5px; height: 80%; margin-top: 5.5px;" %>
     <% end %>
   </div>
 <% end %>

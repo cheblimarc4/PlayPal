@@ -9,12 +9,13 @@ export default class extends Controller {
     matchid:String,
     profilepic:String,
     classicon: String,
-    defaultImageValue: String
+    defaultprofile: String
 
   }
   connect(){
-    console.log("Connected to AcceptReject");
-    console.log(this.profilepicValue)
+    console.log("this is the default image");
+    console.log(this.defaultprofileValue);
+    console.log(this.profilepicValue);
   }
   accept() {
     fetch(`acceptusermatch/${this.usermatchValue.id}`).then(response => response.json()).then(data => this.updateStatus(data));
@@ -56,29 +57,24 @@ export default class extends Controller {
     const spot = document.getElementById(`${this.matchidValue}_playershow`)
     if (team == 'teamA') {
       if (spot.querySelector(".team_a_available_spots") == null){
-        spot.querySelector(".team_b_available_spots").setAttribute("src", this.defaultImageValue )
-        const parent = spot.querySelector(".team_a_spot").parentElement;
-        spot.querySelector(".team_a_spot").remove();
-        parent.innerHTML = this.profilepicValue;
+        spot.querySelector(".team_b_available_spots").setAttribute("src", this.defaultprofileValue );
+        spot.querySelector(".team_a_spot").setAttribute("src", this.profilepicValue);
       } else {
 
-        const parent = spot.querySelector(".team_a_available_spots").parentElement
-        spot.querySelector(".team_a_available_spots").remove();
-        parent.innerHTML = this.profilepicValue;
+        const take = spot.querySelector(".team_a_available_spots")
+        take.setAttribute("src", this.profilepicValue)
+        take.classList.remove("team_a_available_spots")
+
       }
 
     } else {
       if (spot.querySelector(".team_b_available_spots") == null) {
-        spot.querySelector(".team_a_available_spots").setAttribute("src", this.defaultImageValue )
-        const parent = spot.querySelector(".team_b_spot").parentElement;
-        spot.querySelector(".team_b_spot").remove();
-        parent.innerHTML = this.profilepicValue;
+        spot.querySelector(".team_a_available_spots").setAttribute("src", this.defaultprofileValue );
+        spot.querySelector(".team_b_spot").setAttribute("src", this.profilepicValue);
       } else {
-
-        const parent = spot.querySelector(".team_b_available_spots").parentElement
-        spot.querySelector(".team_b_available_spots").remove();
-        parent.innerHTML = this.profilepicValue;
-
+        const take = spot.querySelector(".team_b_available_spots")
+        take.setAttribute("src", this.profilepicValue)
+        take.classList.remove("team_b_available_spots")
       }
       console.log("added pic to team b")
     }
@@ -88,7 +84,7 @@ export default class extends Controller {
       const contentdiv = document.getElementById(`${this.matchidValue}_contentdiv`);
       const match_full = `<div class="d-flex justify-content-center flex-column align-items-center" style="height:100%;width:100%;">
                       <div><h2 class="d-flex align-items-center">Your team is full<i class=${this.classiconValue}></i></h2></div>
-                      <br><a class="join-btn m-0" href="/matches/63">Match Details</a>
+                      <br><a class="join-btn m-0" href=/matches/${this.matchidValue}">Match Details</a>
                       </div>`;
       contentdiv.innerHTML = match_full;
       this.contantMatchReady();
@@ -96,6 +92,9 @@ export default class extends Controller {
   contantMatchReady(){
     fetch(`matches/${this.matchidValue}/ready`);
     document.getElementById(`${this.matchidValue}_readystatus`).classList.remove("d-none");
+    const matchdetailbutton = document.getElementById(`${this.matchidValue}_matchdetails`)
+    matchdetailbutton.classList.add("d-none");
+    matchdetailbutton.classList.remove("d-flex");
   }
   subtractPending(){
     const docID = `${this.matchidValue.toString()}_pendingtotal`;  // Use the corrected ID format
