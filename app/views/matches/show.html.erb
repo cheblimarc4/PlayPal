@@ -56,7 +56,11 @@
           <% if usermatch.user.photo.attached? %>
             <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
           <% else %>
-            <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+           <% if usermatch.user == current_user %>
+                            <%= image_tag "user.png", class:"avatar", alt:"My Spot" %>
+                          <% else %>
+                            <%= image_tag "profile-user.png", class:"avatar", alt:"accepted player"%>
+                          <% end %>
           <% end %>
         </div>
       <% end %>
@@ -93,7 +97,11 @@
           <% if usermatch.user.photo.attached? %>
             <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
           <% else %>
-            <%= image_tag "profile-user.png", class:"avatar", alt:"Spot Available" %>
+            <% if usermatch.user == current_user %>
+              <%= image_tag "user.png", class:"avatar", alt:"My Spot" %>
+            <% else %>
+              <%= image_tag "profile-user.png", class:"avatar", alt:"accepted player"%>
+            <% end %>
           <% end %>
         </div>
       <%end %>

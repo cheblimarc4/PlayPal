@@ -19,7 +19,8 @@
       <h1 class="text-center my-2" style="font-size:48px; font-family:$headers-font">My Requests</h1>
       <div class="request-container slight-boxshadow rounded-5">
         <% if @user_requests.length == 0  %>
-          <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">No one requested to join your match</h1>
+          <h1 class="text-center mb-4" style="font-size:35px; font-family:$headers-font">You didn't request anyone to join</h1>
+          <%= link_to "Request now", matches_path, class:"join-btn m-0"%>
         <%else %>
           <% @user_requests.each do |request| %>
           <div class="request d-flex align-items-center justify-content-between" data-controller="cancel-request" data-cancel-request-usermatch-value="<%=request.to_json%>">
@@ -62,16 +63,21 @@
 
 
 
-  <div data-mainrequest-target="match" class="border" style="height:40rem">
+  <div data-mainrequest-target="match" class="border" style="height:40rem;">
   <% if @matches.length == 0 %>
-    <div class="matches-div d-flex justify-content-center align-items-center flex-column slight-boxshadow" style="height:40rem;width:100rem;">
+    <div class="matches-div d-flex justify-content-center align-items-center flex-column slight-boxshadow" style="height:40rem;width:90rem;">
       <h2>You dont have any matches.</h2>
       <%= link_to "Create Match", new_match_path, class:"join-btn m-0"%>
     </div>
   <% else %>
     <% @matches.each_with_index do |match, index| %>
       <div class="border <%= "d-none" unless match == @matches.first%>" data-controller="mymatches">
-        <div class="matches-div d-flex align-items-center flex-column slight-boxshadow" style="height:40rem;width:100rem;">
+        <div class="matches-div d-flex align-items-center justify-content-center flex-column slight-boxshadow" style="height:40rem;width:90rem;">
+          <% unless match.ready %>
+            <div id="<%= match.id%>_matchdetails" style="width:100%" class="d-flex justify-content-end px-5">
+              <%= link_to "Match Details", match_path(match), style:"position:absolute;top:30px;text-align:center;text-decoration:none;background-color: white; color: black; border: 2px solid #878787; border-radius: 10px; padding: 10px 30px 10px; font-size: 16px; font-weight: bold; width: 200px; height: 48px; margin-right: 10px;"%>
+            </div>
+          <% end %>
           <div data-mymatches-target="next" data-action="click->mymatches#next" class="d-none  fs-3 fw-bolder btn btn-primary bg-success" style="border:1px solid white;position:absolute;right:-5%;top:50%;"><i class="fa-solid fa-arrow-right"></i></div>
           <div data-mymatches-target="previous" data-action="click->mymatches#previous" class="d-none fs-3 fw-bolder btn btn-primary bg-success" style="transform: rotate(180deg);border:1px solid white;position:absolute;left:-5%;top:50%;"><i class="fa-solid fa-arrow-right"></i></div>
 
@@ -88,7 +94,7 @@
               </div>
             <div>
           </div>
-          <div style="height:25rem" class="bg-light d-flex">
+          <div style="height:25rem" class="border bg-light d-flex">
 
             <div class="" style="width:60%;height:100%">
               <div class=" py-5 d-flex align-items-center px-5" style="height:20%">
@@ -137,22 +143,26 @@
                 </div>
               </div>
             </div>
-            <div id="<%= match.id%>_playershow" class=" w-40 d-flex justify-content-center align-items-center" style="width:40%;height:100%">
+            <div id="<%= match.id%>_playershow" class="d-flex justify-content-center align-items-center" style="padding-right:10px;width:40%;height:100%">
               <div id="<%= match.id %>_playershow" class="matches-div slight-boxshadow rounded-5 d-flex overflow-scroll flex-wrap" style="height:20rem;width:35rem;">
                 <% team_a = match.UserMatches.where(team: "teamA") %>
                 <% team_b = match.UserMatches.where(team: "teamB") %>
                 <% @sorted_team = @sorted_team_array[index] %>
                 <div class="d-flex w-100 flex-column border-top align-items-center justify-content-center">
                   <h5 class="text-center mb-3">Team A</h5>
-                  <div class="d-flex w-100 justify-content-evenly overflow-scroll flex-wrap py-3" style="height:10vh"> <!-- User Avatars -->
+                  <div class="d-flex w-100 justify-content-evenly overflow-scroll py-3" style="height:10vh"> <!-- User Avatars -->
 
 
                     <% team_a.each do |usermatch| %>
                       <div class="d-flex flex-column align-items-center justify-content-center">
                         <% if usermatch.user.photo.attached? %>
-                          <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
+                            <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
                         <% else %>
-                          <%= image_tag "profile-user.png", class:"avatar", alt:"My Spot"%>
+                          <% if usermatch.user == current_user %>
+                            <%= image_tag "user.png", class:"avatar", alt:"My Spot" %>
+                          <% else %>
+                            <%= image_tag "profile-user.png", class:"avatar", alt:"accepted player"%>
+                          <% end %>
                         <% end %>
                       </div>
                     <% end %>
@@ -181,14 +191,18 @@
 
                 <div class="d-flex w-100 flex-column border-top align-items-center justify-content-center">
                     <h5 class="text-center mb-3">Team B</h5>
-                    <div class="d-flex w-100 justify-content-evenly overflow-scroll flex-wrap py-3" style="height:10vh"> <!-- User Avatars -->
+                    <div class="d-flex w-100 justify-content-evenly overflow-scroll py-3" style="height:10vh"> <!-- User Avatars -->
                     <!-- Sorting accepted players we already have in team B -->
                       <% team_b.each do |usermatch| %>
                         <div class="d-flex flex-column align-items-center justify-content-center">
                           <% if usermatch.user.photo.attached? %>
                             <%= cl_image_tag usermatch.user.photo.key, class:"avatar"%>
                           <% else %>
-                            <%= image_tag "profile-user.png", class:"avatar", alt:"My Spot" %>
+                            <% if usermatch.user == current_user %>
+                              <%= image_tag "user.png", class:"avatar", alt:"My Spot" %>
+                            <% else %>
+                              <%= image_tag "profile-user.png", class:"avatar", alt:"accepted player"%>
+                            <% end %>
                           <% end %>
                         </div>
                       <%end %>

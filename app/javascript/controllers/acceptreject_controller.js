@@ -92,6 +92,9 @@ export default class extends Controller {
   contantMatchReady(){
     fetch(`matches/${this.matchidValue}/ready`);
     document.getElementById(`${this.matchidValue}_readystatus`).classList.remove("d-none");
+    const matchdetailbutton = document.getElementById(`${this.matchidValue}_matchdetails`)
+    matchdetailbutton.classList.add("d-none");
+    matchdetailbutton.classList.remove("d-flex");
   }
   subtractPending(){
     const docID = `${this.matchidValue.toString()}_pendingtotal`;  // Use the corrected ID format
