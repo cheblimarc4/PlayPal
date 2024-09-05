@@ -122,9 +122,11 @@
                     </div>
                   <% else %>
                     <% @pending_requests.each do |usermatch| %>
-                      <div data-acceptreject-classicon-value="px-3 <%= match.sport_icon %> fs-3 bounce2" data-acceptreject-profilepic-value='<%= usermatch.user.photo.attached? ? (cl_image_path(usermatch.user.photo.key)) : (asset_path("profile-user.png")) %>' data-controller="acceptreject" data-acceptreject-defaultprofile-value='<%= asset_path("profile-user.png")%>' data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="matches-div d-flex align-items-center px-2 justify-content-between my-3 rounded-5 py-2 d-flex" style="">
-                        <div class="d-flex">
-                          <h3><%= "#{usermatch.user.first_name}"  %></h3><h3 class="px-3"><%= usermatch.user.rating %></h3>
+                      <div data-acceptreject-classicon-value="px-3 <%= match.sport_icon %> fs-3 bounce2" data-acceptreject-profilepic-value='<%= usermatch.user.photo.attached? ? (cl_image_path(usermatch.user.photo.key)) : (asset_path("profile-user.png")) %>' data-controller="acceptreject" data-acceptreject-defaultprofile-value='<%= asset_path("profile-user.png")%>' data-acceptreject-matchid-value="<%= match.id%>" data-acceptreject-usermatch-value="<%= usermatch.to_json%>" class="matches-div slight-boxshadow d-flex align-items-center px-2 justify-content-between my-3 rounded-5 py-2 d-flex" style="width:650px;">
+                        <div class="d-flex align-items-center">
+                         <img src="<%= usermatch.user.photo.attached? ? (cl_image_path(usermatch.user.photo.key)) : (asset_path('profile-user.png'))%>", class= "avatar mx-3" alt="">
+                         <h4 style="width:190px" class="overflow-scroll"><%= "#{usermatch.user.first_name.capitalize}"  %></h4>
+                         <h5 class="px-3"><%= usermatch.user.rating %></h5>
                         </div>
                         <div class="px-3">
                           <button data-action="click->acceptreject#accept"  class="join-btn py-3" style="margin-right:0px">Accept</button> <button data-action="click->acceptreject#confirmReject" class="join-btn bg-white text-dark py-3" style="margin-right:0px">Reject</button>
