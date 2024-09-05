@@ -30,12 +30,12 @@
     </div>
     <div class="rectangle secondary">
       <div class="star">★</div>
-      <div class="percentage"><%= ( @total_wins / (@total_matches.zero? ? 1 : @total_matches) ) * 100 %>%</div>
+      <div class="percentage"><%= (( @total_wins / (@total_matches.zero? ? 1 : @total_matches) ) * 100 ).round%>%</div>
       <div class="text-profile">Of matches won</div>
         </div>
     <div class="rectangle secondary">
       <div class="star">★</div>
-      <div class="percentage"><%= (current_user.rating / 5 ) * 100%>%</div>
+      <div class="percentage"><%= ((current_user.rating / 5 ) * 100).round%>%</div>
       <div class="text-profile">Level Reliability</div>
     </div>
   </div>
