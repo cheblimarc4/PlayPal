@@ -43,10 +43,10 @@ class Match < ApplicationRecord
   end
   def add_results(team_a_score, team_b_score)
     # return false unless self.user == current_user
-    self.team_a_score = team_a_score
-    self.team_b_score = team_b_score
+    self.team_a_score = team_a_score.nil? ? 0 : team_a_score
+    self.team_b_score = team_b_score.nil? ? 0 : team_b_score
     self.winning_team = team_a_score > team_b_score ? 1 : 2
-    self.save
+    self.save!
     if self.game_type == "Competitive" && self.ready
       update_user_ratings
     end
@@ -54,17 +54,23 @@ class Match < ApplicationRecord
 
   def update_user_ratings
     winning_users = self.UserMatches.where(team: self.winning_team)
-    losing_users = self.UserMatches.where.not(team: self.winning_team)
-
+    loss_prob= self.UserMatches.where.not(team: self.winning_team)
+    losing_users = loss_prob.where.not(team: nil)
     winning_users.each do |winner|
       user = User.find(winner.user_id)
-      user.increment!(:rating, 0.8)
+      new_rating = [user.rating + 0.8, 5].min  # Ensure rating does not exceed 5
+      user.rating = new_rating
+      user.save!
     end
+
     losing_users.each do |loser|
       user = User.find(loser.user_id)
-      user.decrement!(:rating, 0.8)
+      new_rating = [user.rating - 0.8, 0].max  # Ensure rating does not go below 0
+      user.update(rating: new_rating)
+      user.save
     end
   end
+
 
 
   def show_banner
