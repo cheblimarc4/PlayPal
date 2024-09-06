@@ -29,8 +29,8 @@ levels = ["Beginner", "Intermediate", "Advanced"]
 types = ["Friendly", "Competitive"]
 
 
-names = ["Margarida", "João", "David", "Ines", "Rita", "Henrique", "Marta Rosa", "Mariana", "Franciso P1", "Francisco P2", "Gonçalo","Marc"]
-photo = ["https://ca.slack-edge.com/T02NE0241-USN1K7YLE-ce4c21c34c01-512","https://ca.slack-edge.com/T02NE0241-U8A945YB0-5a961e901c6a-512", "https://ca.slack-edge.com/T02NE0241-U01439WBLBA-03c468fd4087-512", "https://ca.slack-edge.com/T02NE0241-U028GBBK6MR-a12d5f81d0ad-512", "https://ca.slack-edge.com/T02NE0241-UHU7RTVL4-d16238381bd6-512", "https://ca.slack-edge.com/T02NE0241-U028GBY5DFC-ed25edc41a04-512", "https://ca.slack-edge.com/T02NE0241-U078RSC24G1-3fe4d728e522-512","https://ca.slack-edge.com/T02NE0241-U8RK8CLFN-bcfaccdf0495-512","https://ca.slack-edge.com/T02NE0241-U02TRJ4F37B-826d1eb9bef6-512","https://ca.slack-edge.com/T02NE0241-U058ZAEHAK0-3c9186eb7b4f-512","https://ca.slack-edge.com/T02NE0241-U07B52UHMJS-d9cfa1feec0f-512","https://ca.slack-edge.com/T02NE0241-U07C0U8Q4D6-58a0dcba64fc-512"]
+names = ["Margarida", "João", "David", "Ines", "Rita", "Henrique", "Marta Rosa", "Mariana", "Franciso P1", "Francisco P2", "Gonçalo","Marc", "Teresa", "Guillaume", "Lucelia", "Zainan", "Afonso"]
+photo = ["https://ca.slack-edge.com/T02NE0241-USN1K7YLE-ce4c21c34c01-512","https://ca.slack-edge.com/T02NE0241-U8A945YB0-5a961e901c6a-512", "https://ca.slack-edge.com/T02NE0241-U01439WBLBA-03c468fd4087-512", "https://ca.slack-edge.com/T02NE0241-U028GBBK6MR-a12d5f81d0ad-512", "https://ca.slack-edge.com/T02NE0241-UHU7RTVL4-d16238381bd6-512", "https://ca.slack-edge.com/T02NE0241-U028GBY5DFC-ed25edc41a04-512", "https://ca.slack-edge.com/T02NE0241-U078RSC24G1-3fe4d728e522-512","https://ca.slack-edge.com/T02NE0241-U8RK8CLFN-bcfaccdf0495-512","https://ca.slack-edge.com/T02NE0241-U02TRJ4F37B-826d1eb9bef6-512","https://ca.slack-edge.com/T02NE0241-U058ZAEHAK0-3c9186eb7b4f-512","https://ca.slack-edge.com/T02NE0241-U07B52UHMJS-d9cfa1feec0f-512","https://ca.slack-edge.com/T02NE0241-U07C0U8Q4D6-58a0dcba64fc-512","https://ca.slack-edge.com/T02NE0241-U07AXMZKK9D-20d05d5991f2-512","https://ca.slack-edge.com/T02NE0241-U07BAF5P750-c50eceafbba1-512","https://ca.slack-edge.com/T02NE0241-U075Z0K9KD4-b2b4659d1075-512","https://ca.slack-edge.com/T02NE0241-U07BZJ2RNHE-c61614479c7f-72","https://ca.slack-edge.com/T02NE0241-U07B9TSJG1Z-83002c8afa7e-512"]
 ages = [25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
 emails = names.map { |name| name.downcase.delete(" ") + "@gmail.com" }
 ratings = names.length.times.map { format('%.1f', (rand(10..50) / 10.0)) }
@@ -71,4 +71,23 @@ Random.rand(1..5).times do
   UserMatch.create(user: user, match: match)
   name = ""
 end
+end
+
+
+match = Match.create(user: User.where(email: "henrique@gmail.com").first, match_time: "08:00", need: 0 , sport: Sport.where(name: "football").first, location: "Alvalade, Lisbon, Portugal", level: "Beginner", match_date: "2021-09-23", game_type: "Competitive")
+UserMatch.create(user: match.user, match: match, status: "accepted", team: (Random.rand() > 0.5 ? "teamA" : "teamB" ))
+
+users = User.where.not(id: match.user.id)
+username = []
+name = ""
+Random.rand(14..16).times do
+  while name != match.user.first_name && !username.include?(name)
+    name = names.sample
+  end
+  username.push(name)
+  user = users.where.not(first_name: name)
+  user = users.sample
+  username.push(user.first_name)
+  UserMatch.create(user: user, match: match)
+  name = ""
 end
