@@ -8,17 +8,17 @@
   </div>
   <div class="prof-stats">
     <div class="d-flex flex-column text-center">
-      <p><%= @total_matches %></p>
+      <p><%= @total_matches.to_i %></p>
       <h2>Matches</h2>
     </div>
     <div class="vl"></div>
     <div class="d-flex flex-column text-center">
-      <p><%= @total_wins %></p>
+      <p><%= @total_wins.to_i %></p>
       <h2>Wins</h2>
     </div>
     <div class="vl"></div>
     <div class="d-flex flex-column text-center">
-      <p><%= @total_losses %></p>
+      <p><%= @total_losses.to_i %></p>
       <h2>Losses</h2>
     </div>
   </div>
@@ -30,7 +30,8 @@
     </div>
     <div class="rectangle secondary">
       <div class="star">★</div>
-      <div class="percentage"><%= (( @total_wins / (@total_matches.zero? ? 1 : @total_matches) ) * 100 ).round%>%</div>
+      <% win_percent = @total_matches.zero? ?  "0" : ((( @total_wins / @total_matches ) * 100 ).round) %>
+      <div class="percentage"><%= win_percent %>%</div>
       <div class="text-profile">Of matches won</div>
         </div>
     <div class="rectangle secondary">

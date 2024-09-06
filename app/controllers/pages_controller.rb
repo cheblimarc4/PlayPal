@@ -13,9 +13,9 @@ class PagesController < ApplicationController
   end
 
   def calculate_wins(matches)
-    losses = 0
-    wins = 0
-    total_matches = 0
+    losses = 0.0
+    wins = 0.0
+    total_matches = 0.0
     matches.each do |match|
       total_matches += 1
       next if match.winning_team.nil?
